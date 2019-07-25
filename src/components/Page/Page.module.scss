@@ -2,10 +2,17 @@
 @import '../../assets/scss/mixins';
 
 .page {
-  @include margin-bottom(2);
+  height: calc(100vh);
+  overflow: hidden;
+
+  &__container {
+    overflow: auto;
+    padding: 25px 20px;
+    height: 100%;
+  }
 
   &__inner {
-    padding: 25px 20px;
+    @include margin-bottom(2);
   }
 
   &__title {
@@ -21,7 +28,6 @@
     @include line-height(1);
     @include margin(0, 0, 1);
   }
-
 }
 
 @include breakpoint-sm {
@@ -31,9 +37,7 @@
     &__inner {
       padding: 30px 20px;
     }
-
   }
-
 }
 
 @include breakpoint-md {
@@ -43,7 +47,5 @@
     &__inner {
       padding: 40px 35px;
     }
-
   }
-
 }
