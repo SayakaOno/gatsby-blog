@@ -15,7 +15,6 @@ type Props = {
 
 const Author = ({ author, isIndex }: Props) => {
   const { language } = useContext(LanguageContext);
-  console.log(language);
 
   return (
     <div className={styles['author']}>

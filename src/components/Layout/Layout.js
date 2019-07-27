@@ -1,9 +1,9 @@
 // @flow
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Helmet from 'react-helmet';
 import type { Node as ReactNode } from 'react';
 import styles from './Layout.module.scss';
-import { getLanguage, LanguageProvider } from '../../utils/languageContext';
+import { LanguageContext, LanguageProvider } from '../../utils/languageContext';
 
 type Props = {
   children: ReactNode,
@@ -12,11 +12,8 @@ type Props = {
 };
 
 const Layout = ({ children, title, description }: Props) => {
-  const [language, setLanguage] = useState('');
-
-  useEffect(() => {
-    setLanguage(getLanguage());
-  }, []);
+  const languageContext = useContext(LanguageContext);
+  const [language, setLanguage] = useState(languageContext.language);
 
   return (
     <LanguageProvider value={{ language, setLanguage }}>
