@@ -22,7 +22,10 @@ const useSiteMetadata = () => {
               }
             }
             menu {
-              label
+              label {
+                en
+                ja
+              }
               path
             }
             url
