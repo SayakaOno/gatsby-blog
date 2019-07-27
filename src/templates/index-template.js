@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
@@ -8,7 +8,6 @@ import Page from '../components/Page';
 import Pagination from '../components/Pagination';
 import { useSiteMetadata } from '../hooks';
 import type { PageContext, AllMarkdownRemark } from '../types';
-import getLanguage from '../utils/get-language';
 
 type Props = {
   data: AllMarkdownRemark,
@@ -29,12 +28,6 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
   const { edges } = data.allMarkdownRemark;
   const pageTitle =
     currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
-
-  const [language, setLanguage] = useState('');
-
-  useEffect(() => {
-    setLanguage(getLanguage());
-  });
 
   return (
     <Layout title={pageTitle} description={siteSubtitle}>
