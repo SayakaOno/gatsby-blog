@@ -3,6 +3,7 @@ let language = () => {
   if (language !== 'ja' && language !== 'en') {
     language = 'en';
   }
+  return language;
 };
 
 export default language;
