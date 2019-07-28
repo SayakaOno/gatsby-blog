@@ -17,11 +17,11 @@ module.exports = {
       path: '/'
     },
     {
-      label: { en: 'About me', ja: '自己紹介' },
+      label: { en: 'About', ja: '自己紹介' },
       path: '/pages/about'
     },
     {
-      label: { en: 'Contact me', ja: 'コンタクト' },
+      label: { en: 'Contact', ja: 'コンタクト' },
       path: '/pages/contacts'
     }
   ],

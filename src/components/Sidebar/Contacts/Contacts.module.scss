@@ -3,6 +3,11 @@
 
 .contacts {
   @include margin-bottom(1);
+  display: none;
+
+  @include breakpoint-sm {
+    display: block;
+  }
 
   &__list {
     display: flex;

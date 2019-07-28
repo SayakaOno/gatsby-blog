@@ -4,6 +4,7 @@
 .page {
   height: calc(100vh);
   overflow: hidden;
+  padding-top: 50px;
 
   &__container {
     overflow: auto;
@@ -33,6 +34,7 @@
 
 @include breakpoint-sm {
   .page {
+    padding-top: 0;
     // lost-column: 7/12;
     // max-width: 780px;
 

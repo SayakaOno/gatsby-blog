@@ -3,19 +3,30 @@
 
 .sidebar {
   width: 100%;
+  position: fixed;
+  background-color: #fff;
+
+  button {
+    order: 4;
+  }
+
   &__inner {
     position: relative;
-    padding: 25px 20px 0;
+    padding: 15px 20px 0;
+    display: flex;
   }
 }
 
 @include breakpoint-sm {
   .sidebar {
+    position: initial;
     width: 250px;
-    float: left;
     // lost-column: 5/12;
+    float: left;
+
     &__inner {
       padding: 30px 20px 0;
+      display: block;
       &:after {
         background: $color-gray-border;
         background: linear-gradient(

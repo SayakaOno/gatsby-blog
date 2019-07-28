@@ -24,7 +24,7 @@ const Sidebar = ({ isIndex }: Props) => {
               <button
                 onClick={() => setLanguage(language === 'en' ? 'ja' : 'en')}
               >
-                language switcher
+                Lang
               </button>
               <Author author={author} isIndex={isIndex} />
               <Menu menu={menu} />
