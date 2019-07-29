@@ -1,15 +1,16 @@
 ---
-title: "Johannes Gutenberg: The Birth of Movable Type"
-date: "2017-08-18T22:12:03.284Z"
-template: "post"
+title: 'Johannes Gutenberg: The Birth of Movable Type'
+date: '2017-08-18T22:12:03.284Z'
+template: 'post'
+language: 'en'
 draft: false
-slug: "/posts/the-birth-of-movable-type/"
-category: "Typography"
+slug: '/posts/the-birth-of-movable-type/'
+category: 'Typography'
 tags:
-  - "Open source"
-  - "Gatsby"
-  - "Typography"
-description: "German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible."
+  - 'Open source'
+  - 'Gatsby'
+  - 'Typography'
+description: 'German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.'
 ---
 
 German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.
@@ -69,7 +70,7 @@ In 1462, during a conflict between two archbishops, Mainz was sacked by archbish
 
 In January 1465, Gutenberg's achievements were recognized and he was given the title Hofmann (gentleman of the court) by von Nassau. This honor included a stipend, an annual court outfit, as well as 2,180 litres of grain and 2,000 litres of wine tax-free. It is believed he may have moved back to Mainz around this time, but this is not certain.
 
-***
+---
 
 Gutenberg died in 1468 and was buried in the Franciscan church at Mainz, his contributions largely unknown. This church and the cemetery were later destroyed, and Gutenberg's grave is now lost.
 
@@ -81,7 +82,7 @@ Gutenberg's early printing process, and what tests he may have made with movable
 
 ![Movable metal type, and composing stick, descended from Gutenberg's press. Photo by Willi Heidelbach. Licensed under CC BY 2.5](/media/movable-type.jpg)
 
-*Movable metal type, and composing stick, descended from Gutenberg's press. Photo by Willi Heidelbach. Licensed under CC BY 2.5*
+_Movable metal type, and composing stick, descended from Gutenberg's press. Photo by Willi Heidelbach. Licensed under CC BY 2.5_
 
 Gutenberg's technique of making movable type remains unclear. In the following decades, punches and copper matrices became standardized in the rapidly disseminating printing presses across Europe. Whether Gutenberg used this sophisticated technique or a somewhat primitive version has been the subject of considerable debate.
 

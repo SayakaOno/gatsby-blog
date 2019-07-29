@@ -1,15 +1,16 @@
 ---
 title: Humane Typography in the Digital Age
-date: "2017-08-19T22:40:32.169Z"
-template: "post"
+date: '2017-08-19T22:40:32.169Z'
+template: 'post'
+language: 'en'
 draft: false
-slug: "/posts/humane-typography-in-the-digital-age/"
-category: "Typography"
+slug: '/posts/humane-typography-in-the-digital-age/'
+category: 'Typography'
 tags:
-  - "Design"
-  - "Typography"
-  - "Web Development"
-description: "An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts."
+  - 'Design'
+  - 'Typography'
+  - 'Web Development'
+description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.'
 ---
 
 - [The first transition](#the-first-transition)
@@ -31,7 +32,7 @@ The first printed books were, at first, perceived as inferior to the handwritten
 
 ![42-line-bible.jpg](/media/42-line-bible.jpg)
 
-*The 42–Line Bible, printed by Gutenberg.*
+_The 42–Line Bible, printed by Gutenberg._
 
 But, through this transition, the book lost a large part of its humanity. The machine took over most of the process but craftsmanship was still a part of it. The typefaces were cut manually by the first punch cutters. The paper was made by hand. The illustrations and ornaments were still being hand drawn. These were the remains of the craftsmanship that went almost extinct in the times of Eric Gill.
 
@@ -41,7 +42,7 @@ The first transition took away a large part of humanity from written communicati
 
 > In the new computer age the proliferation of typefaces and type manipulations represents a new level of visual pollution threatening our culture. Out of thousands of typefaces, all we need are a few basic ones, and trash the rest.
 >
-— Massimo Vignelli
+> — Massimo Vignelli
 
 Typography is not about typefaces. It’s not about what looks best, it’s about what feels right. What communicates the message best. Typography, in its essence, is about the message. “Typographical design should perform optically what the speaker creates through voice and gesture of his thoughts.”, as El Lissitzky, a famous Russian typographer, put it.
 
@@ -68,7 +69,7 @@ We’ve come close to “perfection” in the last five centuries. The letters a
 
 ![type-through-time.jpg](/media/type-through-time.jpg)
 
-*Type through 5 centuries.*
+_Type through 5 centuries._
 
 We lost a part of ourselves because of this chase after perfection. We forgot about the craftsmanship along the way. And the worst part is that we don’t care. The transition to the digital age made that clear. We choose typefaces like clueless zombies. There’s no meaning in our work. Type sizes, leading, margins… It’s all just a few clicks or lines of code. The message isn’t important anymore. There’s no more “why” behind the “what”.
 
@@ -76,4 +77,4 @@ We lost a part of ourselves because of this chase after perfection. We forgot ab
 
 Human beings aren’t perfect. Perfection is something that will always elude us. There will always be a small part of humanity in everything we do. No matter how small that part, we should make sure that it transcends the limits of the medium. We have to think about the message first. What typeface should we use and why? Does the typeface match the message and what we want to communicate with it? What will be the leading and why? Will there be more typefaces in our design? On what ground will they be combined? What makes our design unique and why? This is the part of humanity that is left in typography. It might be the last part. Are we really going to give it up?
 
-*Originally published by [Matej Latin](http://matejlatin.co.uk/) on [Medium](https://medium.com/design-notes/humane-typography-in-the-digital-age-9bd5c16199bd?ref=webdesignernews.com#.lygo82z0x).*
+_Originally published by [Matej Latin](http://matejlatin.co.uk/) on [Medium](https://medium.com/design-notes/humane-typography-in-the-digital-age-9bd5c16199bd?ref=webdesignernews.com#.lygo82z0x)._
