@@ -1,8 +1,9 @@
 // @flow
 import React, { useContext } from 'react';
 import { withPrefix, Link } from 'gatsby';
+import { Location } from '@reach/router';
 import styles from './Author.module.scss';
-import { LanguageContext } from '../../../utils/languageContext';
+import { LanguageContext, getLanguage } from '../../../utils/languageContext';
 
 type Props = {
   author: {
@@ -17,22 +18,28 @@ const Author = ({ author, isIndex }: Props) => {
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className={styles['author']}>
-      {isIndex ? (
-        <h1 className={styles['author__title']}>
-          <Link className={styles['author__title-link']} to="/">
-            {author.name[language]}
-          </Link>
-        </h1>
-      ) : (
-        <h2 className={styles['author__title']}>
-          <Link className={styles['author__title-link']} to="/">
-            {author.name[language]}
-          </Link>
-        </h2>
-      )}
-      <p className={styles['author__subtitle']}>{author.bio}</p>
-    </div>
+    <Location>
+      {({ location }) => {
+        return (
+          <div className={styles['author']}>
+            {isIndex ? (
+              <h1 className={styles['author__title']}>
+                <Link className={styles['author__title-link']} to="/">
+                  {author.name[getLanguage(location.pathname)]}
+                </Link>
+              </h1>
+            ) : (
+              <h2 className={styles['author__title']}>
+                <Link className={styles['author__title-link']} to="/">
+                  {author.name[getLanguage(location.pathname)]}
+                </Link>
+              </h2>
+            )}
+            <p className={styles['author__subtitle']}>{author.bio}</p>
+          </div>
+        );
+      }}
+    </Location>
   );
 };
 
