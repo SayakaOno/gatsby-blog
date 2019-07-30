@@ -2,15 +2,24 @@
 @import '../../assets/scss/mixins';
 
 .post {
+  height: calc(100vh - 50px);
+
+  &__inner {
+    height: 100%;
+    padding: 25px 20px;
+  }
+
   &__footer {
-    max-width: $layout-post-width;
-    margin: 0 auto;
+    // max-width: $layout-post-width;
+    max-width: 780px;
+    // margin: 0 auto;
     padding: 0 15px;
   }
 
   &__comments {
-    max-width: $layout-post-width;
-    margin: 0 auto;
+    // max-width: $layout-post-width;
+    max-width: 780px;
+    // margin: 0 auto;
     padding: 0 15px;
   }
 
@@ -34,29 +43,41 @@
     &:focus {
       color: $color-primary;
     }
-
   }
+}
 
+@include breakpoint-sm {
+  .post {
+    padding-top: 0;
+    // overflow: hidden;
+    // lost-column: 7/12;
+    // max-width: 780px;
+
+    &__inner {
+      overflow: auto;
+      padding: 30px 20px;
+    }
+  }
 }
 
 @include breakpoint-md {
   .post {
     &__footer {
       padding: 0;
+      padding: 40px 35px;
     }
 
     &__comments {
       padding: 0;
+      padding: 40px 35px;
     }
 
     &__home-button {
-      position: fixed;
-      max-width: auto;
-      margin: 0;
-      top: 30px;
-      left: 30px
+      // position: fixed;
+      // max-width: auto;
+      margin: 15px 0 0 35px;
+      // top: 30px;
+      // left: 30px;
     }
-
   }
-
 }
