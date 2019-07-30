@@ -22,29 +22,9 @@ module.exports = async (graphql, actions) => {
     }
   `);
 
-  const resultJa = await graphql(`
-    {
-      allMarkdownRemark(
-        filter: {
-          frontmatter: {
-            template: { eq: "post" }
-            draft: { ne: true }
-            language: { eq: "ja" }
-          }
-        }
-      ) {
-        totalCount
-      }
-    }
-  `);
-
   const { postsPerPage } = siteConfig;
   const numPages = Math.ceil(
     result.data.allMarkdownRemark.totalCount / postsPerPage
-  );
-
-  const numPagesJa = Math.ceil(
-    resultJa.data.allMarkdownRemark.totalCount / postsPerPage
   );
 
   for (let i = 0; i < numPages; i += 1) {
@@ -63,7 +43,28 @@ module.exports = async (graphql, actions) => {
       }
     });
   }
+
   // ja
+  const resultJa = await graphql(`
+    {
+      allMarkdownRemark(
+        filter: {
+          frontmatter: {
+            template: { eq: "post" }
+            draft: { ne: true }
+            language: { eq: "ja" }
+          }
+        }
+      ) {
+        totalCount
+      }
+    }
+  `);
+
+  const numPagesJa = Math.ceil(
+    resultJa.data.allMarkdownRemark.totalCount / postsPerPage
+  );
+
   for (let i = 0; i < numPagesJa; i += 1) {
     createPage({
       path: i === 0 ? '/ja' : `/page/${i}/ja`,
