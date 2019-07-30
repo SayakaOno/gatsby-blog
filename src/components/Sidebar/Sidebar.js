@@ -18,6 +18,12 @@ const Sidebar = ({ isIndex }: Props) => {
   const { author, copyright, menu } = useSiteMetadata();
 
   const otherLanguagePath = currentPath => {
+    if (currentPath.includes('/page')) {
+      if (currentPath.includes('/ja')) {
+        return '/';
+      }
+      return '/ja';
+    }
     if (currentPath.includes('/ja')) {
       return currentPath.replace('/ja', '');
     }
