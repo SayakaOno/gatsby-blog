@@ -1,6 +1,7 @@
 // @flow
-import React from 'react';
-import { graphql } from 'gatsby';
+import React, { useContext } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { Location } from '@reach/router';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Feed from '../components/Feed';
@@ -8,6 +9,7 @@ import Page from '../components/Page';
 import Pagination from '../components/Pagination';
 import { useSiteMetadata } from '../hooks';
 import type { PageContext, AllMarkdownRemark } from '../types';
+import { LanguageContext } from '../utils/languageContext';
 
 type Props = {
   data: AllMarkdownRemark,
@@ -46,11 +48,21 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
 };
 
 export const query = graphql`
-  query IndexTemplate($postsLimit: Int!, $postsOffset: Int!) {
+  query IndexTemplate(
+    $postsLimit: Int!
+    $postsOffset: Int!
+    $language: String!
+  ) {
     allMarkdownRemark(
       limit: $postsLimit
       skip: $postsOffset
-      filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
+      filter: {
+        frontmatter: {
+          template: { eq: "post" }
+          draft: { ne: true }
+          language: { eq: $language }
+        }
+      }
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {
