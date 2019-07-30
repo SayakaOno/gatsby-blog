@@ -3,11 +3,9 @@
 
 .page {
   height: calc(100vh);
-  overflow: hidden;
   padding-top: 50px;
 
   &__container {
-    overflow: auto;
     padding: 25px 20px;
     height: 100%;
   }
@@ -35,8 +33,13 @@
 @include breakpoint-sm {
   .page {
     padding-top: 0;
+    overflow: hidden;
     // lost-column: 7/12;
     // max-width: 780px;
+
+    &__container {
+      overflow: auto;
+    }
 
     &__inner {
       padding: 30px 20px;
