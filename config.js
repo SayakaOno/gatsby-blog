@@ -13,8 +13,8 @@ module.exports = {
   useKatex: false,
   menu: [
     {
-      label: { en: 'Articles', ja: 'ブログ' },
-      path: '/'
+      label: { en: 'Search', ja: '検索' },
+      path: '/search'
     },
     {
       label: { en: 'About', ja: '自己紹介' },
