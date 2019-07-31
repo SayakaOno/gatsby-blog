@@ -5,20 +5,32 @@ import kebabCase from 'lodash/kebabCase';
 import Sidebar from '../components/Sidebar';
 import Layout from '../components/Layout';
 import Page from '../components/Page';
-import { useSiteMetadata, useCategoriesList } from '../hooks';
+import {
+  useSiteMetadata,
+  useCategoriesList,
+  useCategoriesListJa
+} from '../hooks';
 
-const CategoriesListTemplate = () => {
+const CategoriesListTemplate = ({ pageContext }) => {
   const { title, subtitle } = useSiteMetadata();
-  const categories = useCategoriesList();
-
+  const categories =
+    pageContext.language === 'ja' ? useCategoriesListJa() : useCategoriesList();
+  const language = pageContext.language === 'ja' ? 'ja' : 'en';
   return (
-    <Layout title={`Categories - ${title}`} description={subtitle}>
+    <Layout
+      title={`${language === 'en' ? 'Categories' : 'カテゴリー'} - ${title}`}
+      description={subtitle}
+    >
       <Sidebar />
-      <Page title="Categories">
+      <Page title={language === 'en' ? 'Categories' : 'カテゴリー'}>
         <ul>
-          {categories.map((category) => (
+          {categories.map(category => (
             <li key={category.fieldValue}>
-              <Link to={`/category/${kebabCase(category.fieldValue)}/`}>
+              <Link
+                to={`/category/${kebabCase(category.fieldValue)}/${
+                  language === 'en' ? '' : 'ja'
+                }`}
+              >
                 {category.fieldValue} ({category.totalCount})
               </Link>
             </li>
