@@ -5,20 +5,28 @@ import kebabCase from 'lodash/kebabCase';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Page from '../components/Page';
-import { useSiteMetadata, useTagsList } from '../hooks';
+import { useSiteMetadata, useTagsList, useTagsListJa } from '../hooks';
 
-const TagsListTemplate = () => {
+const TagsListTemplate = ({ pageContext }) => {
   const { title, subtitle } = useSiteMetadata();
-  const tags = useTagsList();
+  const tags = pageContext.language === 'en' ? useTagsList() : useTagsListJa();
+  const language = pageContext.language === 'en' ? 'en' : 'ja';
 
   return (
-    <Layout title={`Tags - ${title}`} description={subtitle}>
+    <Layout
+      title={`${language === 'en' ? 'Tags' : 'タグ'} - ${title}`}
+      description={subtitle}
+    >
       <Sidebar />
-      <Page title="Tags">
+      <Page title={language === 'en' ? 'Tags' : 'タグ'}>
         <ul>
-          {tags.map((tag) => (
+          {tags.map(tag => (
             <li key={tag.fieldValue}>
-              <Link to={`/tag/${kebabCase(tag.fieldValue)}/`}>
+              <Link
+                to={`/tag/${kebabCase(tag.fieldValue)}/${
+                  language === 'en' ? '' : 'ja'
+                }`}
+              >
                 {tag.fieldValue} ({tag.totalCount})
               </Link>
             </li>

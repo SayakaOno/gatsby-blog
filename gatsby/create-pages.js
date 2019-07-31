@@ -12,7 +12,8 @@ const createPages = async ({ graphql, actions }) => {
   // 404
   createPage({
     path: '/404',
-    component: path.resolve('./src/templates/not-found-template.js')
+    component: path.resolve('./src/templates/not-found-template.js'),
+    context: { language: 'en' }
   });
   createPage({
     path: '/404/ja',
@@ -23,13 +24,20 @@ const createPages = async ({ graphql, actions }) => {
   // Tags list
   createPage({
     path: '/tags',
-    component: path.resolve('./src/templates/tags-list-template.js')
+    component: path.resolve('./src/templates/tags-list-template.js'),
+    context: { language: 'en' }
+  });
+  createPage({
+    path: '/tags/ja',
+    component: path.resolve('./src/templates/tags-list-template.js'),
+    context: { language: 'ja' }
   });
 
   // Categories list
   createPage({
     path: '/categories',
-    component: path.resolve('./src/templates/categories-list-template.js')
+    component: path.resolve('./src/templates/categories-list-template.js'),
+    context: { language: 'en' }
   });
   createPage({
     path: '/categories/ja',

@@ -1,16 +1,16 @@
 // @flow
 import { useStaticQuery, graphql } from 'gatsby';
 
-const useTagsList = () => {
+const useTagsListJa = () => {
   const { allMarkdownRemark } = useStaticQuery(
     graphql`
-      query TagsListQuery {
+      query TagsListJaQuery {
         allMarkdownRemark(
           filter: {
             frontmatter: {
               template: { eq: "post" }
               draft: { ne: true }
-              language: { eq: "en" }
+              language: { eq: "ja" }
             }
           }
         ) {
@@ -26,4 +26,4 @@ const useTagsList = () => {
   return allMarkdownRemark.group;
 };
 
-export default useTagsList;
+export default useTagsListJa;

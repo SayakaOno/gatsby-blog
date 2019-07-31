@@ -11,7 +11,13 @@ module.exports = async (graphql, actions) => {
   const result = await graphql(`
     {
       allMarkdownRemark(
-        filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
+        filter: {
+          frontmatter: {
+            template: { eq: "post" }
+            draft: { ne: true }
+            language: { eq: "en" }
+          }
+        }
       ) {
         group(field: frontmatter___tags) {
           fieldValue
@@ -21,7 +27,7 @@ module.exports = async (graphql, actions) => {
     }
   `);
 
-  _.each(result.data.allMarkdownRemark.group, (tag) => {
+  _.each(result.data.allMarkdownRemark.group, tag => {
     const numPages = Math.ceil(tag.totalCount / postsPerPage);
     const tagSlug = `/tag/${_.kebabCase(tag.fieldValue)}`;
 
@@ -37,7 +43,52 @@ module.exports = async (graphql, actions) => {
           prevPagePath: i <= 1 ? tagSlug : `${tagSlug}/page/${i - 1}`,
           nextPagePath: `${tagSlug}/page/${i + 1}`,
           hasPrevPage: i !== 0,
-          hasNextPage: i !== numPages - 1
+          hasNextPage: i !== numPages - 1,
+          language: 'en'
+        }
+      });
+    }
+  });
+
+  // ja
+  const resultJa = await graphql(`
+    {
+      allMarkdownRemark(
+        filter: {
+          frontmatter: {
+            template: { eq: "post" }
+            draft: { ne: true }
+            language: { eq: "ja" }
+          }
+        }
+      ) {
+        group(field: frontmatter___tags) {
+          fieldValue
+          totalCount
+        }
+      }
+    }
+  `);
+
+  _.each(resultJa.data.allMarkdownRemark.group, tag => {
+    const numPages = Math.ceil(tag.totalCount / postsPerPage);
+    const tagSlug = `/tag/${_.kebabCase(tag.fieldValue)}`;
+
+    for (let i = 0; i < numPages; i += 1) {
+      createPage({
+        path: i === 0 ? tagSlug + '/ja' : `${tagSlug}/page/${i}/ja`,
+        component: path.resolve('./src/templates/tag-template.js'),
+        context: {
+          tag: tag.fieldValue,
+          currentPage: i,
+          postsLimit: postsPerPage,
+          postsOffset: i * postsPerPage,
+          prevPagePath:
+            i <= 1 ? tagSlug + '/ja' : `${tagSlug}/page/${i - 1}/ja`,
+          nextPagePath: `${tagSlug}/page/${i + 1}/ja`,
+          hasPrevPage: i !== 0,
+          hasNextPage: i !== numPages - 1,
+          language: 'ja'
         }
       });
     }
