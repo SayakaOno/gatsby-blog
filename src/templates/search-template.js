@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Page from '../components/Page';
+import Search from '../components/Search';
 import { useSiteMetadata } from '../hooks';
 import type { PageContext, AllMarkdownRemark } from '../types';
 
@@ -22,7 +23,9 @@ const BlogTemplate = ({ data, pageContext }: Props) => {
   return (
     <Layout title={pageTitle} description={siteSubtitle}>
       <Sidebar isIndex />
-      <Page>Search {totalCount}</Page>
+      <Page>
+        <Search totalCount={totalCount} edges={edges} language={language} />
+      </Page>
     </Layout>
   );
 };
@@ -49,6 +52,7 @@ export const query = graphql`
             title
             date
             category
+            tags
             description
           }
         }
