@@ -16,17 +16,18 @@ const Menu = ({ menu }: Props) => {
   return (
     <Location>
       {({ location }) => {
+        const language = getLanguage(location.pathname);
         return (
           <nav className={styles['menu']}>
             <ul className={styles['menu__list']}>
               {menu.map(item => (
                 <li className={styles['menu__list-item']} key={item.path}>
                   <Link
-                    to={item.path}
+                    to={`${item.path}${language === 'en' ? '' : '/ja'}`}
                     className={styles['menu__list-item-link']}
                     activeClassName={styles['menu__list-item-link--active']}
                   >
-                    {item.label[getLanguage(location.pathname)]}
+                    {item.label[language]}
                   </Link>
                 </li>
               ))}
