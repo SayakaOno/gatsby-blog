@@ -20,23 +20,25 @@ const Post = ({ post }: Props) => {
 
   return (
     <div className={styles['post']}>
-      <div className={styles['post__inner']}>
-        <Link className={styles['post__home-button']} to="/">
-          All Articles
-        </Link>
+      <div className={styles['post__container']}>
+        <div className={styles['post__inner']}>
+          <Link className={styles['post__home-button']} to="/">
+            All Articles
+          </Link>
 
-        <div className={styles['post__content']}>
-          <Content body={html} title={title} />
-        </div>
+          <div className={styles['post__content']}>
+            <Content body={html} title={title} />
+          </div>
 
-        <div className={styles['post__footer']}>
-          <Meta date={date} />
-          {tags && tagSlugs && <Tags tags={tags} tagSlugs={tagSlugs} />}
-          <Author />
-        </div>
+          <div className={styles['post__footer']}>
+            <Meta date={date} />
+            {tags && tagSlugs && <Tags tags={tags} tagSlugs={tagSlugs} />}
+            <Author />
+          </div>
 
-        <div className={styles['post__comments']}>
-          <Comments postSlug={slug} postTitle={post.frontmatter.title} />
+          <div className={styles['post__comments']}>
+            <Comments postSlug={slug} postTitle={post.frontmatter.title} />
+          </div>
         </div>
       </div>
     </div>
