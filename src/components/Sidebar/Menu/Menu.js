@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'gatsby';
 import { Location } from '@reach/router';
 import styles from './Menu.module.scss';
-import { LanguageContext, getLanguage } from '../../../utils/languageContext';
+import { getLanguage } from '../../../utils/languageContext';
 
 type Props = {
   menu: {
@@ -13,8 +13,6 @@ type Props = {
 };
 
 const Menu = ({ menu }: Props) => {
-  const { language } = useContext(LanguageContext);
-
   return (
     <Location>
       {({ location }) => {

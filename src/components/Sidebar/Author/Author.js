@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { withPrefix, Link } from 'gatsby';
 import { Location } from '@reach/router';
 import styles from './Author.module.scss';
-import { LanguageContext, getLanguage } from '../../../utils/languageContext';
+import { getLanguage } from '../../../utils/languageContext';
 
 type Props = {
   author: {
@@ -15,8 +15,6 @@ type Props = {
 };
 
 const Author = ({ author, isIndex }: Props) => {
-  const { language } = useContext(LanguageContext);
-
   return (
     <Location>
       {({ location }) => {
