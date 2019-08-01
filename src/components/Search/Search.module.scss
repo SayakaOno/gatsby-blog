@@ -2,71 +2,78 @@
 @import '../../assets/scss/mixins';
 
 .search {
-  &__item {
-    @include margin-bottom(1.25);
+  ul {
+    padding: 0;
+  }
 
-    &:last-child {
-      @include margin-bottom(0.5);
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 3.25rem;
+    margin-top: 0;
+    margin-bottom: 2.35625rem;
+  }
+
+  &__count {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-bottom: solid 3px #333;
+  }
+
+  &__filter {
+    margin-bottom: 2.35625rem;
+
+    li {
+      display: inline-block;
+      list-style: none;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
-    &-title {
-      font-size: $typographic-base-font-size * 1.6875;
-      @include line-height(1.5);
-      @include margin-top(0);
-      @include margin-bottom(0.5);
+    &__categories-list {
+      margin-bottom: 10px !important;
 
-      &-link {
-        color: $color-base;
+      li {
+        padding: 0.2rem 0.7rem;
+        color: #222;
+        border: 1px solid #c0c0c0;
+        font-size: 0.9rem;
+        font-weight: normal;
+        margin: 0 0.2rem 0.2rem 0;
+      }
 
-        &:hover,
-        &:focus {
-          color: $color-base;
-          border-bottom: 1px solid $color-base;
+      &-item-selected {
+        background-color: #dcdcdc;
+      }
+    }
+
+    &__tags-list {
+      margin-top: 0;
+
+      li {
+        padding: 0 0.5rem;
+        color: #666;
+        border-radius: 0.25rem;
+        font-size: 0.9rem;
+        font-weight: normal;
+        margin: 0 0.2rem 0.2rem 0;
+        background-color: rgb(221, 221, 221);
+        &:before {
+          content: '+ ';
+          font-weight: bold;
         }
       }
-    }
 
-    &-description {
-      font-size: $typographic-base-font-size;
-      @include line-height(1);
-      @include margin-bottom(0.75);
-    }
+      &-item-selected {
+        color: rgb(221, 221, 221) !important;
+        background-color: #666 !important;
 
-    &-meta {
-      &-time {
-        font-size: $typographic-small-font-size;
-        color: $color-base;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-
-      &-divider {
-        margin: 0 5px;
-      }
-
-      &-category {
-        &-link {
-          font-size: $typographic-small-font-size;
-          color: $color-secondary;
-          font-weight: 600;
-          text-transform: uppercase;
-
-          &:hover,
-          &:focus {
-            color: $color-primary;
-          }
+        &:before {
+          content: '\002713 ' !important;
         }
-      }
-    }
-
-    &-readmore {
-      font-size: $typographic-base-font-size;
-      color: $color-primary;
-
-      &:hover,
-      &:focus {
-        color: $color-primary;
-        border-bottom: 1px solid $color-primary;
       }
     }
   }

@@ -10,18 +10,23 @@
     }
 
     &-title {
-      font-size: $typographic-base-font-size * 1.6875;
-      @include line-height(1.5);
+      // font-size: $typographic-base-font-size * 1.6875;
+      font-size: 1.2em;
+      @include line-height(1);
       @include margin-top(0);
-      @include margin-bottom(0.5);
+      @include margin-bottom(0);
 
       &-link {
         color: $color-base;
+        display: block;
+        margin-bottom: 20px;
 
         &:hover,
         &:focus {
           color: $color-base;
-          border-bottom: 1px solid $color-base;
+          h2 {
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -33,10 +38,11 @@
     }
 
     &-meta {
+      line-height: 1em;
+      margin-bottom: 2px;
       &-time {
         font-size: $typographic-small-font-size;
         color: $color-base;
-        font-weight: 600;
         text-transform: uppercase;
       }
 
@@ -59,14 +65,29 @@
       }
     }
 
-    &-readmore {
-      font-size: $typographic-base-font-size;
-      color: $color-primary;
+    ul {
+      line-height: 1em;
+      margin: 0;
+    }
 
-      &:hover,
-      &:focus {
-        color: $color-primary;
-        border-bottom: 1px solid $color-primary;
+    li {
+      display: inline-block;
+      color: #888;
+      border-radius: 0.15rem;
+      font-size: 0.8rem;
+      line-height: 1em;
+      font-weight: normal;
+      padding: 0;
+      margin: 0 0.2rem 0.2rem 0;
+
+      &:after {
+        content: ',';
+      }
+
+      &:last-child {
+        &:after {
+          content: '';
+        }
       }
     }
   }

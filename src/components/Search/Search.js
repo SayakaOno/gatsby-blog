@@ -93,7 +93,7 @@ const Search = ({ edges, totalCount, language }: Props) => {
 
   const renderCategories = () => {
     return (
-      <ul className={styles['search__categories-list']}>
+      <ul className={styles['search__filter__categories-list']}>
         {categoriesList.map(category => {
           return (
             <li
@@ -101,7 +101,7 @@ const Search = ({ edges, totalCount, language }: Props) => {
               key={category.fieldValue}
               className={
                 selectedCategory.includes(category.fieldValue)
-                  ? styles['search__categories-list-item-selected']
+                  ? styles['search__filter__categories-list-item-selected']
                   : ''
               }
             >
@@ -115,7 +115,7 @@ const Search = ({ edges, totalCount, language }: Props) => {
 
   const renderTags = () => {
     return (
-      <ul className={styles['search__tags-list']}>
+      <ul className={styles['search__filter__tags-list']}>
         {tags.map(tag => {
           return (
             <li
@@ -123,7 +123,7 @@ const Search = ({ edges, totalCount, language }: Props) => {
               key={tag}
               className={
                 selectedTags.includes(tag)
-                  ? styles['search__tags-list-item-selected']
+                  ? styles['search__filter__tags-list-item-selected']
                   : ''
               }
             >
@@ -135,14 +135,34 @@ const Search = ({ edges, totalCount, language }: Props) => {
     );
   };
 
+  const renderCount = () => {
+    return (
+      <div className={styles['search__count']}>
+        {!selectedCategory
+          ? language === 'en'
+            ? `${number} posts`
+            : `全${number}件`
+          : language === 'en'
+          ? number === 0
+            ? 'No posts found'
+            : `${number} posts found`
+          : number === 0
+          ? '該当ブログがありません'
+          : `該当ブログ: ${number}`}
+      </div>
+    );
+  };
+
   return (
     <div className={styles['search']}>
-      <h1>{language === 'en' ? 'Search' : 'さがす'}</h1>
-      <p>
-        {language === 'en' ? 'blog' : 'ブログ'}: {number}
-      </p>
-      {renderCategories()}
-      {tags ? renderTags() : null}
+      <h1 className={styles['search__title']}>
+        {language === 'en' ? 'Search' : 'さがす'}
+      </h1>
+      <div className={styles['search__filter']}>
+        {renderCategories()}
+        {tags ? renderTags() : null}
+      </div>
+      {renderCount()}
       <BlogList edges={blogs} />
     </div>
   );
