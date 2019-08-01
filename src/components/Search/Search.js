@@ -28,12 +28,14 @@ const Search = ({ edges, totalCount, language }: Props) => {
     if (category === selectedCategory) {
       setSelectedCategory('');
       setTags([]);
+      setSelectedTags([]);
       setBlogs(edges);
       setBlogsInSelectedCategory([]);
       setNumber(totalCount);
     } else {
       setSelectedCategory(category);
       filterBlogByCategory(category);
+      setSelectedTags([]);
     }
   };
 
@@ -91,12 +93,17 @@ const Search = ({ edges, totalCount, language }: Props) => {
 
   const renderCategories = () => {
     return (
-      <ul>
+      <ul className={styles['search__categories-list']}>
         {categoriesList.map(category => {
           return (
             <li
               onClick={() => onClickCategory(category.fieldValue)}
               key={category.fieldValue}
+              className={
+                selectedCategory.includes(category.fieldValue)
+                  ? styles['search__categories-list-item-selected']
+                  : ''
+              }
             >
               {category.fieldValue}
             </li>
@@ -108,10 +115,18 @@ const Search = ({ edges, totalCount, language }: Props) => {
 
   const renderTags = () => {
     return (
-      <ul>
+      <ul className={styles['search__tags-list']}>
         {tags.map(tag => {
           return (
-            <li onClick={() => onClickTag(tag)} key={tag}>
+            <li
+              onClick={() => onClickTag(tag)}
+              key={tag}
+              className={
+                selectedTags.includes(tag)
+                  ? styles['search__tags-list-item-selected']
+                  : ''
+              }
+            >
               {tag}
             </li>
           );
