@@ -13,8 +13,10 @@ const Search = ({ edges, totalCount, language }: Props) => {
   const categoriesList =
     language === 'ja' ? useCategoriesListJa() : useCategoriesList();
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedTags, setSelectedTags] = useState('');
   const [tags, setTags] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [blogsInSelectedCategory, setBlogsInSelectedCategory] = useState([]);
   const [number, setNumber] = useState([]);
 
   useEffect(() => {
@@ -25,7 +27,9 @@ const Search = ({ edges, totalCount, language }: Props) => {
   const onClickCategory = category => {
     if (category === selectedCategory) {
       setSelectedCategory('');
+      setTags([]);
       setBlogs(edges);
+      setBlogsInSelectedCategory([]);
       setNumber(totalCount);
     } else {
       setSelectedCategory(category);
@@ -38,15 +42,55 @@ const Search = ({ edges, totalCount, language }: Props) => {
       edge => edge.node.frontmatter.category === category
     );
     setNumber(blogs.length);
-    return setBlogs(blogs);
+    setTags(getTags(blogs));
+    setBlogs(blogs);
+    setBlogsInSelectedCategory(blogs);
   };
 
-  return (
-    <div className={styles['search']}>
-      <h1>{language === 'en' ? 'Search' : 'さがす'}</h1>
-      <p>
-        {language === 'en' ? 'blog' : 'ブログ'}: {number}
-      </p>
+  const getTags = blogs => {
+    let tags = [];
+    blogs.forEach(blog => {
+      if (blog.node.frontmatter.tags) {
+        tags.push(...blog.node.frontmatter.tags);
+      }
+    });
+    let tagsSet = new Set(tags);
+    tags = Array.from(tagsSet);
+    return tags;
+  };
+
+  const onClickTag = clickedTag => {
+    let tags = [];
+    if (!selectedTags.length) {
+      tags.push(clickedTag);
+    } else if (selectedTags.includes(clickedTag)) {
+      tags = selectedTags.filter(tag => tag !== clickedTag);
+    } else {
+      tags = [...selectedTags, clickedTag];
+    }
+    filterBlogByTags(tags);
+    setSelectedTags(tags);
+  };
+
+  const filterBlogByTags = tags => {
+    let newblogs = blogsInSelectedCategory.filter(blog =>
+      includesAllTags(tags, blog.node.frontmatter.tags)
+    );
+    setNumber(newblogs.length);
+    setBlogs(newblogs);
+  };
+
+  const includesAllTags = (tags, array) => {
+    for (let i = 0; i < tags.length; i++) {
+      if (!array.includes(tags[i])) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const renderCategories = () => {
+    return (
       <ul>
         {categoriesList.map(category => {
           return (
@@ -59,6 +103,31 @@ const Search = ({ edges, totalCount, language }: Props) => {
           );
         })}
       </ul>
+    );
+  };
+
+  const renderTags = () => {
+    return (
+      <ul>
+        {tags.map(tag => {
+          return (
+            <li onClick={() => onClickTag(tag)} key={tag}>
+              {tag}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  return (
+    <div className={styles['search']}>
+      <h1>{language === 'en' ? 'Search' : 'さがす'}</h1>
+      <p>
+        {language === 'en' ? 'blog' : 'ブログ'}: {number}
+      </p>
+      {renderCategories()}
+      {tags ? renderTags() : null}
       <BlogList edges={blogs} />
     </div>
   );
