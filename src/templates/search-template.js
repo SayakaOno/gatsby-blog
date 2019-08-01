@@ -16,7 +16,7 @@ type Props = {
 const BlogTemplate = ({ data, pageContext }: Props) => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
 
-  const { language, totalCount } = pageContext;
+  const { language } = pageContext;
   const { edges } = data.allMarkdownRemark;
   const pageTitle = `${language === 'en' ? 'Search' : '検索'} ${siteTitle}`;
 
@@ -24,7 +24,11 @@ const BlogTemplate = ({ data, pageContext }: Props) => {
     <Layout title={pageTitle} description={siteSubtitle}>
       <Sidebar isIndex />
       <Page>
-        <Search totalCount={totalCount} edges={edges} language={language} />
+        <Search
+          totalCount={data.allMarkdownRemark.totalCount}
+          edges={edges}
+          language={language}
+        />
       </Page>
     </Layout>
   );
@@ -57,6 +61,7 @@ export const query = graphql`
           }
         }
       }
+      totalCount
     }
   }
 `;
