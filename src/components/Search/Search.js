@@ -9,7 +9,7 @@ type Props = {
   edges: Edges
 };
 
-const Search = ({ edges, totalCount, language }: Props) => {
+const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   const categoriesList =
     language === 'ja' ? useCategoriesListJa() : useCategoriesList();
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -20,8 +20,15 @@ const Search = ({ edges, totalCount, language }: Props) => {
   const [number, setNumber] = useState([]);
 
   useEffect(() => {
+    let savedCategory = savedFilter.selectedCategory;
+    let savedTags = savedFilter.selectedTags;
     setBlogs(edges);
     setNumber(totalCount);
+    if (savedFilter.selectedCategory) {
+      setSelectedCategory(savedCategory);
+      filterBlogByCategory(savedCategory);
+      setSelectedTags(savedTags);
+    }
   }, []);
 
   const onClickCategory = category => {
@@ -100,8 +107,10 @@ const Search = ({ edges, totalCount, language }: Props) => {
               onClick={() => onClickCategory(category.fieldValue)}
               key={category.fieldValue}
               className={
-                selectedCategory.includes(category.fieldValue)
-                  ? styles['search__filter__categories-list-item-selected']
+                selectedCategory
+                  ? selectedCategory.includes(category.fieldValue)
+                    ? styles['search__filter__categories-list-item-selected']
+                    : ''
                   : ''
               }
             >
@@ -163,7 +172,11 @@ const Search = ({ edges, totalCount, language }: Props) => {
         {tags ? renderTags() : null}
       </div>
       {renderCount()}
-      <BlogList edges={blogs} />
+      <BlogList
+        edges={blogs}
+        selectedCategory={selectedCategory}
+        selectedTags={selectedTags}
+      />
     </div>
   );
 };

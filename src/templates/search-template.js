@@ -13,7 +13,7 @@ type Props = {
   pageContext: PageContext
 };
 
-const BlogTemplate = ({ data, pageContext }: Props) => {
+const SearchTemplate = ({ data, pageContext, location }: Props) => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
 
   const { language } = pageContext;
@@ -28,6 +28,7 @@ const BlogTemplate = ({ data, pageContext }: Props) => {
           totalCount={data.allMarkdownRemark.totalCount}
           edges={edges}
           language={language}
+          savedFilter={location.state}
         />
       </Page>
     </Layout>
@@ -35,7 +36,7 @@ const BlogTemplate = ({ data, pageContext }: Props) => {
 };
 
 export const query = graphql`
-  query BlogTemplate($language: String!) {
+  query SearchTemplate($language: String!) {
     allMarkdownRemark(
       filter: {
         frontmatter: {
@@ -66,4 +67,4 @@ export const query = graphql`
   }
 `;
 
-export default BlogTemplate;
+export default SearchTemplate;

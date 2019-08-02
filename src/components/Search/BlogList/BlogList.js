@@ -10,7 +10,9 @@ type Props = {
   edges: Edges
 };
 
-const BlogList = ({ edges }: Props) => {
+const BlogList = (props: Props) => {
+  const { edges, selectedCategory, selectedTags } = props;
+
   return (
     <Location>
       {({ location }) => {
@@ -22,7 +24,11 @@ const BlogList = ({ edges }: Props) => {
                   className={styles['blog-list__item-title-link']}
                   key={edge.node.fields.slug}
                   to={edge.node.fields.slug}
-                  state={{ from: location.pathname }}
+                  state={{
+                    from: location.pathname,
+                    selectedCategory,
+                    selectedTags
+                  }}
                 >
                   <div className={styles['blog-list__item']}>
                     <div className={styles['blog-list__item-meta']}>

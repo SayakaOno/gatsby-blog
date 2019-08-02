@@ -13,7 +13,8 @@ type Props = {
   }
 };
 
-const PostTemplate = ({ data, pageContext, location }: Props) => {
+const PostTemplate = (props: Props) => {
+  const { data, pageContext, location } = props;
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
   const {
     title: postTitle,
@@ -22,6 +23,19 @@ const PostTemplate = ({ data, pageContext, location }: Props) => {
   const metaDescription =
     postDescription !== null ? postDescription : siteSubtitle;
 
+  const stateForSearchPage = () => {
+    if (
+      location.state.from === '/search' ||
+      location.state.from === '/search/ja'
+    ) {
+      return {
+        selectedCategory: location.state.selectedCategory,
+        selectedTags: location.state.selectedTags
+      };
+    }
+    return null;
+  };
+
   return (
     <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
       <Sidebar />
@@ -29,6 +43,7 @@ const PostTemplate = ({ data, pageContext, location }: Props) => {
         post={data.markdownRemark}
         language={pageContext.language}
         backLink={location.state.from}
+        stateForSearchPage={stateForSearchPage()}
       />
     </Layout>
   );
