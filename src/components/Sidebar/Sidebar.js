@@ -8,7 +8,7 @@ import Copyright from './Copyright';
 import Menu from './Menu';
 import styles from './Sidebar.module.scss';
 import { useSiteMetadata } from '../../hooks';
-import { LanguageConsumer } from '../../utils/languageContext';
+import { getLanguage } from '../../utils/languageContext';
 
 type Props = {
   isIndex?: boolean
@@ -30,35 +30,71 @@ const Sidebar = ({ isIndex }: Props) => {
     return currentPath + '/ja';
   };
 
-  return (
-    <LanguageConsumer>
-      {({ language, setLanguage }) => {
-        return (
-          <div className={styles['sidebar']}>
-            <div className={styles['sidebar__inner']}>
-              <Location>
-                {({ location }) => {
-                  return (
-                    <button
-                      onClick={() => {
-                        setLanguage(language === 'en' ? 'ja' : 'en');
-                        navigate(otherLanguagePath(location.pathname));
-                      }}
-                    >
-                      Lang
-                    </button>
-                  );
-                }}
-              </Location>
-              <Author author={author} isIndex={isIndex} />
-              <Menu menu={menu} />
-              <Contacts contacts={author.contacts} />
-              <Copyright copyright={copyright} />
+  const languageOnClick = (clickedLang, displayedlang) => {
+    if (clickedLang === displayedlang) {
+      return;
+    }
+    navigate(otherLanguagePath(location.pathname));
+  };
+
+  const renderLanguageSwitcher = () => {
+    return (
+      <Location>
+        {({ location }) => {
+          const language = getLanguage(location.pathname);
+          return (
+            <div className={styles['sidebar__inner__language-switcher']}>
+              <div
+                className={styles['sidebar__inner__language-switcher__back']}
+                style={{ left: language === 'en' ? 0 : '50%' }}
+              />
+              <div
+                className={
+                  styles['sidebar__inner__language-switcher__languages']
+                }
+              >
+                <span
+                  onClick={() => languageOnClick('en', language)}
+                  className={
+                    language === 'en'
+                      ? styles[
+                          'sidebar__inner__language-switcher__languages-active'
+                        ]
+                      : null
+                  }
+                >
+                  EN
+                </span>
+                <span
+                  onClick={() => languageOnClick('ja', language)}
+                  className={
+                    language === 'ja'
+                      ? styles[
+                          'sidebar__inner__language-switcher__languages-active'
+                        ]
+                      : null
+                  }
+                >
+                  JA
+                </span>
+              </div>
             </div>
-          </div>
-        );
-      }}
-    </LanguageConsumer>
+          );
+        }}
+      </Location>
+    );
+  };
+
+  return (
+    <div className={styles['sidebar']}>
+      <div className={styles['sidebar__inner']}>
+        <Author author={author} isIndex={isIndex} />
+        {renderLanguageSwitcher()}
+        <Menu menu={menu} />
+        <Contacts contacts={author.contacts} />
+        <Copyright copyright={copyright} />
+      </div>
+    </div>
   );
 };
 
