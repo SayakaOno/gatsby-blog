@@ -52,6 +52,7 @@
 
     &__tags-list {
       margin-top: 0;
+      margin-bottom: 0;
 
       li {
         padding: 0 0.5rem;
@@ -74,6 +75,31 @@
         &:before {
           content: '\002713 ' !important;
         }
+      }
+
+      &__clear {
+        font-size: 0.9rem;
+        line-height: 1.4rem;
+        text-decoration: underline;
+
+        span {
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    &__clear {
+      display: inline-block;
+      line-height: 1.2rem;
+      color: $color-primary;
+      margin-top: 12px;
+      padding: 0 5px 0 0;
+
+      &:hover {
+        cursor: pointer;
+        border-bottom: solid 1px;
       }
     }
   }

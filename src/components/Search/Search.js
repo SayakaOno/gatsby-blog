@@ -33,12 +33,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
 
   const onClickCategory = category => {
     if (category === selectedCategory) {
-      setSelectedCategory('');
-      setTags([]);
-      setSelectedTags([]);
-      setBlogs(edges);
-      setBlogsInSelectedCategory([]);
-      setNumber(totalCount);
+      clearFilter();
     } else {
       setSelectedCategory(category);
       filterBlogByCategory(category);
@@ -124,24 +119,63 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
 
   const renderTags = () => {
     return (
-      <ul className={styles['search__filter__tags-list']}>
-        {tags.map(tag => {
-          return (
-            <li
-              onClick={() => onClickTag(tag)}
-              key={tag}
-              className={
-                selectedTags.includes(tag)
-                  ? styles['search__filter__tags-list-item-selected']
-                  : ''
-              }
-            >
-              {tag}
-            </li>
-          );
-        })}
-      </ul>
+      <>
+        <ul className={styles['search__filter__tags-list']}>
+          {tags.map(tag => {
+            return (
+              <li
+                onClick={() => onClickTag(tag)}
+                key={tag}
+                className={
+                  selectedTags.includes(tag)
+                    ? styles['search__filter__tags-list-item-selected']
+                    : ''
+                }
+              >
+                {tag}
+              </li>
+            );
+          })}
+        </ul>
+
+        {selectedTags.length ? renderClearTagButton() : null}
+      </>
     );
+  };
+
+  const renderClearTagButton = () => {
+    return (
+      <div className={styles['search__filter__tags-list__clear']}>
+        <span onClick={clearTagFilter}>
+          <b>×</b> {language === 'en' ? 'reset tags' : 'タグをクリア'}
+        </span>
+      </div>
+    );
+  };
+
+  const clearTagFilter = () => {
+    setSelectedTags([]);
+    setBlogs(blogsInSelectedCategory);
+    setNumber(blogsInSelectedCategory.length);
+  };
+
+  const renderClearFilterButton = () => {
+    return (
+      <div>
+        <span onClick={clearFilter} className={styles['search__filter__clear']}>
+          {language === 'en' ? '→ All posts' : '→ 全ブログ'}
+        </span>
+      </div>
+    );
+  };
+
+  const clearFilter = () => {
+    setSelectedCategory('');
+    setTags([]);
+    setSelectedTags([]);
+    setBlogs(edges);
+    setBlogsInSelectedCategory([]);
+    setNumber(totalCount);
   };
 
   const renderCount = () => {
@@ -169,8 +203,10 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
       </h1>
       <div className={styles['search__filter']}>
         {renderCategories()}
-        {tags ? renderTags() : null}
+        {tags.length ? renderTags() : null}
+        {selectedCategory ? renderClearFilterButton() : null}
       </div>
+
       {renderCount()}
       <BlogList
         edges={blogs}
