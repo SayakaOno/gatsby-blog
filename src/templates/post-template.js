@@ -13,7 +13,7 @@ type Props = {
   }
 };
 
-const PostTemplate = ({ data }: Props) => {
+const PostTemplate = ({ data, pageContext, location }: Props) => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
   const {
     title: postTitle,
@@ -25,7 +25,11 @@ const PostTemplate = ({ data }: Props) => {
   return (
     <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
       <Sidebar />
-      <Post post={data.markdownRemark} />
+      <Post
+        post={data.markdownRemark}
+        language={pageContext.language}
+        backLink={location.state.from}
+      />
     </Layout>
   );
 };

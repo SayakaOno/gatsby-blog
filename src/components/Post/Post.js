@@ -13,7 +13,7 @@ type Props = {
   post: Node
 };
 
-const Post = ({ post }: Props) => {
+const Post = ({ post, language, backLink }: Props) => {
   const { html } = post;
   const { tagSlugs, slug } = post.fields;
   const { tags, title, date } = post.frontmatter;
@@ -22,8 +22,8 @@ const Post = ({ post }: Props) => {
     <div className={styles['post']}>
       <div className={styles['post__container']}>
         <div className={styles['post__inner']}>
-          <Link className={styles['post__home-button']} to="/">
-            All Articles
+          <Link className={styles['post__home-button']} to={backLink}>
+            {language === 'en' ? '← Back' : '← もどる'}
           </Link>
 
           <div className={styles['post__content']}>
