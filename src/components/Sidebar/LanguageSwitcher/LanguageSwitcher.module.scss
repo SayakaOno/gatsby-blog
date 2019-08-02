@@ -1,0 +1,44 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+
+.language-switcher {
+  order: 4;
+  position: relative;
+  border: solid 2px $color-secondary;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 70px;
+  height: 30px;
+
+  span {
+    display: inline-block;
+    width: 35px;
+    cursor: pointer;
+  }
+
+  &__languages {
+    text-align: center;
+    font-weight: 600;
+    width: 70px;
+    line-height: 30px;
+    z-index: 2;
+    position: absolute;
+    transition: all 5000ms ease-in;
+
+    &-active {
+      color: #fff;
+
+      &:hover {
+        cursor: inherit;
+      }
+    }
+  }
+
+  &__back {
+    position: absolute;
+    z-index: 1;
+    width: 35px;
+    height: 100%;
+    background-color: $color-secondary;
+  }
+}
