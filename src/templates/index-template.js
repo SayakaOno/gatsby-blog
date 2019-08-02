@@ -24,7 +24,8 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
     hasNextPage,
     hasPrevPage,
     prevPagePath,
-    nextPagePath
+    nextPagePath,
+    language
   } = pageContext;
 
   const { edges } = data.allMarkdownRemark;
@@ -35,7 +36,7 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
     <Layout title={pageTitle} description={siteSubtitle}>
       <Sidebar isIndex />
       <Page>
-        <Feed edges={edges} />
+        <Feed edges={edges} language={language} />
         <Pagination
           prevPagePath={prevPagePath}
           nextPagePath={nextPagePath}
