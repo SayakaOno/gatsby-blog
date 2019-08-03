@@ -39,14 +39,14 @@
       li {
         padding: 0.2rem 0.7rem;
         color: #222;
-        border: 1px solid #c0c0c0;
+        border: 1px solid $color-secondary;
         font-size: 0.9rem;
         font-weight: normal;
         margin: 0 0.2rem 0.2rem 0;
       }
 
       &-item-selected {
-        background-color: #dcdcdc;
+        background-color: $color-secondary;
       }
     }
 

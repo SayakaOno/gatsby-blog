@@ -17,28 +17,14 @@
   .sidebar {
     position: initial;
     width: 250px;
+    height: 100vh;
+    background-color: whitesmoke;
     // lost-column: 5/12;
     float: left;
 
     &__inner {
       padding: 30px 20px 0;
       display: block;
-      &:after {
-        background: $color-gray-border;
-        background: linear-gradient(
-          to bottom,
-          $color-gray-border 0%,
-          $color-gray-border 48%,
-          $color-white 100%
-        );
-        position: absolute;
-        content: '';
-        width: 1px;
-        height: 540px;
-        top: 30px;
-        right: -10px;
-        bottom: 0;
-      }
     }
   }
 }
