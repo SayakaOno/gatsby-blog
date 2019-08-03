@@ -20,11 +20,11 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   const [number, setNumber] = useState([]);
 
   useEffect(() => {
-    let savedCategory = savedFilter.selectedCategory;
-    let savedTags = savedFilter.selectedTags;
     setBlogs(edges);
     setNumber(totalCount);
-    if (savedFilter.selectedCategory) {
+    if (savedFilter) {
+      let savedCategory = savedFilter.selectedCategory;
+      let savedTags = savedFilter.selectedTags;
       setSelectedCategory(savedCategory);
       filterBlogByCategory(savedCategory);
       setSelectedTags(savedTags);
