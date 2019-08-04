@@ -20,14 +20,14 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   const [number, setNumber] = useState([]);
 
   useEffect(() => {
-    setBlogs(edges);
-    setNumber(totalCount);
-    if (savedFilter) {
+    if (savedFilter && savedFilter.selectedCategory) {
       let savedCategory = savedFilter.selectedCategory;
       let savedTags = savedFilter.selectedTags;
       setSelectedCategory(savedCategory);
-      filterBlogByCategory(savedCategory);
-      setSelectedTags(savedTags);
+      filterBlogByCategoryAndTags(savedCategory, savedTags);
+    } else {
+      setBlogs(edges);
+      setNumber(totalCount);
     }
   }, []);
 
@@ -82,6 +82,18 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     );
     setNumber(newblogs.length);
     setBlogs(newblogs);
+  };
+
+  const filterBlogByCategoryAndTags = (category, tags) => {
+    let blogs = edges.filter(
+      edge =>
+        edge.node.frontmatter.category === category &&
+        includesAllTags(tags, edge.node.frontmatter.tags)
+    );
+    setNumber(blogs.length);
+    setTags(getTags(blogs));
+    setBlogs(blogs);
+    setBlogsInSelectedCategory(blogs);
   };
 
   const includesAllTags = (tags, array) => {
