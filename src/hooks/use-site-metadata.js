@@ -12,13 +12,28 @@ const useSiteMetadata = () => {
                 en
                 ja
               }
-              bio
+              bio {
+                en
+                ja
+              }
               photo
               contacts {
-                email
-                twitter
-                github
-                rss
+                email {
+                  en
+                  ja
+                }
+                twitter {
+                  en
+                  ja
+                }
+                github {
+                  en
+                  ja
+                }
+                rss {
+                  en
+                  ja
+                }
               }
             }
             menu {

@@ -28,12 +28,15 @@ module.exports = {
   author: {
     name: { en: 'Sayaka Ono', ja: '小野 沙耶花' },
     photo: '/favicon.ico',
-    bio: 'React developer based in Vancouver.',
+    bio: {
+      en: 'React developer based in Vancouver.',
+      ja: '高知出身・バンクーバー在住デベロッパー。'
+    },
     contacts: {
-      email: '#',
-      twitter: '#',
-      github: '#',
-      rss: '#'
+      email: { en: '#', ja: '#' },
+      twitter: { en: '#', ja: '#' },
+      github: { en: '#', ja: '#' },
+      rss: { en: '#', ja: '#' }
     }
   }
 };
