@@ -13,7 +13,6 @@
   span {
     display: inline-block;
     width: 35px;
-    cursor: pointer;
   }
 
   &__languages {
@@ -25,12 +24,14 @@
     position: absolute;
     transition: all 5000ms ease-in;
 
+    &__pointer {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     &-active {
       color: #fff;
-
-      &:hover {
-        cursor: inherit;
-      }
     }
   }
 

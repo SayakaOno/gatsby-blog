@@ -22,6 +22,10 @@ const PostTemplate = (props: Props) => {
   } = data.markdownRemark.frontmatter;
   const metaDescription =
     postDescription !== null ? postDescription : siteSubtitle;
+  const link = {
+    exist: data.markdownRemark.frontmatter.link ? true : false,
+    path: data.markdownRemark.frontmatter.link
+  };
 
   const stateForSearchPage = () => {
     if (
@@ -38,7 +42,7 @@ const PostTemplate = (props: Props) => {
 
   return (
     <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
-      <Sidebar />
+      <Sidebar link={link} />
       <Post
         post={data.markdownRemark}
         language={pageContext.language}
@@ -63,6 +67,7 @@ export const query = graphql`
         description
         tags
         title
+        link
       }
     }
   }

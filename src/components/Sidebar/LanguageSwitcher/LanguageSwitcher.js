@@ -1,11 +1,25 @@
 // @flow
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby';
 import { Location } from '@reach/router';
 import styles from './LanguageSwitcher.module.scss';
 import { getLanguage } from '../../../utils/languageContext';
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ link, language }) => {
+  const [enLinkExist, setEnLinkExist] = useState(null);
+  const [jaLinkExist, setJaLinkExist] = useState(null);
+
+  useEffect(() => {
+    if (link && !link.exist) {
+      return;
+    }
+    if (language === 'en') {
+      setJaLinkExist(true);
+    } else {
+      setEnLinkExist(true);
+    }
+  }, []);
+
   const otherLanguagePath = currentPath => {
     if (currentPath.includes('/page/')) {
       if (currentPath.includes('/ja')) {
@@ -23,7 +37,25 @@ const LanguageSwitcher = () => {
     if (clickedLang === displayedLanguage) {
       return;
     }
-    navigate(otherLanguagePath(location.pathname));
+    let path = '';
+    if (link) {
+      if (!link.exist) {
+        return;
+      }
+      path = link.path;
+    } else {
+      path = otherLanguagePath(location.pathname);
+    }
+    navigate(path);
+  };
+
+  const pointerClassName = language => {
+    if (language === 'en') {
+      return enLinkExist
+        ? styles['language-switcher__languages__pointer']
+        : null;
+    }
+    return jaLinkExist ? styles['language-switcher__languages__pointer'] : null;
   };
 
   return (
@@ -39,21 +71,21 @@ const LanguageSwitcher = () => {
             <div className={styles['language-switcher__languages']}>
               <span
                 onClick={() => languageOnClick('en', language)}
-                className={
+                className={`${
                   language === 'en'
                     ? styles['language-switcher__languages-active']
                     : null
-                }
+                } ${pointerClassName('en')}`}
               >
                 EN
               </span>
               <span
                 onClick={() => languageOnClick('ja', language)}
-                className={
+                className={`${
                   language === 'ja'
                     ? styles['language-switcher__languages-active']
                     : null
-                }
+                } ${pointerClassName('ja')}`}
               >
                 JA
               </span>

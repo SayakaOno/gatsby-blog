@@ -14,7 +14,7 @@ type Props = {
   isIndex?: boolean
 };
 
-const Sidebar = ({ isIndex }: Props) => {
+const Sidebar = ({ isIndex, link }: Props) => {
   const { author, copyright, menu } = useSiteMetadata();
 
   return (
@@ -25,7 +25,7 @@ const Sidebar = ({ isIndex }: Props) => {
           <div className={styles['sidebar']}>
             <div className={styles['sidebar__inner']}>
               <Author author={author} isIndex={isIndex} language={language} />
-              <LanguageSwitcher />
+              <LanguageSwitcher link={link} language={language} />
               <Menu menu={menu} language={language} />
               <Contacts contacts={author.contacts} language={language} />
               <Copyright copyright={copyright} />
