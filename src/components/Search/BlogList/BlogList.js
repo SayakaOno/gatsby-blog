@@ -5,6 +5,7 @@ import { Link } from 'gatsby';
 import { Location } from '@reach/router';
 import type { Edges } from '../../../types';
 import styles from './BlogList.module.scss';
+import { getLanguage } from '../../../utils/languageContext';
 
 type Props = {
   edges: Edges
@@ -39,7 +40,9 @@ const BlogList = (props: Props) => {
                         )}
                       >
                         {moment(edge.node.frontmatter.date).format(
-                          'MMMM D, YYYY'
+                          getLanguage(location.pathname) === 'en'
+                            ? 'MMMM D, YYYY'
+                            : 'YYYY/MM/DD'
                         )}
                       </time>
                       <span

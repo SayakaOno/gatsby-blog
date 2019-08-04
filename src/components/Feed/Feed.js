@@ -26,7 +26,9 @@ const Feed = ({ edges }: Props) => (
                     'MMMM D, YYYY'
                   )}
                 >
-                  {moment(edge.node.frontmatter.date).format('MMMM YYYY')}
+                  {moment(edge.node.frontmatter.date).format(
+                    language === 'en' ? 'MMMM D, YYYY' : 'YYYY/MM/DD'
+                  )}
                 </time>
                 <span className={styles['feed__item-meta-divider']} />
                 <span className={styles['feed__item-meta-category']}>
@@ -52,12 +54,6 @@ const Feed = ({ edges }: Props) => (
               <p className={styles['feed__item-description']}>
                 {edge.node.frontmatter.description}
               </p>
-              <Link
-                className={styles['feed__item-readmore']}
-                to={edge.node.fields.slug}
-              >
-                Read
-              </Link>
             </div>
           ))}
         </div>
