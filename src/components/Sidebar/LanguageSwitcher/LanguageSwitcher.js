@@ -53,9 +53,11 @@ const LanguageSwitcher = ({ link, language }) => {
     if (language === 'en') {
       return enLinkExist
         ? styles['language-switcher__languages__pointer']
-        : null;
+        : styles['language-switcher__languages__unavailable'];
     }
-    return jaLinkExist ? styles['language-switcher__languages__pointer'] : null;
+    return jaLinkExist
+      ? styles['language-switcher__languages__pointer']
+      : styles['language-switcher__languages__unavailable'];
   };
 
   return (
@@ -74,7 +76,7 @@ const LanguageSwitcher = ({ link, language }) => {
                 className={`${
                   language === 'en'
                     ? styles['language-switcher__languages-active']
-                    : null
+                    : ''
                 } ${pointerClassName('en')}`}
               >
                 EN
@@ -84,7 +86,7 @@ const LanguageSwitcher = ({ link, language }) => {
                 className={`${
                   language === 'ja'
                     ? styles['language-switcher__languages-active']
-                    : null
+                    : ''
                 } ${pointerClassName('ja')}`}
               >
                 JA
