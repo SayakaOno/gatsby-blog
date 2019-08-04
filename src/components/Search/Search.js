@@ -92,6 +92,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     );
     setNumber(blogs.length);
     setTags(getTags(blogs));
+    setSelectedTags(tags);
     setBlogs(blogs);
     setBlogsInSelectedCategory(blogs);
   };
