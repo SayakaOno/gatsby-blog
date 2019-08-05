@@ -15,12 +15,11 @@
 
 @include breakpoint-sm {
   .sidebar {
-    position: initial;
+    position: fixed;
     width: 250px;
     height: 100vh;
     background-color: whitesmoke;
     // lost-column: 5/12;
-    float: left;
 
     &__inner {
       padding: 30px 20px 0;

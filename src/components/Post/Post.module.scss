@@ -2,12 +2,6 @@
 @import '../../assets/scss/mixins';
 
 .post {
-  height: calc(100vh);
-
-  &__container {
-    height: 100%;
-  }
-
   &__inner {
     padding: 25px 20px;
   }
@@ -52,7 +46,7 @@
 @include breakpoint-sm {
   .post {
     padding-top: 0;
-    overflow: hidden;
+    padding-left: 250px;
     // lost-column: 7/12;
     // max-width: 780px;
 
@@ -64,6 +58,8 @@
 
 @include breakpoint-md {
   .post {
+    padding-left: 280px;
+
     &__footer {
       padding: 0;
       padding: 40px 35px;
