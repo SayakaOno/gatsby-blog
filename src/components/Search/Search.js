@@ -23,32 +23,38 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     if (savedFilter && savedFilter.selectedCategory) {
       let savedCategory = savedFilter.selectedCategory;
       let savedTags = savedFilter.selectedTags;
+      let blogsInCategory = filterBlogByCategory(savedCategory);
+      let blogs = filterBlogByTags(savedTags, blogsInCategory);
       setSelectedCategory(savedCategory);
-      filterBlogByCategoryAndTags(savedCategory, savedTags);
+      setSelectedTags(savedTags);
+      setTags(getTags(blogsInCategory));
+      setBlogsInSelectedCategory(blogsInCategory);
+      setBlogsAndNumber(blogs);
     } else {
-      setBlogs(edges);
-      setNumber(totalCount);
+      setBlogsAndNumber(edges, totalCount);
     }
   }, []);
+
+  const setBlogsAndNumber = (blogs, number = blogs.length) => {
+    setBlogs(blogs);
+    setNumber(number);
+  };
 
   const onClickCategory = category => {
     if (category === selectedCategory) {
       clearFilter();
     } else {
       setSelectedCategory(category);
-      filterBlogByCategory(category);
+      let blogs = filterBlogByCategory(category);
+      setTags(getTags(blogs));
+      setBlogsInSelectedCategory(blogs);
+      setBlogsAndNumber(blogs);
       setSelectedTags([]);
     }
   };
 
   const filterBlogByCategory = category => {
-    let blogs = edges.filter(
-      edge => edge.node.frontmatter.category === category
-    );
-    setNumber(blogs.length);
-    setTags(getTags(blogs));
-    setBlogs(blogs);
-    setBlogsInSelectedCategory(blogs);
+    return edges.filter(edge => edge.node.frontmatter.category === category);
   };
 
   const getTags = blogs => {
@@ -72,29 +78,15 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     } else {
       tags = [...selectedTags, clickedTag];
     }
-    filterBlogByTags(tags);
+    let blogs = filterBlogByTags(tags);
+    setBlogsAndNumber(blogs);
     setSelectedTags(tags);
   };
 
-  const filterBlogByTags = tags => {
-    let newblogs = blogsInSelectedCategory.filter(blog =>
+  const filterBlogByTags = (tags, blogs = blogsInSelectedCategory) => {
+    return blogs.filter(blog =>
       includesAllTags(tags, blog.node.frontmatter.tags)
     );
-    setNumber(newblogs.length);
-    setBlogs(newblogs);
-  };
-
-  const filterBlogByCategoryAndTags = (category, tags) => {
-    let blogs = edges.filter(
-      edge =>
-        edge.node.frontmatter.category === category &&
-        includesAllTags(tags, edge.node.frontmatter.tags)
-    );
-    setNumber(blogs.length);
-    setTags(getTags(blogs));
-    setSelectedTags(tags);
-    setBlogs(blogs);
-    setBlogsInSelectedCategory(blogs);
   };
 
   const includesAllTags = (tags, array) => {
@@ -104,6 +96,19 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
       }
     }
     return true;
+  };
+
+  const clearTagFilter = () => {
+    setSelectedTags([]);
+    setBlogsAndNumber(blogsInSelectedCategory);
+  };
+
+  const clearFilter = () => {
+    setSelectedCategory('');
+    setTags([]);
+    setSelectedTags([]);
+    setBlogsInSelectedCategory([]);
+    setBlogsAndNumber(edges, totalCount);
   };
 
   const renderCategories = () => {
@@ -166,12 +171,6 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     );
   };
 
-  const clearTagFilter = () => {
-    setSelectedTags([]);
-    setBlogs(blogsInSelectedCategory);
-    setNumber(blogsInSelectedCategory.length);
-  };
-
   const renderClearFilterButton = () => {
     return (
       <div>
@@ -180,15 +179,6 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
         </span>
       </div>
     );
-  };
-
-  const clearFilter = () => {
-    setSelectedCategory('');
-    setTags([]);
-    setSelectedTags([]);
-    setBlogs(edges);
-    setBlogsInSelectedCategory([]);
-    setNumber(totalCount);
   };
 
   const renderCount = () => {
