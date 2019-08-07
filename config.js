@@ -17,10 +17,6 @@ module.exports = {
       path: '/search'
     },
     {
-      label: { en: 'About', ja: '自己紹介' },
-      path: '/pages/about'
-    },
-    {
       label: { en: 'Contact', ja: 'コンタクト' },
       path: '/pages/contacts'
     }
