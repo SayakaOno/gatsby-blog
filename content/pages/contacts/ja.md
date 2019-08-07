@@ -3,28 +3,52 @@ title: 'コンタクト'
 template: 'page'
 ---
 
-Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.
+ブログをご覧くださりありがとうございます。SNS もしくは以下のフォームより、お気軽にご連絡ください！<br />
+[ポートフォリオ Web サイト（英語）](https://sayaka-ono.com) / [GitHub](https://github.com/SayakaOno) / [LinkedIn](https://www.linkedin.com/in/sayakaono/) / [twitter](https://twitter.com/38_ca)
 
-Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
-
-![Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.](/media/image-4.jpg)
-
-_Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi._
-
-## Header Level 2
-
-Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
-
-- **Lorem ipsum** dolor sit amet, consectetuer adipiscing elit.
-- Aliquam tincidunt mauris eu risus.
-- Vestibulum auctor dapibus neque.
-
-### Header Level 3
-
-Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec **consectetuer** ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
-
-Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.
-
-#### Header Level 4
-
-Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+<form class="form" id="contactform" action="https://sayaka38.minibird.jp/contact.php" method="POST">
+  <style>
+    form {
+      margin-top: 40px;
+    }
+    .field {
+      margin-bottom: 15px;
+    }
+    input, textarea {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 450px;
+      padding: .5rem .75rem;
+      font-size: 1rem;
+      color: #464a4c;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: .25rem;
+      outline: none;
+    }
+    .button {
+      width: 100px;
+      background-color: rgba(0,0,0,.15);
+      border: none;
+    }
+    .button:hover {
+      cursor: pointer;
+    }
+  </style>
+  <div class="field">
+    <label class="label" for="name"><div class="label-content">お名前</div></label>
+    <input class="input" type="text" name="name" id="name" required>
+  </div>
+  <div class="field">
+    <label class="label" for="_replyto"><div class="label-content">メールアドレス</div></label>
+    <input class="input" type="email" name="_replyto" id="_replyto" required>
+  </div>
+  <div class="field">
+    <label class="label" for="message"><div class="label-content">メッセージ</div></label>
+    <textarea class="input" name="message" rows="5" id="message" required></textarea>
+  </div>
+  <input class="hidden" type="text" name="_gotcha" style="display:none">
+  <input class="hidden" type="hidden" name="_subject" value="Message via Blog">
+  <div class="field">
+    <input class="button submit" type="submit" value="送信">
+  </div>
+</form>
