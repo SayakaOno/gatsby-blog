@@ -34,8 +34,14 @@ module.exports = {
     },
     contacts: {
       email: { en: '#', ja: '#' },
-      twitter: { en: '#', ja: '#' },
-      github: { en: '#', ja: '#' },
+      twitter: {
+        en: 'saya_3981',
+        ja: '38_ca'
+      },
+      github: {
+        en: 'SayakaOno',
+        ja: 'SayakaOno'
+      },
       rss: { en: '#', ja: '#' }
     }
   }
