@@ -44,8 +44,14 @@ const useSiteMetadata = () => {
               path
             }
             url
-            title
-            subtitle
+            title {
+              en
+              ja
+            }
+            subtitle {
+              en
+              ja
+            }
             copyright
             disqusShortname
           }

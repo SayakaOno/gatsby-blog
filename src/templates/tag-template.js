@@ -58,8 +58,14 @@ export const query = graphql`
   ) {
     site {
       siteMetadata {
-        title
-        subtitle
+        title {
+          en
+          ja
+        }
+        subtitle {
+          en
+          ja
+        }
       }
     }
     allMarkdownRemark(

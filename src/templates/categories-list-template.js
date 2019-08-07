@@ -12,14 +12,16 @@ import {
 } from '../hooks';
 
 const CategoriesListTemplate = ({ pageContext }) => {
+  const language = pageContext.language;
   const { title, subtitle } = useSiteMetadata();
   const categories =
-    pageContext.language === 'ja' ? useCategoriesListJa() : useCategoriesList();
-  const language = pageContext.language === 'ja' ? 'ja' : 'en';
+    language === 'ja' ? useCategoriesListJa() : useCategoriesList();
   return (
     <Layout
-      title={`${language === 'en' ? 'Categories' : 'カテゴリー'} - ${title}`}
-      description={subtitle}
+      title={`${language === 'en' ? 'Categories' : 'カテゴリー'} - ${
+        title[language]
+      }`}
+      description={subtitle[language]}
     >
       <Sidebar />
       <Page title={language === 'en' ? 'Categories' : 'カテゴリー'}>
