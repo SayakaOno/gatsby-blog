@@ -41,9 +41,10 @@ module.exports = async (graphql, actions) => {
           postsLimit: postsPerPage,
           postsOffset: i * postsPerPage,
           prevPagePath: i <= 1 ? categorySlug : `${categorySlug}/page/${i - 1}`,
-          nextPagePath: `/${categorySlug}/page/${i + 1}`,
+          nextPagePath: `${categorySlug}/page/${i + 1}`,
           hasPrevPage: i !== 0,
-          hasNextPage: i !== numPages - 1
+          hasNextPage: i !== numPages - 1,
+          language: 'en'
         }
       });
     }
@@ -84,9 +85,10 @@ module.exports = async (graphql, actions) => {
           postsOffset: i * postsPerPage,
           prevPagePath:
             i <= 1 ? categorySlug + '/ja' : `${categorySlug}/page/${i - 1}/ja`,
-          nextPagePath: `/${categorySlug}/page/${i + 1}/ja`,
+          nextPagePath: `${categorySlug}/page/${i + 1}/ja`,
           hasPrevPage: i !== 0,
-          hasNextPage: i !== numPages - 1
+          hasNextPage: i !== numPages - 1,
+          language: 'ja'
         }
       });
     }

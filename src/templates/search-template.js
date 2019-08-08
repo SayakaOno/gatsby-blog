@@ -18,7 +18,9 @@ const SearchTemplate = ({ data, pageContext, location }: Props) => {
 
   const { language } = pageContext;
   const { edges } = data.allMarkdownRemark;
-  const pageTitle = `${language === 'en' ? 'Search' : '検索'} - ${siteTitle}`;
+  const pageTitle = `${language === 'en' ? 'Search' : '検索'} - ${
+    siteTitle[language]
+  }`;
 
   return (
     <Layout title={pageTitle} description={siteSubtitle}>

@@ -10,7 +10,12 @@ const NotFoundTemplate = ({ pageContext }) => {
   const { language } = pageContext;
 
   return (
-    <Layout title={`${title} - Not Found`} description={subtitle}>
+    <Layout
+      title={`${title[language]} - ${
+        language === 'en' ? 'Not Found' : 'ページがありません'
+      }`}
+      description={subtitle[language]}
+    >
       <Sidebar />
       <Page title={language === 'ja' ? 'ページがありません' : 'NOT FOUND'}>
         <p>

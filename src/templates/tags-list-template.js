@@ -8,7 +8,7 @@ import Page from '../components/Page';
 import { useSiteMetadata, useTagsList, useTagsListJa } from '../hooks';
 
 const TagsListTemplate = ({ pageContext }) => {
-  const language = pageContext.language;
+  const { language } = pageContext;
   const { title, subtitle } = useSiteMetadata();
   const tags = language === 'en' ? useTagsList() : useTagsListJa();
 
