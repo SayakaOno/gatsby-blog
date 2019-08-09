@@ -1,7 +1,9 @@
 import React from 'react';
 
 export const detectBrowserLanguage = () => {
-  let language = navigator.language || navigator.userLanguage;
+  let language =
+    globalThis.window.navigator.language ||
+    globalThis.window.navigator.language;
   if (language !== 'ja' && language !== 'en') {
     language = 'en';
   }

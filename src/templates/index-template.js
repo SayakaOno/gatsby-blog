@@ -1,6 +1,6 @@
 // @flow
-import React, { useContext } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import React, { useEffect, useContext } from 'react';
+import { navigate, useStaticQuery, graphql } from 'gatsby';
 import { Location } from '@reach/router';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
@@ -9,7 +9,10 @@ import Page from '../components/Page';
 import Pagination from '../components/Pagination';
 import { useSiteMetadata } from '../hooks';
 import type { PageContext, AllMarkdownRemark } from '../types';
-import { LanguageContext } from '../utils/languageContext';
+import {
+  detectBrowserLanguage,
+  LanguageContext
+} from '../utils/languageContext';
 
 type Props = {
   data: AllMarkdownRemark,
@@ -27,6 +30,13 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
     nextPagePath,
     language
   } = pageContext;
+
+  useEffect(() => {
+    const language = detectBrowserLanguage();
+    if (language === 'ja') {
+      navigate('/ja');
+    }
+  }, []);
 
   const { edges } = data.allMarkdownRemark;
   const pageTitle =
