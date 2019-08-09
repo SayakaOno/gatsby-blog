@@ -1,0 +1,74 @@
+@import '../../../../assets/scss/variables';
+@import '../../../../assets/scss/mixins';
+
+.meta {
+  @include margin-bottom(1);
+
+  &__emoji {
+    vertical-align: middle;
+  }
+
+  &__date {
+    font-size: $typographic-small-font-size;
+    font-weight: 600;
+    @include margin-bottom(0.2);
+  }
+
+  &__category {
+    line-height: 1rem;
+
+    &-link {
+      font-size: $typographic-small-font-size;
+      color: #222;
+      text-transform: uppercase;
+      display: inline-block;
+
+      &:hover,
+      &:focus {
+        color: $color-primary;
+      }
+    }
+  }
+
+  ul {
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
+
+  li {
+    display: inline-block;
+    border-radius: 0.15rem;
+    font-size: 0.8rem;
+    line-height: 1em;
+    font-weight: normal;
+    padding: 0;
+    margin: 0 0.2rem 0.2rem 0;
+
+    a {
+      color: #888;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    &:after {
+      content: ',';
+    }
+
+    &:last-child {
+      &:after {
+        content: '';
+      }
+    }
+  }
+}
+
+@include breakpoint-sm {
+  .meta {
+    @include margin-bottom(1.5);
+  }
+}

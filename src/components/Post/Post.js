@@ -31,7 +31,13 @@ const Post = (props: Props) => {
         </Link>
 
         <div className={styles['post__content']}>
-          <Content body={html} title={title} />
+          <Content
+            body={html}
+            title={title}
+            language={language}
+            fields={post.fields}
+            frontmatter={post.frontmatter}
+          />
         </div>
 
         <div className={styles['post__footer']}>

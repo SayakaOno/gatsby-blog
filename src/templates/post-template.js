@@ -64,11 +64,13 @@ export const query = graphql`
       html
       fields {
         slug
+        categorySlug
         tagSlugs
       }
       frontmatter {
         date
         description
+        category
         tags
         title
         link
