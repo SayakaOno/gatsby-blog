@@ -50,8 +50,8 @@ const PostTemplate = (props: Props) => {
       <Post
         post={data.markdownRemark}
         language={pageContext.language}
-        backLink={location.state.from}
-        stateForSearchPage={stateForSearchPage()}
+        backLink={location.state ? location.state.from : null}
+        stateForSearchPage={location.state ? stateForSearchPage() : null}
       />
     </Layout>
   );

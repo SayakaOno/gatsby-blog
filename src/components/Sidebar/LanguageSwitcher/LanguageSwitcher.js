@@ -29,7 +29,6 @@ const LanguageSwitcher = ({ link, language, path }) => {
         )
       ) {
         language === 'en' ? setJaLinkExist(true) : setEnLinkExist(true);
-        return;
       }
       return;
     }

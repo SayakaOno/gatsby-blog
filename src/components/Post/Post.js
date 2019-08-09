@@ -24,8 +24,8 @@ const Post = (props: Props) => {
       <div className={styles['post__inner']}>
         <Link
           className={styles['post__home-button']}
-          to={backLink}
-          state={stateForSearchPage}
+          to={backLink ? backLink : language === 'en' ? '/' : '/ja'}
+          state={backLink ? stateForSearchPage : null}
         >
           {language === 'en' ? '← Back' : '← もどる'}
         </Link>
