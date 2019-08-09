@@ -6,6 +6,8 @@
   position: fixed;
   background-color: #fff;
   z-index: 9999;
+  border-bottom: 1px solid #d1d5da;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
 
   &__inner {
     position: relative;

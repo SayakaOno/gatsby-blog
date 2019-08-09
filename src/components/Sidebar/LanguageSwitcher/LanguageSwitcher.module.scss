@@ -9,6 +9,7 @@
   width: 70px;
   height: 30px;
   background-color: #fff;
+  margin: -5px -12px 0 5px;
 
   span {
     display: inline-block;
@@ -50,6 +51,6 @@
 
 @include breakpoint-sm {
   .language-switcher {
-    margin-bottom: 26px;
+    margin: 0 0 26px 0;
   }
 }
