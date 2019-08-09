@@ -202,7 +202,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   return (
     <div className={styles['search']}>
       <h1 className={styles['search__title']}>
-        {language === 'en' ? 'Search' : 'さがす'}
+        {language === 'en' ? 'Search' : '検索'}
       </h1>
       <div className={styles['search__filter']}>
         {renderCategories()}

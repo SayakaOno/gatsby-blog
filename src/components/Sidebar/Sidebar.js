@@ -25,7 +25,11 @@ const Sidebar = ({ isIndex, link }: Props) => {
           <div className={styles['sidebar']}>
             <div className={styles['sidebar__inner']}>
               <Author author={author} isIndex={isIndex} language={language} />
-              <LanguageSwitcher link={link} language={language} />
+              <LanguageSwitcher
+                link={link}
+                language={language}
+                path={location.pathname}
+              />
               <Menu menu={menu} language={language} />
               <Contacts contacts={author.contacts} language={language} />
               <Copyright copyright={copyright} />

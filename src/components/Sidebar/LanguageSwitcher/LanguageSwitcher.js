@@ -1,16 +1,36 @@
 // @flow
 import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby';
-import { Location } from '@reach/router';
 import styles from './LanguageSwitcher.module.scss';
-import { getLanguage } from '../../../utils/languageContext';
+import {
+  pageExist,
+  getCorrespondingPath
+} from '../../../utils/get-corresponding-link';
+import useTagsPathList from '../../../hooks/use-tags-path-list';
+import useCategoriesPathList from '../../../hooks/use-categories-path-list';
 
-const LanguageSwitcher = ({ link, language }) => {
+const LanguageSwitcher = ({ link, language, path }) => {
   const [enLinkExist, setEnLinkExist] = useState(null);
   const [jaLinkExist, setJaLinkExist] = useState(null);
+  const tagsPathList = path.includes('/tag/') ? useTagsPathList() : null;
+  const categoriesPathList = path.includes('/category/')
+    ? useCategoriesPathList()
+    : null;
 
   useEffect(() => {
     if (link && !link.exist) {
+      return;
+    }
+    if (path.includes('/category/') || path.includes('/tag/')) {
+      if (
+        pageExist(
+          path,
+          path.includes('/tag/') ? tagsPathList : categoriesPathList
+        )
+      ) {
+        language === 'en' ? setJaLinkExist(true) : setEnLinkExist(true);
+        return;
+      }
       return;
     }
     if (language === 'en') {
@@ -20,12 +40,17 @@ const LanguageSwitcher = ({ link, language }) => {
     }
   }, []);
 
-  const otherLanguagePath = currentPath => {
+  const otherLanguagePath = (language, currentPath) => {
     if (currentPath.includes('/page/')) {
-      if (currentPath.includes('/ja')) {
+      if (language === '/ja') {
         return '/';
       }
       return '/ja';
+    } else if (
+      currentPath.includes('/category/') ||
+      currentPath.includes('/tag/')
+    ) {
+      return getCorrespondingPath(currentPath);
     }
     if (currentPath.includes('/ja')) {
       return currentPath.replace('/ja', '');
@@ -34,7 +59,7 @@ const LanguageSwitcher = ({ link, language }) => {
   };
 
   const languageOnClick = (clickedLang, displayedLanguage) => {
-    if (clickedLang === displayedLanguage) {
+    if (clickedLang === displayedLanguage || (!enLinkExist && !jaLinkExist)) {
       return;
     }
     let path = '';
@@ -44,7 +69,7 @@ const LanguageSwitcher = ({ link, language }) => {
       }
       path = link.path;
     } else {
-      path = otherLanguagePath(location.pathname);
+      path = otherLanguagePath(language, location.pathname);
     }
     navigate(path);
   };
@@ -59,43 +84,35 @@ const LanguageSwitcher = ({ link, language }) => {
       ? styles['language-switcher__languages__pointer']
       : styles['language-switcher__languages__unavailable'];
   };
-
   return (
-    <Location>
-      {({ location }) => {
-        const language = getLanguage(location.pathname);
-        return (
-          <div className={styles['language-switcher']}>
-            <div
-              className={styles['language-switcher__back']}
-              style={{ left: language === 'en' ? 0 : '50%' }}
-            />
-            <div className={styles['language-switcher__languages']}>
-              <span
-                onClick={() => languageOnClick('en', language)}
-                className={`${
-                  language === 'en'
-                    ? styles['language-switcher__languages-active']
-                    : ''
-                } ${pointerClassName('en')}`}
-              >
-                EN
-              </span>
-              <span
-                onClick={() => languageOnClick('ja', language)}
-                className={`${
-                  language === 'ja'
-                    ? styles['language-switcher__languages-active']
-                    : ''
-                } ${pointerClassName('ja')}`}
-              >
-                JA
-              </span>
-            </div>
-          </div>
-        );
-      }}
-    </Location>
+    <div className={styles['language-switcher']}>
+      <div
+        className={styles['language-switcher__back']}
+        style={{ left: language === 'en' ? 0 : '50%' }}
+      />
+      <div className={styles['language-switcher__languages']}>
+        <span
+          onClick={() => languageOnClick('en', language)}
+          className={`${
+            language === 'en'
+              ? styles['language-switcher__languages-active']
+              : ''
+          } ${pointerClassName('en')}`}
+        >
+          EN
+        </span>
+        <span
+          onClick={() => languageOnClick('ja', language)}
+          className={`${
+            language === 'ja'
+              ? styles['language-switcher__languages-active']
+              : ''
+          } ${pointerClassName('ja')}`}
+        >
+          JA
+        </span>
+      </div>
+    </div>
   );
 };
 
