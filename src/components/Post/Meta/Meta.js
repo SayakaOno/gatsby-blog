@@ -7,9 +7,12 @@ type Props = {
   date: string
 };
 
-const Meta = ({ date }: Props) => (
+const Meta = ({ date, language }: Props) => (
   <div className={styles['meta']}>
-    <p className={styles['meta__date']}>Published {moment(date).format('D MMM YYYY')}</p>
+    <p className={styles['meta__date']}>
+      {`${language === 'en' ? 'Published' : '投稿日:'} `}
+      {moment(date).format(language === 'en' ? 'MMMM D, YYYY' : 'YYYY年M月D日')}
+    </p>
   </div>
 );
 

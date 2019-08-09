@@ -13,6 +13,16 @@
     max-width: 780px;
     // margin: 0 auto;
     padding: 0 15px;
+
+    &-category {
+      a {
+        color: #222;
+
+        &:hover {
+          color: $color-secondary;
+        }
+      }
+    }
   }
 
   &__comments {

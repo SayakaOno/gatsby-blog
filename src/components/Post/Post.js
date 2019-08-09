@@ -16,8 +16,8 @@ type Props = {
 const Post = (props: Props) => {
   const { post, language, backLink, stateForSearchPage } = props;
   const { html } = post;
-  const { tagSlugs, slug } = post.fields;
-  const { tags, title, date } = post.frontmatter;
+  const { categorySlug, tagSlugs, slug } = post.fields;
+  const { category, tags, title, date } = post.frontmatter;
 
   return (
     <div className={styles['post']}>
@@ -41,8 +41,14 @@ const Post = (props: Props) => {
         </div>
 
         <div className={styles['post__footer']}>
-          <Meta date={date} />
-          {tags && tagSlugs && <Tags tags={tags} tagSlugs={tagSlugs} />}
+          <Meta date={date} language={language} />
+          <div className={styles['post__footer-category']}>
+            {language === 'en' ? 'Category: ' : 'カテゴリー： '}
+            <Link to={categorySlug}>{category}</Link>
+          </div>
+          {tags && tagSlugs && (
+            <Tags tags={tags} tagSlugs={tagSlugs} language={language} />
+          )}
           <Author />
         </div>
 
