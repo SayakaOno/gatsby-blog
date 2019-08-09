@@ -16,11 +16,11 @@ module.exports = {
   useKatex: false,
   menu: [
     {
-      label: { en: 'Search', ja: '検索' },
+      label: { en: '🔎 Search', ja: '🔎 検索' },
       path: '/search'
     },
     {
-      label: { en: 'Contact', ja: 'コンタクト' },
+      label: { en: '✉️ Contact', ja: '✉️ コンタクト' },
       path: '/pages/contacts'
     }
   ],
@@ -32,14 +32,21 @@ module.exports = {
       ja: '高知出身・バンクーバー在住デベロッパー。'
     },
     contacts: {
-      email: { en: '#', ja: '#' },
-      twitter: {
-        en: 'saya_3981',
-        ja: '38_ca'
+      portfolio: {
+        en: 'https://sayaka-ono.com',
+        ja: 'https://sayaka-ono.com'
+      },
+      linkedin: {
+        en: 'https://www.linkedin.com/in/sayakaono/',
+        ja: 'https://www.linkedin.com/in/sayakaono/'
       },
       github: {
         en: 'SayakaOno',
         ja: 'SayakaOno'
+      },
+      twitter: {
+        en: 'saya_3981',
+        ja: '38_ca'
       },
       rss: { en: '#', ja: '#' }
     }

@@ -47,3 +47,9 @@
     background-color: $color-secondary;
   }
 }
+
+@include breakpoint-sm {
+  .language-switcher {
+    margin-bottom: 26px;
+  }
+}

@@ -34,17 +34,13 @@
   }
 
   @include breakpoint-sm {
-    .menu {
-      @include margin-bottom(1);
+    @include margin-bottom(1.4);
 
-      &__list {
-        // list-style: none;
-
-        &-item {
-          display: block;
-          padding: 0;
-          margin: 10px 0;
-        }
+    &__list {
+      &-item {
+        display: block;
+        padding: 0;
+        margin: 10px 0;
       }
     }
   }

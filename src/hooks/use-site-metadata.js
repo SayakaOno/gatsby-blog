@@ -18,15 +18,19 @@ const useSiteMetadata = () => {
               }
               photo
               contacts {
-                email {
-                  en
-                  ja
-                }
-                twitter {
+                portfolio {
                   en
                   ja
                 }
                 github {
+                  en
+                  ja
+                }
+                linkedin {
+                  en
+                  ja
+                }
+                twitter {
                   en
                   ja
                 }

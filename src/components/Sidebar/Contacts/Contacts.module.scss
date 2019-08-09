@@ -2,7 +2,6 @@
 @import '../../../assets/scss/mixins';
 
 .contacts {
-  @include margin-bottom(1);
   display: none;
 
   @include breakpoint-sm {
@@ -16,7 +15,7 @@
     flex-shrink: 0;
     list-style: none;
     padding: 0;
-    margin: 10px -3px;
+    margin: 0 0 0 -10px;
 
     &-item {
       padding: 0;
@@ -28,9 +27,11 @@
       height: $button-height;
       width: $button-height;
       line-height: $button-height;
-      border-radius: 50%;
       text-align: center;
-      border: 1px solid $color-gray-bg;
+
+      &:nth-child(1) {
+        padding-top: 2px;
+      }
 
       &-link {
         border: 0;
