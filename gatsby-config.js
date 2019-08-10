@@ -53,11 +53,9 @@ module.exports = {
                 site_url: url
                 title {
                   en
-                  ja
                 }
                 description: subtitle {
                   en
-                  ja
                 }
               }
             }
