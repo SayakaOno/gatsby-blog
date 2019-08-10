@@ -51,10 +51,7 @@ module.exports = {
             site {
               siteMetadata {
                 site_url: url
-                title {
-                  en
-                  ja
-                }
+                title 
                 description: subtitle {
                   en
                   ja
@@ -89,10 +86,7 @@ module.exports = {
                         slug
                       }
                       frontmatter {
-                        title {
-                          en
-                          ja
-                        }
+                        title
                         date
                         template
                         draft
