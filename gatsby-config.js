@@ -55,7 +55,10 @@ module.exports = {
                   en
                   ja
                 }
-                description: subtitle
+                description: subtitle {
+                  en
+                  ja
+                }
               }
             }
           }
