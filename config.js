@@ -3,12 +3,11 @@
 module.exports = {
   url: 'https://lumen.netlify.com',
   pathPrefix: '/',
-  title: { en: 'Blog by Sayaka Ono', ja: 'ブログ by 小野沙耶花' },
-  subtitle: {
-    en:
-      'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
-    ja: '日本語のサブタイトル'
-  },
+  title: 'Blog by Sayaka Ono',
+  titleJa: 'ブログ by 小野沙耶花',
+  subtitle:
+    'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+  subtitleJa: '日本語のサブタイトル',
   copyright: `© ${new Date().getFullYear()} Sayaka Ono`,
   disqusShortname: '',
   postsPerPage: 4,

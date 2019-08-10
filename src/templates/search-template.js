@@ -14,13 +14,15 @@ type Props = {
 };
 
 const SearchTemplate = ({ data, pageContext, location }: Props) => {
-  const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
-
   const { language } = pageContext;
+  const siteTitle =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const siteSubtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
   const { edges } = data.allMarkdownRemark;
-  const pageTitle = `${language === 'en' ? 'Search' : '検索'} - ${
-    siteTitle[language]
-  }`;
+  const pageTitle = `${language === 'en' ? 'Search' : '検索'} - ${siteTitle}`;
 
   return (
     <Layout title={pageTitle} description={siteSubtitle}>

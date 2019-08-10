@@ -15,7 +15,13 @@ type Props = {
 
 const PostTemplate = (props: Props) => {
   const { data, pageContext, location } = props;
-  const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
+  const { language } = pageContext;
+  const siteTitle =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const siteSubtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
   const {
     title: postTitle,
     description: postDescription
@@ -26,8 +32,6 @@ const PostTemplate = (props: Props) => {
     exist: data.markdownRemark.frontmatter.link ? true : false,
     path: data.markdownRemark.frontmatter.link
   };
-  const { language } = pageContext;
-
   const stateForSearchPage = () => {
     if (
       location.state.from === '/search' ||
@@ -42,10 +46,7 @@ const PostTemplate = (props: Props) => {
   };
 
   return (
-    <Layout
-      title={`${postTitle} - ${siteTitle[language]}`}
-      description={metaDescription}
-    >
+    <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
       <Sidebar link={link} />
       <Post
         post={data.markdownRemark}

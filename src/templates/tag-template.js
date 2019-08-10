@@ -15,8 +15,6 @@ type Props = {
 };
 
 const TagTemplate = ({ data, pageContext }: Props) => {
-  const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
-
   const {
     tag,
     currentPage,
@@ -26,18 +24,22 @@ const TagTemplate = ({ data, pageContext }: Props) => {
     hasNextPage,
     language
   } = pageContext;
+  const siteTitle =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const siteSubtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
 
   const { edges } = data.allMarkdownRemark;
   const pageTitle =
     currentPage > 0
       ? language === 'en'
-        ? `All Posts tagged as "${tag}" - Page${currentPage} - ${
-            siteTitle[language]
-          }`
-        : `"${tag}"タグのブログ - Page${currentPage} - ${siteTitle[language]}`
+        ? `All Posts tagged as "${tag}" - Page${currentPage} - ${siteTitle}`
+        : `"${tag}"タグのブログ - Page${currentPage} - ${siteTitle}`
       : language === 'en'
-      ? `All Posts tagged as "${tag}" - ${siteTitle[language]}`
-      : `"${tag}"タグのブログ - ${siteTitle[language]}`;
+      ? `All Posts tagged as "${tag}" - ${siteTitle}`
+      : `"${tag}"タグのブログ - ${siteTitle}`;
 
   return (
     <Layout title={pageTitle} description={siteSubtitle}>
@@ -64,14 +66,10 @@ export const query = graphql`
   ) {
     site {
       siteMetadata {
-        title {
-          en
-          ja
-        }
-        subtitle {
-          en
-          ja
-        }
+        title
+        titleJa
+        subtitle
+        subtitleJa
       }
     }
     allMarkdownRemark(

@@ -14,7 +14,13 @@ type Props = {
 };
 
 const PageTemplate = ({ data, pageContext }: Props) => {
-  const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
+  const language = pageContext.slug.includes('/ja/') ? 'ja' : 'en';
+  const siteTitle =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const siteSubtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
   const { html: pageBody } = data.markdownRemark;
   const {
     title: pageTitle,
@@ -22,13 +28,9 @@ const PageTemplate = ({ data, pageContext }: Props) => {
   } = data.markdownRemark.frontmatter;
   const metaDescription =
     pageDescription !== null ? pageDescription : siteSubtitle;
-  const language = pageContext.slug.includes('/ja/') ? 'ja' : 'en';
 
   return (
-    <Layout
-      title={`${pageTitle} - ${siteTitle[language]}`}
-      description={metaDescription}
-    >
+    <Layout title={`${pageTitle} - ${siteTitle}`} description={metaDescription}>
       <Sidebar />
       <Page title={pageTitle}>
         <div dangerouslySetInnerHTML={{ __html: pageBody }} />

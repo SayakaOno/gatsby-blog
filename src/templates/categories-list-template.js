@@ -13,15 +13,18 @@ import {
 
 const CategoriesListTemplate = ({ pageContext }) => {
   const language = pageContext.language;
-  const { title, subtitle } = useSiteMetadata();
+  const title =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const subtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
   const categories =
     language === 'ja' ? useCategoriesListJa() : useCategoriesList();
   return (
     <Layout
-      title={`${language === 'en' ? 'Categories' : 'カテゴリー'} - ${
-        title[language]
-      }`}
-      description={subtitle[language]}
+      title={`${language === 'en' ? 'Categories' : 'カテゴリー'} - ${title}`}
+      description={subtitle}
     >
       <Sidebar />
       <Page title={language === 'en' ? 'Categories' : 'カテゴリー'}>

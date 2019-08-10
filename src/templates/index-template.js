@@ -20,8 +20,6 @@ type Props = {
 };
 
 const IndexTemplate = ({ data, pageContext }: Props) => {
-  const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
-
   const {
     currentPage,
     hasNextPage,
@@ -30,6 +28,13 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
     nextPagePath,
     language
   } = pageContext;
+
+  const siteTitle =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const siteSubtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
 
   useEffect(() => {
     if (!sessionStorage.getItem('visited')) {
@@ -45,12 +50,10 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
 
   const { edges } = data.allMarkdownRemark;
   const pageTitle =
-    currentPage > 0
-      ? `Page${currentPage} - ${siteTitle[language]}`
-      : siteTitle[language];
+    currentPage > 0 ? `Page${currentPage} - ${siteTitle}` : siteTitle;
 
   return (
-    <Layout title={pageTitle} description={siteSubtitle[language]}>
+    <Layout title={pageTitle} description={siteSubtitle}>
       <Sidebar isIndex />
       <Page>
         <Feed edges={edges} />

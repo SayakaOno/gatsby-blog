@@ -9,13 +9,18 @@ import { useSiteMetadata, useTagsList, useTagsListJa } from '../hooks';
 
 const TagsListTemplate = ({ pageContext }) => {
   const { language } = pageContext;
-  const { title, subtitle } = useSiteMetadata();
+  const title =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const subtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
   const tags = language === 'en' ? useTagsList() : useTagsListJa();
 
   return (
     <Layout
-      title={`${language === 'en' ? 'Tags' : 'タグ'} - ${title[language]}`}
-      description={subtitle[language]}
+      title={`${language === 'en' ? 'Tags' : 'タグ'} - ${title}`}
+      description={subtitle}
     >
       <Sidebar />
       <Page title={language === 'en' ? 'Tags' : 'タグ'}>

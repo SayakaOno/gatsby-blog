@@ -6,15 +6,20 @@ import Page from '../components/Page';
 import { useSiteMetadata } from '../hooks';
 
 const NotFoundTemplate = ({ pageContext }) => {
-  const { title, subtitle } = useSiteMetadata();
   const { language } = pageContext;
+  const title =
+    language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
+  const subtitle =
+    language === 'en'
+      ? useSiteMetadata().subtitle
+      : useSiteMetadata().subtitleJa;
 
   return (
     <Layout
-      title={`${title[language]} - ${
+      title={`${title} - ${
         language === 'en' ? 'Not Found' : 'ページがありません'
       }`}
-      description={subtitle[language]}
+      description={subtitle}
     >
       <Sidebar />
       <Page title={language === 'ja' ? 'ページがありません' : 'NOT FOUND'}>
