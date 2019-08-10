@@ -47,7 +47,7 @@ module.exports = {
         en: 'saya_3981',
         ja: '38_ca'
       },
-      rss: { en: '#', ja: '#' }
+      rss: { en: '/rss.xml', ja: '/rss.xml' }
     }
   }
 };
