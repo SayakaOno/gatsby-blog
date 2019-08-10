@@ -10,8 +10,8 @@ import Pagination from '../components/Pagination';
 import { useSiteMetadata } from '../hooks';
 import type { PageContext, AllMarkdownRemark } from '../types';
 import {
-  detectBrowserLanguage,
-  LanguageContext
+  detectBrowserLanguage
+  // LanguageContext
 } from '../utils/languageContext';
 
 type Props = {
@@ -32,9 +32,14 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
   } = pageContext;
 
   useEffect(() => {
-    const language = detectBrowserLanguage();
-    if (language === 'ja') {
-      navigate('/ja');
+    if (!sessionStorage.getItem('visited')) {
+      const language =
+        globalThis.window.navigator.language ||
+        globalThis.window.navigator.userLanguage;
+      sessionStorage.setItem('visited', 'true');
+      if (language === 'ja') {
+        navigate('/ja');
+      }
     }
   }, []);
 
