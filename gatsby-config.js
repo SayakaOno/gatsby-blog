@@ -55,10 +55,7 @@ module.exports = {
                   en
                   ja
                 }
-                description: subtitle {
-                  en
-                  ja
-                }
+                description: subtitle
               }
             }
           }
@@ -96,10 +93,7 @@ module.exports = {
                         date
                         template
                         draft
-                        description {
-                          en
-                          ja
-                        }
+                        description
                       }
                     }
                   }
