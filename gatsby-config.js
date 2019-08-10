@@ -7,8 +7,8 @@ module.exports = {
   pathPrefix: siteConfig.pathPrefix,
   siteMetadata: {
     url: siteConfig.url,
-    title: siteConfig.title,
-    subtitle: siteConfig.subtitle,
+    title: siteConfig.title.en,
+    subtitle: siteConfig.subtitle.en,
     copyright: siteConfig.copyright,
     disqusShortname: siteConfig.disqusShortname,
     menu: siteConfig.menu,
