@@ -2,14 +2,14 @@
 import type { Node as ReactNode } from 'react';
 
 export type RenderCallback = {
-  render: (data: any) => ReactNode;
-}
+  render: (data: any) => ReactNode
+};
 
 export type Entry = {
-  getIn: (string[]) => string;
-}
+  getIn: (string[]) => string
+};
 
-export type WidgetFor = (string) => string;
+export type WidgetFor = string => string;
 
 export type PageContext = {
   tag: string,
@@ -29,10 +29,10 @@ export type Node = {
   },
   frontmatter: {
     date: string,
-    description?: string,
+    description?: object,
     category?: string,
     tags?: string[],
-    title: string,
+    title: object
   },
   html: string,
   id: string
@@ -46,7 +46,7 @@ export type Edges = Array<Edge>;
 
 export type AllMarkdownRemark = {
   allMarkdownRemark: {
-    edges: Edges,
+    edges: Edges
   },
   group: {
     fieldValue: string,

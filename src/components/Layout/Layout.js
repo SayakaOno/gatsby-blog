@@ -7,8 +7,8 @@ import { LanguageContext, LanguageProvider } from '../../utils/languageContext';
 
 type Props = {
   children: ReactNode,
-  title: string,
-  description?: string
+  title: object,
+  description?: object
 };
 
 const Layout = ({ children, title, description }: Props) => {

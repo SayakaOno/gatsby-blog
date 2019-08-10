@@ -5,7 +5,7 @@ import styles from './Content.module.scss';
 
 type Props = {
   body: string,
-  title: string
+  title: object
 };
 
 const Content = ({ body, title, language, fields, frontmatter }: Props) => (
