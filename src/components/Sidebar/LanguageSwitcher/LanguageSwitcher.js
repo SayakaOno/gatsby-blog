@@ -16,6 +16,7 @@ const LanguageSwitcher = ({ link, language, path }) => {
   const categoriesPathList = path.includes('/category/')
     ? useCategoriesPathList()
     : null;
+  const ref = React.createRef();
 
   useEffect(() => {
     if (link && !link.exist) {
@@ -70,7 +71,8 @@ const LanguageSwitcher = ({ link, language, path }) => {
     } else {
       path = otherLanguagePath(language, location.pathname);
     }
-    navigate(path);
+    ref.current.style.left = path.slice(-3) === '/ja' ? '50%' : '0';
+    setTimeout(() => navigate(path), 30);
   };
 
   const pointerClassName = language => {
@@ -86,6 +88,7 @@ const LanguageSwitcher = ({ link, language, path }) => {
   return (
     <div className={styles['language-switcher']}>
       <div
+        ref={ref}
         className={styles['language-switcher__back']}
         style={{ left: language === 'en' ? 0 : '50%' }}
       />

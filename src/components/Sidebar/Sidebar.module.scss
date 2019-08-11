@@ -19,12 +19,16 @@
 @include breakpoint-sm {
   .sidebar {
     width: 250px;
-    height: 100vh;
-    background-color: whitesmoke;
+    min-height: 100vh;
+    max-height: 100%;
+    background-color: #f5f5f5;
+    overflow: auto;
+    border-bottom: none;
+    box-shadow: none;
     // lost-column: 5/12;
 
     &__inner {
-      padding: 30px 20px 0;
+      padding: 30px 20px;
       display: block;
     }
   }
