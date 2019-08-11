@@ -11,6 +11,9 @@
 
     &-item {
       display: inline-block;
+      width: 30px;
+      height: 26px;
+      overflow: hidden;
 
       &-link {
         font-size: $typographic-base-font-size;
@@ -41,6 +44,9 @@
         display: block;
         padding: 0;
         margin: 10px 0;
+        width: initial;
+        height: initial;
+        overflow: initial;
       }
     }
   }
