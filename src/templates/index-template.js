@@ -1,7 +1,6 @@
 // @flow
-import React, { useEffect, useContext } from 'react';
-import { navigate, useStaticQuery, graphql } from 'gatsby';
-import { Location } from '@reach/router';
+import React from 'react';
+import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Feed from '../components/Feed';
@@ -9,11 +8,6 @@ import Page from '../components/Page';
 import Pagination from '../components/Pagination';
 import { useSiteMetadata } from '../hooks';
 import type { PageContext, AllMarkdownRemark } from '../types';
-import {
-  detectBrowserLanguage
-  // LanguageContext
-} from '../utils/languageContext';
-
 type Props = {
   data: AllMarkdownRemark,
   pageContext: PageContext
@@ -36,24 +30,12 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
       ? useSiteMetadata().subtitle
       : useSiteMetadata().subtitleJa;
 
-  useEffect(() => {
-    if (!sessionStorage.getItem('visited')) {
-      const language =
-        globalThis.window.navigator.language ||
-        globalThis.window.navigator.userLanguage;
-      sessionStorage.setItem('visited', 'true');
-      if (language === 'ja') {
-        navigate('/ja');
-      }
-    }
-  }, []);
-
   const { edges } = data.allMarkdownRemark;
   const pageTitle =
     currentPage > 0 ? `Page${currentPage} - ${siteTitle}` : siteTitle;
 
   return (
-    <Layout title={pageTitle} description={siteSubtitle}>
+    <Layout title={pageTitle} description={siteSubtitle} language={language}>
       <Sidebar isIndex />
       <Page>
         <Feed edges={edges} />
