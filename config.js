@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  url: 'https://lumen.netlify.com',
+  url: 'https://blog.sayaka-ono.com',
   pathPrefix: '/',
   title: 'Blog by Sayaka Ono',
   titleJa: 'ブログ by 小野沙耶花',
@@ -9,7 +9,7 @@ module.exports = {
     'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
   subtitleJa: '日本語のサブタイトル',
   copyright: `© ${new Date().getFullYear()} Sayaka Ono`,
-  disqusShortname: '',
+  disqusShortname: 'blog-by-sayakaono',
   postsPerPage: 4,
   googleAnalyticsId: 'UA-73379983-2',
   useKatex: false,

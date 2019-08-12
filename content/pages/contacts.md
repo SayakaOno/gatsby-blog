@@ -6,7 +6,7 @@ template: 'page'
 Welcome to my blog! Find me on social media or contact me via the form below. Let's connect!<br />
 [Portfolio website](https://sayaka-ono.com) / [GitHub](https://github.com/SayakaOno) / [LinkedIn](https://www.linkedin.com/in/sayakaono/) / [twitter](https://twitter.com/saya_3981)
 
-<form class="form" id="contactform" action="https://sayaka38.minibird.jp/contact.php" method="POST">
+<form class="form" id="contactform" action="//formspree.io/contact@sayaka-ono.com" method="POST">
   <style>
     form {
       margin-top: 40px;

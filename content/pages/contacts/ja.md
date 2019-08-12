@@ -6,7 +6,7 @@ template: 'page'
 ブログをご覧くださりありがとうございます。SNS もしくは以下のフォームより、お気軽にご連絡ください！<br />
 [ポートフォリオ Web サイト（英語）](https://sayaka-ono.com) / [GitHub](https://github.com/SayakaOno) / [LinkedIn](https://www.linkedin.com/in/sayakaono/) / [twitter](https://twitter.com/38_ca)
 
-<form class="form" id="contactform" action="https://sayaka38.minibird.jp/contact.php" method="POST">
+<form class="form" id="contactform" action="//formspree.io/contact@sayaka-ono.com" method="POST">
   <style>
     form {
       margin-top: 40px;
