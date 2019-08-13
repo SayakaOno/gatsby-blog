@@ -15,6 +15,10 @@ module.exports = {
   useKatex: false,
   menu: [
     {
+      label: { en: '🏠 Home', ja: '🏠 ホーム' },
+      path: '/'
+    },
+    {
       label: { en: '🔎 Search', ja: '🔎 検索' },
       path: '/search'
     },

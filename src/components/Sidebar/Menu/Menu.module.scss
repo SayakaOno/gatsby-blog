@@ -14,13 +14,13 @@
       width: 30px;
       height: 26px;
       overflow: hidden;
+      margin: 0 3px;
 
       &-link {
         font-size: $typographic-base-font-size;
         color: $typographic-base-font-color;
         font-weight: normal;
         border: 0;
-        padding: 0 1px;
 
         &:hover,
         &:focus {
