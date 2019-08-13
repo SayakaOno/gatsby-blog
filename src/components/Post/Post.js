@@ -49,7 +49,7 @@ const Post = (props: Props) => {
           {tags && tagSlugs && (
             <Tags tags={tags} tagSlugs={tagSlugs} language={language} />
           )}
-          <Author />
+          <Author language={language} />
         </div>
 
         <div className={styles['post__comments']}>

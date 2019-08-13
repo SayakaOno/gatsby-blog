@@ -10,17 +10,53 @@
   @include margin-top(1);
   @include margin-bottom(2);
 
-  &__bio {
-    &-twitter {
-      display: block;
-      text-decoration: underline;
+  &__title {
+    strong {
+      padding-right: 14px;
+      font-size: 1.2rem;
+      vertical-align: text-bottom;
+    }
+
+    &__contacts {
+      &-item {
+        display: inline-block;
+        padding: 0;
+        margin: 2px 4px;
+        text-align: center;
+
+        &:nth-child(4) {
+          vertical-align: middle;
+        }
+
+        &-link {
+          border: 0;
+          color: $color-gray;
+
+          &:hover,
+          &:focus {
+            color: $color-primary;
+          }
+        }
+      }
     }
   }
-}
 
-@include breakpoint-sm {
-  .author {
-    margin-left: auto;
-    margin-right: auto;
+  &__bio {
+    margin: 0;
+    &-portfolio {
+      line-height: 1rem;
+      & a {
+        color: $color-gray;
+        font-size: 0.9rem;
+        &:hover {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+  @include breakpoint-sm {
+    // .author {
+    @include margin-bottom(0);
+    // }
   }
 }

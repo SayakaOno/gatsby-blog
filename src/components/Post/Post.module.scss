@@ -60,6 +60,10 @@
     // lost-column: 7/12;
     // max-width: 780px;
 
+    &__footer {
+      padding: 20px 15px 40px 15px;
+    }
+
     &__container {
       overflow: auto;
     }
@@ -71,21 +75,15 @@
     padding-left: 280px;
 
     &__footer {
-      padding: 0;
       padding: 40px 35px;
     }
 
     &__comments {
-      padding: 0;
       padding: 40px 35px;
     }
 
     &__home-button {
-      // position: fixed;
-      // max-width: auto;
       margin: 15px 0 0 35px;
-      // top: 30px;
-      // left: 30px;
     }
   }
 }
