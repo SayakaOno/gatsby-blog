@@ -10,20 +10,20 @@ type Props = {
 
 const Tags = ({ tags, tagSlugs, language }: Props) => (
   <div className={styles['tags']}>
-    {language === 'en' ? (tags.length > 1 ? 'Tags:' : 'Tag:') : 'タグ：'}
-    <ul className={styles['tags__list']}>
+    {language === 'en' ? (tags.length > 1 ? 'Tags: ' : 'Tag: ') : 'タグ： '}
+    <React.Fragment>
       {tagSlugs &&
         tagSlugs.map((slug, i) => (
-          <li className={styles['tags__list-item']} key={tags[i]}>
+          <span className={styles['tags__list-item']} key={tags[i]}>
             <Link
               to={language === 'en' ? slug : slug + '/ja'}
               className={styles['tags__list-item-link']}
             >
               {tags[i]}
             </Link>
-          </li>
+          </span>
         ))}
-    </ul>
+    </React.Fragment>
   </div>
 );
 
