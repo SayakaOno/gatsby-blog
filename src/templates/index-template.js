@@ -63,6 +63,7 @@ export const query = graphql`
         frontmatter: {
           template: { eq: "post" }
           draft: { ne: true }
+          home: { ne: false }
           language: { eq: $language }
         }
       }
