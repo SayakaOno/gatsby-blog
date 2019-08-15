@@ -18,6 +18,8 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   const [blogs, setBlogs] = useState([]);
   const [blogsInSelectedCategory, setBlogsInSelectedCategory] = useState([]);
   const [number, setNumber] = useState([]);
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
 
   useEffect(() => {
     if (savedFilter && savedFilter.selectedCategory) {
@@ -43,18 +45,19 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   const onClickCategory = category => {
     if (category === selectedCategory) {
       clearFilter();
+      filterBlogs(year, month, '', selectedTags);
     } else {
       setSelectedCategory(category);
       let blogs = filterBlogByCategory(category);
       setTags(getTags(blogs));
       setBlogsInSelectedCategory(blogs);
-      setBlogsAndNumber(blogs);
       setSelectedTags([]);
+      filterBlogs(year, month, category, null);
     }
   };
 
-  const filterBlogByCategory = category => {
-    return edges.filter(edge => edge.node.frontmatter.category === category);
+  const filterBlogByCategory = (category, blogs = edges) => {
+    return blogs.filter(edge => edge.node.frontmatter.category === category);
   };
 
   const getTags = blogs => {
@@ -81,6 +84,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     let blogs = filterBlogByTags(tags);
     setBlogsAndNumber(blogs);
     setSelectedTags(tags);
+    filterBlogs(year, month, selectedCategory, tags);
   };
 
   const filterBlogByTags = (tags, blogs = blogsInSelectedCategory) => {
@@ -109,6 +113,120 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     setSelectedTags([]);
     setBlogsInSelectedCategory([]);
     setBlogsAndNumber(edges, totalCount);
+  };
+
+  const getBlogYears = () => {
+    return Array.from(
+      new Set(edges.map(edge => edge.node.frontmatter.date.substr(0, 4)))
+    );
+  };
+
+  const onYearSelect = event => {
+    let year = event.target.value;
+    let month = month;
+    if (year === '00') {
+      setMonth('00');
+      month = '';
+    }
+    setYear(year);
+    filterBlogs(event.target.value, month, selectedCategory, selectedTags);
+  };
+
+  const filterBlogs = (year, month, category, tags) => {
+    console.log('arg', year, month, category, tags);
+    let filteredBlogs = edges.slice();
+    // year & month
+    if (month && month !== '00') {
+      filteredBlogs = filteredBlogs.filter(blog => {
+        return blog.node.frontmatter.date.substr(0, 7) === `${year}-${month}`;
+      });
+      console.log('year & month', filteredBlogs);
+      // year
+    } else if (year && year !== '00') {
+      filteredBlogs = filteredBlogs.filter(blog => {
+        return blog.node.frontmatter.date.substr(0, 4) === year;
+      });
+      console.log('year', filteredBlogs);
+    }
+    // category & tags
+    if (tags && tags.length) {
+      filteredBlogs = filterBlogByCategory(category, filteredBlogs);
+      filteredBlogs = filterBlogByTags(tags, filteredBlogs);
+      console.log('category & tags', filteredBlogs);
+      // category
+    } else if (category) {
+      filteredBlogs = filterBlogByCategory(category, filteredBlogs);
+      console.log('category', filteredBlogs);
+    }
+    setBlogsAndNumber(filteredBlogs);
+  };
+
+  const renderYearSelect = () => {
+    return (
+      <select value={year} onChange={onYearSelect}>
+        <option key="00" value="00">
+          All
+        </option>
+        {getBlogYears().map(year => {
+          return (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          );
+        })}
+      </select>
+    );
+  };
+
+  const onMonthSelect = event => {
+    setMonth(event.target.value);
+    filterBlogs(year, event.target.value, selectedCategory, selectedTags);
+  };
+
+  const renderMonthSelect = () => {
+    return (
+      <select value={month} onChange={onMonthSelect}>
+        <option key="00" value="00">
+          All
+        </option>
+        <option key="01" value="01">
+          January
+        </option>
+        <option key="02" value="02">
+          February
+        </option>
+        <option key="03" value="03">
+          March
+        </option>
+        <option key="04" value="04">
+          April
+        </option>
+        <option key="05" value="05">
+          May
+        </option>
+        <option key="06" value="06">
+          June
+        </option>
+        <option key="07" value="07">
+          July
+        </option>
+        <option key="08" value="08">
+          August
+        </option>
+        <option key="09" value="09">
+          September
+        </option>
+        <option key="10" value="10">
+          October
+        </option>
+        <option key="11" value="11">
+          November
+        </option>
+        <option key="12" value="12">
+          December
+        </option>
+      </select>
+    );
   };
 
   const renderCategories = () => {
@@ -205,6 +323,8 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
         {language === 'en' ? 'Search' : '検索'}
       </h1>
       <div className={styles['search__filter']}>
+        {renderYearSelect()}
+        {year && year !== '00' ? renderMonthSelect() : null}
         {renderCategories()}
         {tags.length ? renderTags() : null}
         {selectedCategory ? renderClearFilterButton() : null}
