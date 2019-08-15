@@ -33,8 +33,25 @@
       }
     }
 
+    &__year {
+      display: inline-block;
+      margin-right: 10px;
+
+      & select {
+        margin-right: 5px;
+      }
+    }
+
+    &__month {
+      display: inline-block;
+
+      & select {
+        margin-right: 5px;
+      }
+    }
+
     &__categories-list {
-      margin-bottom: 10px !important;
+      @include margin-bottom(0);
 
       li {
         padding: 0.2rem 0.7rem;
@@ -51,7 +68,7 @@
     }
 
     &__tags-list {
-      margin-top: 0;
+      @include margin-top(0.4);
       margin-bottom: 0;
 
       li {
@@ -76,16 +93,16 @@
           content: '\002713 ' !important;
         }
       }
+    }
 
-      &__clear {
-        font-size: 0.9rem;
-        line-height: 1.4rem;
-        text-decoration: underline;
+    &__clear-specific {
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+      text-decoration: underline;
 
-        span {
-          &:hover {
-            cursor: pointer;
-          }
+      span {
+        &:hover {
+          cursor: pointer;
         }
       }
     }

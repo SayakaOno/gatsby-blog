@@ -45,7 +45,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   const onClickCategory = category => {
     if (category === selectedCategory) {
       clearFilter();
-      filterBlogs(year, month, '', selectedTags);
+      filterBlogs(year, month, '', '');
     } else {
       setSelectedCategory(category);
       let blogs = filterBlogByCategory(category);
@@ -54,10 +54,6 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
       setSelectedTags([]);
       filterBlogs(year, month, category, null);
     }
-  };
-
-  const filterBlogByCategory = (category, blogs = edges) => {
-    return blogs.filter(edge => edge.node.frontmatter.category === category);
   };
 
   const getTags = blogs => {
@@ -81,10 +77,12 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     } else {
       tags = [...selectedTags, clickedTag];
     }
-    let blogs = filterBlogByTags(tags);
-    setBlogsAndNumber(blogs);
     setSelectedTags(tags);
     filterBlogs(year, month, selectedCategory, tags);
+  };
+
+  const filterBlogByCategory = (category, blogs = edges) => {
+    return blogs.filter(edge => edge.node.frontmatter.category === category);
   };
 
   const filterBlogByTags = (tags, blogs = blogsInSelectedCategory) => {
@@ -102,16 +100,33 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     return true;
   };
 
-  const clearTagFilter = () => {
-    setSelectedTags([]);
-    setBlogsAndNumber(blogsInSelectedCategory);
+  const clearYear = () => {
+    setMonth('00');
+    setYear('00');
+    filterBlogs('', '', selectedCategory, selectedTags);
   };
 
-  const clearFilter = () => {
+  const clearMonth = () => {
+    setMonth('00');
+    filterBlogs(year, '', selectedCategory, selectedTags);
+  };
+
+  const clearTagFilter = () => {
+    setSelectedTags([]);
+    filterBlogs(year, month, selectedCategory, '');
+  };
+
+  const clearCategoryFilter = () => {
     setSelectedCategory('');
     setTags([]);
     setSelectedTags([]);
     setBlogsInSelectedCategory([]);
+  };
+
+  const clearFilter = () => {
+    setYear('');
+    setMonth('');
+    clearCategoryFilter();
     setBlogsAndNumber(edges, totalCount);
   };
 
@@ -119,6 +134,12 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     return Array.from(
       new Set(edges.map(edge => edge.node.frontmatter.date.substr(0, 4)))
     );
+  };
+
+  const onClickClearCategory = () => {
+    clearCategoryFilter();
+    setBlogsAndNumber(edges, totalCount);
+    filterBlogs(year, month, '', '');
   };
 
   const onYearSelect = event => {
@@ -163,18 +184,21 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
 
   const renderYearSelect = () => {
     return (
-      <select value={year} onChange={onYearSelect}>
-        <option key="00" value="00">
-          All
-        </option>
-        {getBlogYears().map(year => {
-          return (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          );
-        })}
-      </select>
+      <div className={styles['search__filter__year']}>
+        <select value={year} onChange={onYearSelect}>
+          <option key="00" value="00">
+            All
+          </option>
+          {getBlogYears().map(year => {
+            return (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            );
+          })}
+        </select>
+        <span onClick={clearYear}>🔄</span>
+      </div>
     );
   };
 
@@ -185,71 +209,77 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
 
   const renderMonthSelect = () => {
     return (
-      <select value={month} onChange={onMonthSelect}>
-        <option key="00" value="00">
-          All
-        </option>
-        <option key="01" value="01">
-          January
-        </option>
-        <option key="02" value="02">
-          February
-        </option>
-        <option key="03" value="03">
-          March
-        </option>
-        <option key="04" value="04">
-          April
-        </option>
-        <option key="05" value="05">
-          May
-        </option>
-        <option key="06" value="06">
-          June
-        </option>
-        <option key="07" value="07">
-          July
-        </option>
-        <option key="08" value="08">
-          August
-        </option>
-        <option key="09" value="09">
-          September
-        </option>
-        <option key="10" value="10">
-          October
-        </option>
-        <option key="11" value="11">
-          November
-        </option>
-        <option key="12" value="12">
-          December
-        </option>
-      </select>
+      <div className={styles['search__filter__month']}>
+        <select value={month} onChange={onMonthSelect}>
+          <option key="00" value="00">
+            All
+          </option>
+          <option key="01" value="01">
+            January
+          </option>
+          <option key="02" value="02">
+            February
+          </option>
+          <option key="03" value="03">
+            March
+          </option>
+          <option key="04" value="04">
+            April
+          </option>
+          <option key="05" value="05">
+            May
+          </option>
+          <option key="06" value="06">
+            June
+          </option>
+          <option key="07" value="07">
+            July
+          </option>
+          <option key="08" value="08">
+            August
+          </option>
+          <option key="09" value="09">
+            September
+          </option>
+          <option key="10" value="10">
+            October
+          </option>
+          <option key="11" value="11">
+            November
+          </option>
+          <option key="12" value="12">
+            December
+          </option>
+        </select>
+        <span onClick={clearMonth}>🔄</span>
+      </div>
     );
   };
 
   const renderCategories = () => {
     return (
-      <ul className={styles['search__filter__categories-list']}>
-        {categoriesList.map(category => {
-          return (
-            <li
-              onClick={() => onClickCategory(category.fieldValue)}
-              key={category.fieldValue}
-              className={
-                selectedCategory
-                  ? selectedCategory.includes(category.fieldValue)
-                    ? styles['search__filter__categories-list-item-selected']
+      <>
+        <ul className={styles['search__filter__categories-list']}>
+          {categoriesList.map(category => {
+            return (
+              <li
+                onClick={() => onClickCategory(category.fieldValue)}
+                key={category.fieldValue}
+                className={
+                  selectedCategory
+                    ? selectedCategory.includes(category.fieldValue)
+                      ? styles['search__filter__categories-list-item-selected']
+                      : ''
                     : ''
-                  : ''
-              }
-            >
-              {category.fieldValue}
-            </li>
-          );
-        })}
-      </ul>
+                }
+              >
+                {category.fieldValue}
+              </li>
+            );
+          })}
+        </ul>
+        {selectedCategory ? renderClearCategoryButton() : null}
+      </>
     );
   };
 
@@ -279,9 +309,19 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     );
   };
 
+  const renderClearCategoryButton = () => {
+    return (
+      <div className={styles['search__filter__clear-specific']}>
+        <span onClick={onClickClearCategory}>
+          <b>×</b> {language === 'en' ? 'reset category' : 'カテゴリーをクリア'}
+        </span>
+      </div>
+    );
+  };
+
   const renderClearTagButton = () => {
     return (
-      <div className={styles['search__filter__tags-list__clear']}>
+      <div className={styles['search__filter__clear-specific']}>
         <span onClick={clearTagFilter}>
           <b>×</b> {language === 'en' ? 'reset tags' : 'タグをクリア'}
         </span>
