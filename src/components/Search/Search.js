@@ -22,16 +22,19 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   const [month, setMonth] = useState('');
 
   useEffect(() => {
-    if (savedFilter && savedFilter.selectedCategory) {
+    if (savedFilter) {
+      let year = savedFilter.year;
+      let month = savedFilter.month;
       let savedCategory = savedFilter.selectedCategory;
       let savedTags = savedFilter.selectedTags;
       let blogsInCategory = filterBlogByCategory(savedCategory);
-      let blogs = filterBlogByTags(savedTags, blogsInCategory);
+      filterBlogs(year, month, savedCategory, savedTags);
+      setYear(year);
+      setMonth(month);
       setSelectedCategory(savedCategory);
-      setSelectedTags(savedTags);
+      setSelectedTags(savedTags ? savedTags : []);
       setTags(getTags(blogsInCategory));
       setBlogsInSelectedCategory(blogsInCategory);
-      setBlogsAndNumber(blogs);
     } else {
       setBlogsAndNumber(edges, totalCount);
     }
@@ -144,40 +147,40 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
 
   const onYearSelect = event => {
     let year = event.target.value;
-    let month = month;
+    let targetMonth = month;
     if (year === '00') {
       setMonth('00');
-      month = '';
+      targetMonth = '';
     }
     setYear(year);
-    filterBlogs(event.target.value, month, selectedCategory, selectedTags);
+    filterBlogs(
+      event.target.value,
+      targetMonth,
+      selectedCategory,
+      selectedTags
+    );
   };
 
   const filterBlogs = (year, month, category, tags) => {
-    console.log('arg', year, month, category, tags);
     let filteredBlogs = edges.slice();
     // year & month
     if (month && month !== '00') {
       filteredBlogs = filteredBlogs.filter(blog => {
         return blog.node.frontmatter.date.substr(0, 7) === `${year}-${month}`;
       });
-      console.log('year & month', filteredBlogs);
       // year
     } else if (year && year !== '00') {
       filteredBlogs = filteredBlogs.filter(blog => {
         return blog.node.frontmatter.date.substr(0, 4) === year;
       });
-      console.log('year', filteredBlogs);
     }
     // category & tags
     if (tags && tags.length) {
       filteredBlogs = filterBlogByCategory(category, filteredBlogs);
       filteredBlogs = filterBlogByTags(tags, filteredBlogs);
-      console.log('category & tags', filteredBlogs);
       // category
     } else if (category) {
       filteredBlogs = filterBlogByCategory(category, filteredBlogs);
-      console.log('category', filteredBlogs);
     }
     setBlogsAndNumber(filteredBlogs);
   };
@@ -373,8 +376,16 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
       {renderCount()}
       <BlogList
         edges={blogs}
-        selectedCategory={selectedCategory}
-        selectedTags={selectedTags}
+        filters={
+          year || month || selectedCategory
+            ? {
+                year: year,
+                month: month,
+                selectedCategory: selectedCategory,
+                selectedTags: selectedTags
+              }
+            : null
+        }
       />
     </div>
   );

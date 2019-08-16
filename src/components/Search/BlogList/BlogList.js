@@ -12,7 +12,11 @@ type Props = {
 };
 
 const BlogList = (props: Props) => {
-  const { edges, selectedCategory, selectedTags } = props;
+  const { edges, filters } = props;
+  const year = filters ? filters.year : '';
+  const month = filters ? filters.month : '';
+  const selectedCategory = filters ? filters.selectedCategory : '';
+  const selectedTags = filters ? filters.selectedTags : [];
 
   return (
     <Location>
@@ -27,6 +31,8 @@ const BlogList = (props: Props) => {
                   to={edge.node.fields.slug}
                   state={{
                     from: location.pathname,
+                    year,
+                    month,
                     selectedCategory,
                     selectedTags
                   }}

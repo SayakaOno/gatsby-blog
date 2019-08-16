@@ -38,6 +38,8 @@ const PostTemplate = (props: Props) => {
       location.state.from === '/search/ja'
     ) {
       return {
+        year: location.state.year,
+        month: location.state.month,
         selectedCategory: location.state.selectedCategory,
         selectedTags: location.state.selectedTags
       };
