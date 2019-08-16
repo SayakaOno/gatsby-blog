@@ -1,5 +1,7 @@
 // @flow
 import React from 'react';
+import { getIcon } from '../../../utils';
+import Icon from '../../Icon';
 import { Link } from 'gatsby';
 import styles from './Menu.module.scss';
 
@@ -21,6 +23,7 @@ const Menu = ({ menu, language }: Props) => {
               className={styles['menu__list-item-link']}
               activeClassName={styles['menu__list-item-link--active']}
             >
+              <Icon icon={getIcon(item.label.en.toLowerCase())} />
               {item.label[language]}
             </Link>
           </li>

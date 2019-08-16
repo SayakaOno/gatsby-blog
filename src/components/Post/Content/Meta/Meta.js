@@ -2,6 +2,8 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'gatsby';
+import { getIcon } from '../../../../utils';
+import Icon from '../../../Icon';
 import styles from './Meta.module.scss';
 
 type Props = {
@@ -21,7 +23,10 @@ const Meta = ({ language, fields, frontmatter }: Props) => {
           )}
         </div>
         <div className={styles['meta__category']}>
-          <span className={styles['meta__emoji']}>📁</span>
+          <span className={styles['meta__emoji']}>
+            {' '}
+            <Icon icon={getIcon('category')} />
+          </span>
           <Link
             to={`${categorySlug}${language === 'en' ? '' : '/ja'}`}
             className={styles['meta__category-link']}
@@ -30,7 +35,10 @@ const Meta = ({ language, fields, frontmatter }: Props) => {
           </Link>
         </div>
         <div className={styles['meta__tags']}>
-          <span className={styles['meta__emoji']}>🏷</span>
+          <span className={styles['meta__emoji']}>
+            {' '}
+            <Icon icon={getIcon('tag')} />
+          </span>
           <ul className={styles['meta__tags__list']}>
             {tagSlugs &&
               tagSlugs.map((slug, i) => (

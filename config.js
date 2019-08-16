@@ -15,15 +15,15 @@ module.exports = {
   useKatex: false,
   menu: [
     {
-      label: { en: '🏠 Home', ja: '🏠 ホーム' },
+      label: { en: 'Home', ja: 'ホーム' },
       path: '/'
     },
     {
-      label: { en: '🔎 Search', ja: '🔎 検索' },
+      label: { en: 'Search', ja: '検索' },
       path: '/search'
     },
     {
-      label: { en: '✉️ Contact', ja: '✉️ コンタクト' },
+      label: { en: 'Contact', ja: 'コンタクト' },
       path: '/pages/contacts'
     }
   ],
