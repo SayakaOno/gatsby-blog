@@ -38,7 +38,7 @@ const Author = ({ language }) => {
                 )
               )}
             </div>
-            <p className={styles['author__bio']}>
+            <div className={styles['author__bio']}>
               {author.bio[getLanguage(location.pathname)]}
               <div className={styles['author__bio-portfolio']}>
                 <a
@@ -49,7 +49,7 @@ const Author = ({ language }) => {
                   {author.contacts.portfolio.en}
                 </a>
               </div>
-            </p>
+            </div>
           </div>
         );
       }}
