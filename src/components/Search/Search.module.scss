@@ -33,77 +33,90 @@
       }
     }
 
-    &__year {
-      display: inline-block;
-      margin-right: 10px;
+    &__date {
+      @include margin-bottom(0.9);
 
-      & select {
-        margin-right: 5px;
-      }
-    }
+      &-year,
+      &-month {
+        display: inline-block;
+        margin-right: 10px;
 
-    &__month {
-      display: inline-block;
-
-      & select {
-        margin-right: 5px;
-      }
-    }
-
-    &__categories-list {
-      @include margin-bottom(0);
-
-      li {
-        padding: 0.2rem 0.7rem;
-        color: #222;
-        border: 1px solid $color-secondary;
-        font-size: 0.9rem;
-        font-weight: normal;
-        margin: 0 0.2rem 0.2rem 0;
-      }
-
-      &-item-selected {
-        background-color: $color-secondary;
-      }
-    }
-
-    &__tags-list {
-      @include margin-top(0.4);
-      margin-bottom: 0;
-
-      li {
-        padding: 0 0.5rem;
-        color: #666;
-        border-radius: 0.25rem;
-        font-size: 0.9rem;
-        font-weight: normal;
-        margin: 0 0.2rem 0.2rem 0;
-        background-color: rgb(221, 221, 221);
-        &:before {
-          content: '+ ';
-          font-weight: bold;
+        & select {
+          margin-right: 5px;
         }
       }
+    }
 
-      &-item-selected {
-        color: rgb(221, 221, 221) !important;
-        background-color: #666 !important;
+    &__categories {
+      &-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        @include margin-bottom(0.3);
+      }
+      &-list {
+        @include margin-top(0);
+        @include margin-bottom(0);
 
-        &:before {
-          content: '\002713 ' !important;
+        li {
+          padding: 0.2rem 0.7rem;
+          color: #222;
+          border: 1px solid $color-secondary;
+          font-size: 0.9rem;
+          font-weight: normal;
+          margin: 0 0.2rem 0.2rem 0;
+        }
+
+        &-item-selected {
+          background-color: $color-secondary;
+        }
+      }
+    }
+
+    &__tags {
+      @include margin-top(0.7);
+
+      &-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        @include margin-bottom(0.3);
+      }
+
+      &-list {
+        @include margin-top(0);
+        @include margin-bottom(0);
+
+        li {
+          padding: 0 0.5rem;
+          color: #666;
+          border-radius: 0.25rem;
+          font-size: 0.9rem;
+          font-weight: normal;
+          margin: 0 0.2rem 0.2rem 0;
+          background-color: rgb(221, 221, 221);
+          &:before {
+            content: '+ ';
+            font-weight: bold;
+          }
+        }
+
+        &-item-selected {
+          color: rgb(221, 221, 221) !important;
+          background-color: #666 !important;
+
+          &:before {
+            content: '\002713 ' !important;
+          }
         }
       }
     }
 
     &__clear-specific {
-      font-size: 0.9rem;
-      line-height: 1.4rem;
-      text-decoration: underline;
+      padding: 0 2px;
+      font-weight: normal !important;
 
-      span {
-        &:hover {
-          cursor: pointer;
-        }
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
       }
     }
 

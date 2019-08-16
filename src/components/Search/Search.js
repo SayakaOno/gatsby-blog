@@ -187,10 +187,10 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
 
   const renderYearSelect = () => {
     return (
-      <div className={styles['search__filter__year']}>
+      <div className={styles['search__filter__date-year']}>
         <select value={year} onChange={onYearSelect}>
           <option key="00" value="00">
-            All
+            Year
           </option>
           {getBlogYears().map(year => {
             return (
@@ -200,7 +200,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
             );
           })}
         </select>
-        <span onClick={clearYear}>🔄</span>
+        {year && year !== '00' ? renderClearButton(clearYear) : null}
       </div>
     );
   };
@@ -212,10 +212,10 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
 
   const renderMonthSelect = () => {
     return (
-      <div className={styles['search__filter__month']}>
+      <div className={styles['search__filter__date-month']}>
         <select value={month} onChange={onMonthSelect}>
           <option key="00" value="00">
-            All
+            Month
           </option>
           <option key="01" value="01">
             January
@@ -254,14 +254,18 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
             December
           </option>
         </select>
-        <span onClick={clearMonth}>🔄</span>
+        {month && month !== '00' ? renderClearButton(clearMonth) : null}
       </div>
     );
   };
 
   const renderCategories = () => {
     return (
-      <>
+      <div className={styles['search__filter__categories']}>
+        <div className={styles['search__filter__categories-title']}>
+          <span>Category</span>{' '}
+          {selectedCategory ? renderClearButton(onClickClearCategory) : null}
+        </div>
         <ul className={styles['search__filter__categories-list']}>
           {categoriesList.map(category => {
             return (
@@ -281,14 +285,17 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
             );
           })}
         </ul>
-        {selectedCategory ? renderClearCategoryButton() : null}
-      </>
+      </div>
     );
   };
 
   const renderTags = () => {
     return (
-      <>
+      <div className={styles['search__filter__tags']}>
+        <div className={styles['search__filter__tags-title']}>
+          <span>Tags</span>{' '}
+          {selectedTags.length ? renderClearButton(clearTagFilter) : null}
+        </div>
         <ul className={styles['search__filter__tags-list']}>
           {tags.map(tag => {
             return (
@@ -306,29 +313,18 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
             );
           })}
         </ul>
-
-        {selectedTags.length ? renderClearTagButton() : null}
-      </>
-    );
-  };
-
-  const renderClearCategoryButton = () => {
-    return (
-      <div className={styles['search__filter__clear-specific']}>
-        <span onClick={onClickClearCategory}>
-          <b>×</b> {language === 'en' ? 'reset category' : 'カテゴリーをクリア'}
-        </span>
       </div>
     );
   };
 
-  const renderClearTagButton = () => {
+  const renderClearButton = clearFunction => {
     return (
-      <div className={styles['search__filter__clear-specific']}>
-        <span onClick={clearTagFilter}>
-          <b>×</b> {language === 'en' ? 'reset tags' : 'タグをクリア'}
-        </span>
-      </div>
+      <span
+        onClick={clearFunction}
+        className={styles['search__filter__clear-specific']}
+      >
+        ×
+      </span>
     );
   };
 
@@ -366,11 +362,15 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
         {language === 'en' ? 'Search' : '検索'}
       </h1>
       <div className={styles['search__filter']}>
-        {renderYearSelect()}
-        {year && year !== '00' ? renderMonthSelect() : null}
+        <div className={styles['search__filter__date']}>
+          {renderYearSelect()}
+          {year && year !== '00' ? renderMonthSelect() : null}
+        </div>
         {renderCategories()}
         {tags.length ? renderTags() : null}
-        {selectedCategory ? renderClearFilterButton() : null}
+        {(year && year !== '00') || selectedCategory
+          ? renderClearFilterButton()
+          : null}
       </div>
 
       {renderCount()}
