@@ -13,6 +13,7 @@ module.exports = async (graphql, actions) => {
           frontmatter: {
             template: { eq: "post" }
             draft: { ne: true }
+            home: { ne: false }
             language: { eq: "en" }
           }
         }
@@ -52,6 +53,7 @@ module.exports = async (graphql, actions) => {
           frontmatter: {
             template: { eq: "post" }
             draft: { ne: true }
+            home: { ne: false }
             language: { eq: "ja" }
           }
         }
