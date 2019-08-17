@@ -6,6 +6,7 @@ import Comments from './Comments';
 import Content from './Content';
 import Meta from './Meta';
 import Tags from './Tags';
+import Pagination from './Pagination';
 import styles from './Post.module.scss';
 import type { Node } from '../../types';
 
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const Post = (props: Props) => {
-  const { post, language, backLink, stateForSearchPage } = props;
+  const { post, language, prev, next, backLink, stateForSearchPage } = props;
   const { html } = post;
   const { categorySlug, tagSlugs, slug } = post.fields;
   const { category, tags, title, date } = post.frontmatter;
@@ -49,6 +50,7 @@ const Post = (props: Props) => {
           {tags && tagSlugs && (
             <Tags tags={tags} tagSlugs={tagSlugs} language={language} />
           )}
+          <Pagination language={language} prev={prev} next={next} />
           <Author language={language} />
         </div>
 

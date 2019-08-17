@@ -64,12 +64,17 @@ const createPages = async ({ graphql, actions }) => {
   // Posts and pages from markdown
   const result = await graphql(`
     {
-      allMarkdownRemark(filter: { frontmatter: { draft: { ne: true } } }) {
+      allMarkdownRemark(
+        filter: { frontmatter: { draft: { ne: true }, home: { ne: false } } }
+        sort: { order: ASC, fields: frontmatter___date }
+      ) {
         edges {
           node {
             frontmatter {
               template
               language
+              title
+              date
             }
             fields {
               slug
@@ -82,7 +87,7 @@ const createPages = async ({ graphql, actions }) => {
 
   const { edges } = result.data.allMarkdownRemark;
 
-  _.each(edges, edge => {
+  _.each(edges, (edge, index) => {
     if (_.get(edge, 'node.frontmatter.template') === 'page') {
       createPage({
         path: edge.node.fields.slug,
@@ -92,12 +97,53 @@ const createPages = async ({ graphql, actions }) => {
         }
       });
     } else if (_.get(edge, 'node.frontmatter.template') === 'post') {
+      let prev = index - 1;
+      let next = index + 1;
+      while (prev >= 0) {
+        if (
+          _.get(edge, 'node.frontmatter.language') ===
+            _.get(edges[prev], 'node.frontmatter.language') &&
+          _.get(edges[prev], 'node.frontmatter.template') === 'post' &&
+          _.get(edges[prev], 'node.frontmatter.draft') !== true
+        ) {
+          break;
+        }
+        prev--;
+      }
+      while (next < edges.length) {
+        if (
+          _.get(edge, 'node.frontmatter.language') ===
+            _.get(edges[next], 'node.frontmatter.language') &&
+          _.get(edges[next], 'node.frontmatter.template') === 'post' &&
+          _.get(edges[next], 'node.frontmatter.draft') !== true
+        ) {
+          break;
+        }
+        next++;
+      }
+
       createPage({
         path: edge.node.fields.slug,
         component: path.resolve('./src/templates/post-template.js'),
         context: {
           slug: edge.node.fields.slug,
-          language: _.get(edge, 'node.frontmatter.language')
+          language: _.get(edge, 'node.frontmatter.language'),
+          prev:
+            prev || prev === 0
+              ? {
+                  slug: _.get(edges[prev], 'node.fields.slug'),
+                  title: _.get(edges[prev], 'node.frontmatter.title'),
+                  date: _.get(edges[prev], 'node.frontmatter.date')
+                }
+              : null,
+          next:
+            next && next < edges.length
+              ? {
+                  slug: _.get(edges[next], 'node.fields.slug'),
+                  title: _.get(edges[next], 'node.frontmatter.title'),
+                  date: _.get(edges[next], 'node.frontmatter.date')
+                }
+              : null
         }
       });
     }

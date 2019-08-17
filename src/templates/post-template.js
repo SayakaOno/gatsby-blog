@@ -15,7 +15,7 @@ type Props = {
 
 const PostTemplate = (props: Props) => {
   const { data, pageContext, location } = props;
-  const { language } = pageContext;
+  const { language, prev, next } = pageContext;
   const siteTitle =
     language === 'en' ? useSiteMetadata().title : useSiteMetadata().titleJa;
   const siteSubtitle =
@@ -53,6 +53,8 @@ const PostTemplate = (props: Props) => {
       <Post
         post={data.markdownRemark}
         language={pageContext.language}
+        prev={prev}
+        next={next}
         backLink={location.state ? location.state.from : null}
         stateForSearchPage={location.state ? stateForSearchPage() : null}
       />

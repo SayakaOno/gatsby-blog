@@ -1,0 +1,55 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+
+.pagination {
+  @include margin(2, 0);
+
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+
+  a {
+    display: inline-block;
+  }
+
+  &__prev {
+    @include margin-bottom(1);
+  }
+  &__next {
+    text-align: right;
+  }
+
+  &__next,
+  &__prev {
+    &__link {
+      &-title {
+        color: $color-secondary;
+        span {
+          transition: font-weight ease 180ms;
+        }
+      }
+      &:hover &-title span {
+        font-weight: 600;
+      }
+      &-date {
+        font-size: 0.85rem;
+        color: $color-gray;
+      }
+    }
+  }
+
+  @include breakpoint-md {
+    &__prev,
+    &__next {
+      width: 50%;
+    }
+    &__prev {
+      float: left;
+    }
+    &__next {
+      float: right;
+    }
+  }
+}

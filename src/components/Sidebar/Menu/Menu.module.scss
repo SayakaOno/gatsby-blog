@@ -17,8 +17,8 @@
         font-size: $typographic-base-font-size;
         color: $typographic-base-font-color;
         font-weight: normal;
-        border: 0;
         padding: 0 4px;
+        border-bottom: 1px solid transparent;
 
         span {
           display: none;
@@ -49,7 +49,7 @@
           &:hover,
           &:focus {
             cursor: inherit;
-            border-bottom: none;
+            border-bottom: solid 1px transparent;
           }
         }
       }

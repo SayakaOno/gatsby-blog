@@ -34,7 +34,7 @@
 
           &:hover,
           &:focus {
-            color: $color-primary;
+            color: $color-secondary;
           }
         }
       }
@@ -49,14 +49,12 @@
         color: $color-gray;
         font-size: 0.9rem;
         &:hover {
-          color: $color-primary;
+          color: $color-secondary;
         }
       }
     }
   }
   @include breakpoint-sm {
-    // .author {
     @include margin-bottom(0);
-    // }
   }
 }
