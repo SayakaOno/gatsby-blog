@@ -24,7 +24,7 @@ const Menu = ({ menu, language }: Props) => {
               activeClassName={styles['menu__list-item-link--active']}
             >
               <Icon icon={getIcon(item.label.en.toLowerCase())} />
-              {item.label[language]}
+              <span>{item.label[language]}</span>
             </Link>
           </li>
         ))}

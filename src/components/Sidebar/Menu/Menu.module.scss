@@ -11,26 +11,46 @@
 
     &-item {
       display: inline-block;
-      width: 30px;
-      height: 26px;
-      overflow: hidden;
-      margin: 0 3px;
 
       &-link {
+        display: inline-block;
         font-size: $typographic-base-font-size;
         color: $typographic-base-font-color;
         font-weight: normal;
         border: 0;
+        padding: 0 4px;
+
+        span {
+          display: none;
+        }
+
+        svg {
+          vertical-align: text-top;
+        }
 
         &:hover,
         &:focus {
-          color: $color-primary;
-          border-bottom: 1px solid $color-primary;
+          color: $color-base;
+        }
+        &:hover {
+          border-bottom: 1px solid $color-secondary;
+          svg {
+            color: $color-secondary;
+          }
         }
 
         &--active {
           color: $color-base;
-          border-bottom: 1px solid $color-base;
+
+          svg {
+            color: $color-secondary;
+          }
+
+          &:hover,
+          &:focus {
+            cursor: inherit;
+            border-bottom: none;
+          }
         }
       }
     }
@@ -47,6 +67,10 @@
         width: initial;
         height: initial;
         overflow: initial;
+
+        span {
+          display: inline-block;
+        }
       }
     }
   }
