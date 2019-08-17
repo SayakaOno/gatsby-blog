@@ -34,25 +34,27 @@ const Meta = ({ language, fields, frontmatter }: Props) => {
             {category}
           </Link>
         </div>
-        <div className={styles['meta__tags']}>
-          <span className={styles['meta__emoji']}>
-            {' '}
-            <Icon icon={getIcon('tag')} />
-          </span>
-          <ul className={styles['meta__tags__list']}>
-            {tagSlugs &&
-              tagSlugs.map((slug, i) => (
-                <li className={styles['meta__tags__list-item']} key={tags[i]}>
-                  <Link
-                    to={`${slug}${language === 'ja' ? '/ja' : ''}`}
-                    className={styles['meta__tags__list-item-link']}
-                  >
-                    {tags[i]}
-                  </Link>
-                </li>
-              ))}
-          </ul>
-        </div>
+        {tags ? (
+          <div className={styles['meta__tags']}>
+            <span className={styles['meta__emoji']}>
+              {' '}
+              <Icon icon={getIcon('tag')} />
+            </span>
+            <ul className={styles['meta__tags__list']}>
+              {tagSlugs &&
+                tagSlugs.map((slug, i) => (
+                  <li className={styles['meta__tags__list-item']} key={tags[i]}>
+                    <Link
+                      to={`${slug}${language === 'ja' ? '/ja' : ''}`}
+                      className={styles['meta__tags__list-item-link']}
+                    >
+                      {tags[i]}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
     </div>
   );
