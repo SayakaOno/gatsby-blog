@@ -34,6 +34,7 @@ module.exports = async (graphql, actions) => {
       component: path.resolve('./src/templates/index-template.js'),
       context: {
         currentPage: i,
+        totalPage: numPages,
         postsLimit: postsPerPage,
         postsOffset: i * postsPerPage,
         prevPagePath: i <= 1 ? '/' : `/page/${i - 1}`,

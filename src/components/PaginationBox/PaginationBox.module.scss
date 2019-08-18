@@ -1,0 +1,82 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.pagination-box {
+  &__body {
+    width: fit-content;
+    margin: 70px auto;
+
+    &:after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+
+    &-leftarrow,
+    &-rightarrow {
+      float: left;
+      line-height: 2.2rem;
+      margin-top: 1px;
+      padding: 0 2px;
+      width: 32px;
+      text-align: center;
+
+      svg {
+        vertical-align: middle;
+      }
+
+      // &:hover {
+      //   cursor: pointer;
+      // }
+    }
+
+    &__links {
+      float: left;
+      overflow: auto;
+      // max-width: 200px;
+
+      &__list {
+        list-style: none;
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 9px;
+        padding: 0;
+        width: fit-content;
+        border-right: solid 1px #999;
+
+        &-item,
+        &-item-active {
+          margin: 0;
+          padding: 0;
+
+          border: solid 1px #999;
+          border-right: none;
+
+          a {
+            display: inline-block;
+            line-height: 2.2rem;
+            color: #333;
+            width: 31px;
+            text-align: center;
+
+            &:hover {
+              color: $color-secondary;
+            }
+          }
+          &-active {
+            background-color: $color-secondary;
+
+            a {
+              color: #fff;
+
+              &:hover {
+                cursor: initial;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
