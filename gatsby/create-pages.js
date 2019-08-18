@@ -65,7 +65,7 @@ const createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
       allMarkdownRemark(
-        filter: { frontmatter: { draft: { ne: true }, home: { ne: false } } }
+        filter: { frontmatter: { draft: { ne: true } } }
         sort: { order: ASC, fields: frontmatter___date }
       ) {
         edges {
@@ -87,7 +87,10 @@ const createPages = async ({ graphql, actions }) => {
 
   const { edges } = result.data.allMarkdownRemark;
 
-  _.each(edges, (edge, index) => {
+  let edgesForIndexPage = edges.filter(
+    edge => _.get(edge, 'node.frontmatter.home') !== false
+  );
+  _.each(edgesForIndexPage, (edge, index) => {
     if (_.get(edge, 'node.frontmatter.template') === 'page') {
       createPage({
         path: edge.node.fields.slug,
@@ -102,20 +105,22 @@ const createPages = async ({ graphql, actions }) => {
       while (prev >= 0) {
         if (
           _.get(edge, 'node.frontmatter.language') ===
-            _.get(edges[prev], 'node.frontmatter.language') &&
-          _.get(edges[prev], 'node.frontmatter.template') === 'post' &&
-          _.get(edges[prev], 'node.frontmatter.draft') !== true
+            _.get(edgesForIndexPage[prev], 'node.frontmatter.language') &&
+          _.get(edgesForIndexPage[prev], 'node.frontmatter.template') ===
+            'post' &&
+          _.get(edgesForIndexPage[prev], 'node.frontmatter.draft') !== true
         ) {
           break;
         }
         prev--;
       }
-      while (next < edges.length) {
+      while (next < edgesForIndexPage.length) {
         if (
           _.get(edge, 'node.frontmatter.language') ===
-            _.get(edges[next], 'node.frontmatter.language') &&
-          _.get(edges[next], 'node.frontmatter.template') === 'post' &&
-          _.get(edges[next], 'node.frontmatter.draft') !== true
+            _.get(edgesForIndexPage[next], 'node.frontmatter.language') &&
+          _.get(edgesForIndexPage[next], 'node.frontmatter.template') ===
+            'post' &&
+          _.get(edgesForIndexPage[next], 'node.frontmatter.draft') !== true
         ) {
           break;
         }
