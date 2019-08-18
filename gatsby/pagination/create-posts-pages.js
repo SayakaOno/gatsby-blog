@@ -17,7 +17,15 @@ module.exports = async (graphql, actions) => {
             language: { eq: "en" }
           }
         }
+        sort: { order: DESC, fields: [frontmatter___date] }
       ) {
+        edges {
+          node {
+            frontmatter {
+              date
+            }
+          }
+        }
         totalCount
       }
     }
@@ -27,6 +35,12 @@ module.exports = async (graphql, actions) => {
   const numPages = Math.ceil(
     result.data.allMarkdownRemark.totalCount / postsPerPage
   );
+  const dates = [];
+  result.data.allMarkdownRemark.edges.forEach((edge, index) => {
+    if (!(index % postsPerPage)) {
+      dates.push(edge.node.frontmatter.date);
+    }
+  });
 
   for (let i = 0; i < numPages; i += 1) {
     createPage({
@@ -41,7 +55,8 @@ module.exports = async (graphql, actions) => {
         nextPagePath: `/page/${i + 1}`,
         hasPrevPage: i !== 0,
         hasNextPage: i !== numPages - 1,
-        language: 'en'
+        language: 'en',
+        dates: dates
       }
     });
   }
@@ -58,7 +73,15 @@ module.exports = async (graphql, actions) => {
             language: { eq: "ja" }
           }
         }
+        sort: { order: DESC, fields: [frontmatter___date] }
       ) {
+        edges {
+          node {
+            frontmatter {
+              date
+            }
+          }
+        }
         totalCount
       }
     }
@@ -67,6 +90,12 @@ module.exports = async (graphql, actions) => {
   const numPagesJa = Math.ceil(
     resultJa.data.allMarkdownRemark.totalCount / postsPerPage
   );
+  const datesJa = [];
+  resultJa.data.allMarkdownRemark.edges.forEach((edge, index) => {
+    if (!(index % postsPerPage)) {
+      datesJa.push(edge.node.frontmatter.date);
+    }
+  });
 
   for (let i = 0; i < numPagesJa; i += 1) {
     createPage({
@@ -80,7 +109,8 @@ module.exports = async (graphql, actions) => {
         nextPagePath: `/page/${i + 1}/ja`,
         hasPrevPage: i !== 0,
         hasNextPage: i !== numPagesJa - 1,
-        language: 'ja'
+        language: 'ja',
+        dates: datesJa
       }
     });
   }

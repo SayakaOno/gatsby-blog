@@ -21,7 +21,8 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
     hasPrevPage,
     prevPagePath,
     nextPagePath,
-    language
+    language,
+    dates
   } = pageContext;
 
   const siteTitle =
@@ -49,6 +50,7 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
             hasPrevPage={hasPrevPage}
             hasNextPage={hasNextPage}
             language={language}
+            dates={dates}
           />
         ) : null}
       </Page>

@@ -1,5 +1,6 @@
 // @flow
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { Link } from 'gatsby';
 import { getIcon } from '../../utils';
 import Icon from '../Icon';
@@ -12,13 +13,14 @@ type Props = {
   hasPrevPage: boolean
 };
 
-const PaginationBox = ({ currentPage, totalPage, language }: Props) => {
+const PaginationBox = ({ currentPage, totalPage, language, dates }: Props) => {
   const paginationBoxRef = React.createRef();
   const paginationListRef = React.createRef();
   const paginationUlRef = React.createRef();
   const activePageRef = React.createRef();
   const arrowLeft = React.createRef();
   const arrowRight = React.createRef();
+  const toolTipRef = React.createRef();
 
   let scrollId = null;
 
@@ -124,13 +126,57 @@ const PaginationBox = ({ currentPage, totalPage, language }: Props) => {
     return `/page/${index}${language === 'en' ? '' : '/ja'}`;
   };
 
+  const displayDate = (i, event) => {
+    let linkCoordsLeft = event.target.getBoundingClientRect().left;
+    let linkListCoordsLeft = paginationListRef.current.getBoundingClientRect()
+      .left;
+    toolTipRef.current.style.visibility = 'visible';
+    toolTipRef.current.innerHTML = renderDate(dates[i]);
+    toolTipRef.current.style.left =
+      linkCoordsLeft - linkListCoordsLeft + 35 + 'px';
+  };
+
+  const removeDate = () => {
+    toolTipRef.current.style.visibility = 'hidden';
+  };
+
+  const renderToolTip = () => {
+    return (
+      <div className={styles['pagination-box__body__tooltip-container']}>
+        <div
+          ref={toolTipRef}
+          className={styles['pagination-box__body__tooltip']}
+        />
+      </div>
+    );
+  };
+
   const renderLinkList = () => {
+    return (
+      <div
+        onScroll={colorArrow}
+        ref={paginationListRef}
+        className={styles['pagination-box__body__links']}
+      >
+        <ul
+          ref={paginationUlRef}
+          className={styles['pagination-box__body__links__list']}
+        >
+          {linkListItems().map(list => list)}
+        </ul>
+      </div>
+    );
+  };
+
+  const linkListItems = () => {
     let listItems = [];
     for (let i = 0; i < totalPage; i++) {
       listItems.push(
         <li
           key={i}
           ref={i === currentPage ? activePageRef : null}
+          onMouseOver={() => displayDate(i, event)}
+          onMouseOut={removeDate}
           className={
             styles[
               `pagination-box__body__links__list-item${
@@ -146,37 +192,43 @@ const PaginationBox = ({ currentPage, totalPage, language }: Props) => {
     return listItems;
   };
 
+  const renderDate = date => {
+    return moment(date).format(language === 'en' ? 'MMM, YYYY' : 'YYYY年M月');
+  };
+
+  const renderLeftArrow = () => {
+    return (
+      <span
+        ref={arrowLeft}
+        onMouseDown={() => onMouseDown('left')}
+        onMouseUp={onMouseUp}
+        className={styles['pagination-box__body-leftarrow']}
+      >
+        <Icon icon={getIcon('leftarrow')} />
+      </span>
+    );
+  };
+
+  const renderRightArrow = () => {
+    return (
+      <span
+        ref={arrowRight}
+        onMouseDown={() => onMouseDown('right')}
+        onMouseUp={onMouseUp}
+        className={styles['pagination-box__body-rightarrow']}
+      >
+        <Icon icon={getIcon('rightarrow')} />
+      </span>
+    );
+  };
+
   return (
     <div ref={paginationBoxRef} className={styles['pagination-box']}>
+      {renderToolTip()}
       <div className={styles['pagination-box__body']}>
-        <span
-          ref={arrowLeft}
-          onMouseDown={() => onMouseDown('left')}
-          onMouseUp={onMouseUp}
-          className={styles['pagination-box__body-leftarrow']}
-        >
-          <Icon icon={getIcon('leftarrow')} />
-        </span>
-        <div
-          onScroll={colorArrow}
-          ref={paginationListRef}
-          className={styles['pagination-box__body__links']}
-        >
-          <ul
-            ref={paginationUlRef}
-            className={styles['pagination-box__body__links__list']}
-          >
-            {renderLinkList().map(list => list)}
-          </ul>
-        </div>
-        <span
-          ref={arrowRight}
-          onMouseDown={() => onMouseDown('right')}
-          onMouseUp={onMouseUp}
-          className={styles['pagination-box__body-rightarrow']}
-        >
-          <Icon icon={getIcon('rightarrow')} />
-        </span>
+        {renderLeftArrow()}
+        {renderLinkList()}
+        {renderRightArrow()}
       </div>
     </div>
   );

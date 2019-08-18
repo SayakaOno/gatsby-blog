@@ -4,7 +4,7 @@
 .pagination-box {
   &__body {
     width: fit-content;
-    margin: 70px auto;
+    margin: 0 auto 70px;
 
     &:after {
       content: '';
@@ -24,16 +24,43 @@
       svg {
         vertical-align: middle;
       }
+    }
 
-      // &:hover {
-      //   cursor: pointer;
-      // }
+    &__tooltip {
+      display: inline-block;
+      visibility: hidden;
+      position: relative;
+      height: 20px;
+      line-height: 1rem;
+      padding: 3px 0;
+      border-radius: 3px;
+      font-size: 0.8em;
+      font-weight: 600;
+      margin-bottom: 10px;
+
+      &-container {
+        padding-top: 60px;
+        height: 40px;
+      }
+
+      &:after {
+        top: 100%;
+        left: 16px;
+        border: solid transparent;
+        content: ' ';
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-top-color: red;
+        border-width: 6px;
+        margin-left: -6px;
+      }
     }
 
     &__links {
       float: left;
       overflow: auto;
-      // max-width: 200px;
 
       &__list {
         list-style: none;
@@ -46,6 +73,7 @@
 
         &-item,
         &-item-active {
+          position: relative;
           margin: 0;
           padding: 0;
 
