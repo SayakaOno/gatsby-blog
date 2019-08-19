@@ -29,8 +29,6 @@
   .page {
     padding-top: 0;
     padding-left: 250px;
-    // lost-column: 7/12;
-    // max-width: 780px;
 
     &__inner {
       padding: 55px 40px;
@@ -41,8 +39,6 @@
 @include breakpoint-md {
   .page {
     padding-left: 280px;
-    // lost-column: 2/3;
-    // max-width: 780px;
 
     &__inner {
       padding: 65px 55px;

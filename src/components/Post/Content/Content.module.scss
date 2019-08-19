@@ -2,16 +2,11 @@
 @import '../../../assets/scss/mixins';
 
 .content {
-  // max-width: $layout-post-single-width;
   max-width: 780px;
   padding: 0 15px;
-  // margin: 0 auto;
 
   &__title {
     font-size: $typographic-base-font-size * 2;
-    // max-width: $layout-post-width;
-    // margin-left: auto;
-    // margin-right: auto;
     font-weight: 600;
     @include line-height(1.65);
     @include margin-top(1);
@@ -43,12 +38,6 @@
       text-decoration: underline;
     }
 
-    & * {
-      // max-width: $layout-post-width;
-      // margin-left: auto;
-      // margin-right: auto;
-    }
-
     & img {
       max-width: 100%;
     }
@@ -57,7 +46,6 @@
 
 @include breakpoint-md {
   .content {
-    // padding: 0;
     padding: 0 35px 40px 35px;
 
     &__title {

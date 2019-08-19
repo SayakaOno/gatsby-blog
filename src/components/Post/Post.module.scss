@@ -9,9 +9,7 @@
   }
 
   &__footer {
-    // max-width: $layout-post-width;
     max-width: 780px;
-    // margin: 0 auto;
     padding: 0 15px;
 
     &-category {
@@ -26,9 +24,7 @@
   }
 
   &__comments {
-    // max-width: $layout-post-width;
     max-width: 780px;
-    // margin: 0 auto;
     padding: 0 15px;
   }
 
@@ -57,8 +53,6 @@
   .post {
     padding-top: 0;
     padding-left: 250px;
-    // lost-column: 7/12;
-    // max-width: 780px;
 
     &__footer {
       padding: 20px 15px 40px 15px;
