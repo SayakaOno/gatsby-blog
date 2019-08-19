@@ -75,6 +75,7 @@ const createPages = async ({ graphql, actions }) => {
               language
               title
               date
+              home
             }
             fields {
               slug
@@ -87,9 +88,13 @@ const createPages = async ({ graphql, actions }) => {
 
   const { edges } = result.data.allMarkdownRemark;
 
-  let edgesForIndexPage = edges.filter(
-    edge => _.get(edge, 'node.frontmatter.home') !== false
-  );
+  let edgesForIndexPage = edges.filter(edge => {
+    return _.get(edge, 'node.frontmatter.home') !== false;
+  });
+  let edgesForCreatePage = edges.filter(edge => {
+    return _.get(edge, 'node.frontmatter.home') === false;
+  });
+
   _.each(edgesForIndexPage, (edge, index) => {
     if (_.get(edge, 'node.frontmatter.template') === 'page') {
       createPage({
@@ -106,9 +111,7 @@ const createPages = async ({ graphql, actions }) => {
         if (
           _.get(edge, 'node.frontmatter.language') ===
             _.get(edgesForIndexPage[prev], 'node.frontmatter.language') &&
-          _.get(edgesForIndexPage[prev], 'node.frontmatter.template') ===
-            'post' &&
-          _.get(edgesForIndexPage[prev], 'node.frontmatter.draft') !== true
+          _.get(edgesForIndexPage[prev], 'node.frontmatter.template') === 'post'
         ) {
           break;
         }
@@ -118,13 +121,16 @@ const createPages = async ({ graphql, actions }) => {
         if (
           _.get(edge, 'node.frontmatter.language') ===
             _.get(edgesForIndexPage[next], 'node.frontmatter.language') &&
-          _.get(edgesForIndexPage[next], 'node.frontmatter.template') ===
-            'post' &&
-          _.get(edgesForIndexPage[next], 'node.frontmatter.draft') !== true
+          _.get(edgesForIndexPage[next], 'node.frontmatter.template') === 'post'
         ) {
           break;
         }
         next++;
+      }
+      if (
+        _.get(edgesForIndexPage[next], 'node.frontmatter.template') !== 'post'
+      ) {
+        next = null;
       }
 
       createPage({
@@ -152,6 +158,17 @@ const createPages = async ({ graphql, actions }) => {
         }
       });
     }
+  });
+
+  _.each(edgesForCreatePage, edge => {
+    createPage({
+      path: edge.node.fields.slug,
+      component: path.resolve('./src/templates/post-template.js'),
+      context: {
+        slug: edge.node.fields.slug,
+        language: _.get(edge, 'node.frontmatter.language')
+      }
+    });
   });
 
   // Feeds
