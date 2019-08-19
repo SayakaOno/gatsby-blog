@@ -16,6 +16,7 @@
 
   &__category {
     line-height: 1rem;
+    @include margin-bottom(0.1);
 
     &-link {
       font-size: $typographic-small-font-size;
@@ -30,45 +31,39 @@
     }
   }
 
-  ul {
+  &__tags {
     line-height: 1em;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    vertical-align: text-bottom;
-  }
 
-  li {
-    display: inline-block;
-    border-radius: 0.15rem;
-    font-size: 0.8rem;
-    line-height: 1em;
-    font-weight: normal;
-    padding: 0;
-    margin: 0 0.2rem 0.2rem 0;
+    &-item {
+      display: inline-block;
+      border-radius: 0.15rem;
+      font-size: 0.8rem;
+      line-height: 1em;
+      font-weight: normal;
+      padding: 0;
+      margin: 0 0.2rem 0.2rem 0;
 
-    a {
-      color: #888;
+      &-link {
+        color: #888;
 
-      &:hover {
-        color: $color-primary;
+        &:hover {
+          color: $color-primary;
+        }
       }
-    }
 
-    &:after {
-      content: ',';
-    }
-
-    &:last-child {
       &:after {
-        content: '';
+        content: ',';
+      }
+
+      &:last-child {
+        &:after {
+          content: '';
+        }
       }
     }
   }
-}
 
-@include breakpoint-sm {
-  .meta {
+  @include breakpoint-sm {
     @include margin-bottom(1.5);
   }
 }

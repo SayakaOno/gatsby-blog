@@ -40,19 +40,17 @@ const Meta = ({ language, fields, frontmatter }: Props) => {
               {' '}
               <Icon icon={getIcon('tag')} />
             </span>
-            <ul className={styles['meta__tags__list']}>
-              {tagSlugs &&
-                tagSlugs.map((slug, i) => (
-                  <li className={styles['meta__tags__list-item']} key={tags[i]}>
-                    <Link
-                      to={`${slug}${language === 'ja' ? '/ja' : ''}`}
-                      className={styles['meta__tags__list-item-link']}
-                    >
-                      {tags[i]}
-                    </Link>
-                  </li>
-                ))}
-            </ul>
+            {tagSlugs &&
+              tagSlugs.map((slug, i) => (
+                <span className={styles['meta__tags-item']} key={tags[i]}>
+                  <Link
+                    to={`${slug}${language === 'ja' ? '/ja' : ''}`}
+                    className={styles['meta__tags-item-link']}
+                  >
+                    {tags[i]}
+                  </Link>
+                </span>
+              ))}
           </div>
         ) : null}
       </div>
