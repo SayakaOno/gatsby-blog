@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import { Link } from 'gatsby';
 import { getIcon } from '../../utils';
@@ -128,13 +128,12 @@ const PaginationBox = ({ currentPage, totalPage, language, dates }: Props) => {
   };
 
   const displayDate = (i, event) => {
-    let linkCoordsLeft = event.target.getBoundingClientRect().left;
-    let linkListCoordsLeft = paginationListRef.current.getBoundingClientRect()
-      .left;
+    let clickedLinkCoordsLeft = event.target.getBoundingClientRect().left;
+    let bodyCoordsLeft = paginationBoxRef.current.getBoundingClientRect().left;
     toolTipRef.current.style.visibility = 'visible';
     toolTipRef.current.innerHTML = renderDate(dates[i][0]);
-    // toolTipRef.current.style.left = linkCoordsLeft - 25 + 'px';
-    // linkCoordsLeft - linkListCoordsLeft + 35 + 'px';
+    toolTipRef.current.style.left =
+      clickedLinkCoordsLeft - bodyCoordsLeft + 'px';
   };
 
   const removeDate = () => {
