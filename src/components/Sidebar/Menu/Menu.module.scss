@@ -68,6 +68,14 @@
         height: initial;
         overflow: initial;
 
+        &-link {
+          padding: 0;
+
+          svg {
+            padding-right: 4px;
+          }
+        }
+
         span {
           display: inline-block;
         }
