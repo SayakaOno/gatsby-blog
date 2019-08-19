@@ -7,6 +7,7 @@ import Content from './Content';
 import Meta from './Meta';
 import Tags from './Tags';
 import Pagination from './Pagination';
+import RelatedPosts from './RelatedPosts';
 import styles from './Post.module.scss';
 import type { Node } from '../../types';
 
@@ -42,6 +43,12 @@ const Post = (props: Props) => {
           {tags && tagSlugs && (
             <Tags tags={tags} tagSlugs={tagSlugs} language={language} />
           )}
+          {post.frontmatter.related ? (
+            <RelatedPosts
+              language={language}
+              posts={post.frontmatter.related}
+            />
+          ) : null}
           <Link
             className={styles['post__home-button']}
             to={backLink ? backLink : language === 'en' ? '/' : '/ja'}

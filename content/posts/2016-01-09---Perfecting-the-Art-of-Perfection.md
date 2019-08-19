@@ -6,6 +6,9 @@ language: 'en'
 draft: false
 slug: '/posts/perfecting-the-art-of-perfection/'
 link: '/posts/first-in-japanese/ja'
+related:
+  - '/posts/contact-me'
+  - '/posts/about-me'
 category: 'Design Inspiration'
 tags:
   - 'Handwriting'

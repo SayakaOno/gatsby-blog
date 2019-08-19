@@ -6,6 +6,8 @@ language: 'ja'
 draft: false
 slug: '/posts/first-in-japanese/ja'
 link: '/posts/perfecting-the-art-of-perfection/'
+related:
+  - '/posts/markdown/ja'
 category: 'テスト'
 tags:
   - 'Design'
