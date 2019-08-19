@@ -111,7 +111,7 @@ const LanguageSwitcher = ({ link, language, path }) => {
               : ''
           } ${pointerClassName('ja')}`}
         >
-          JA
+          日
         </span>
       </div>
     </div>
