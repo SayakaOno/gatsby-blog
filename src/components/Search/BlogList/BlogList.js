@@ -3,6 +3,8 @@ import React from 'react';
 import moment from 'moment';
 import { Link } from 'gatsby';
 import { Location } from '@reach/router';
+import { getIcon } from '../../../utils';
+import Icon from '../../Icon';
 import type { Edges } from '../../../types';
 import styles from './BlogList.module.scss';
 import { getLanguage } from '../../../utils/languageContext';
@@ -59,11 +61,12 @@ const BlogList = (props: Props) => {
                       {edge.node.frontmatter.title}
                     </h2>
                     {edge.node.frontmatter.tags ? (
-                      <ul>
+                      <div className={styles['blog-list__tags']}>
+                        <Icon icon={getIcon('tag')} />
                         {edge.node.frontmatter.tags.map(tag => {
-                          return <li key={tag}>{tag}</li>;
+                          return <span key={tag}>{tag}</span>;
                         })}
-                      </ul>
+                      </div>
                     ) : null}
                   </div>
                 </Link>

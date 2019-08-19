@@ -83,6 +83,7 @@ const Search = ({ language, dates }: Props) => {
         </select>
       );
     }
+
     let options = [];
     for (let i = 1; i <= 12; i++) {
       let value = i < 10 ? '0' + i.toString() : i.toString();
@@ -92,7 +93,6 @@ const Search = ({ language, dates }: Props) => {
         </option>
       );
     }
-
     return (
       <select value={month} onChange={onMonthSelect}>
         <option key="00" value="00">

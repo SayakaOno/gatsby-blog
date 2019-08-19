@@ -190,7 +190,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
       <div className={styles['search__filter__date-year']}>
         <select value={year} onChange={onYearSelect}>
           <option key="00" value="00">
-            Year
+            {language === 'en' ? 'Year' : '年'}
           </option>
           {getBlogYears().map(year => {
             return (
@@ -211,51 +211,71 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   };
 
   const renderMonthSelect = () => {
+    if (language === 'en') {
+      return (
+        <div className={styles['search__filter__date-month']}>
+          <select value={month} onChange={onMonthSelect}>
+            <option key="00" value="00">
+              Month
+            </option>
+            <option key="01" value="01">
+              January
+            </option>
+            <option key="02" value="02">
+              February
+            </option>
+            <option key="03" value="03">
+              March
+            </option>
+            <option key="04" value="04">
+              April
+            </option>
+            <option key="05" value="05">
+              May
+            </option>
+            <option key="06" value="06">
+              June
+            </option>
+            <option key="07" value="07">
+              July
+            </option>
+            <option key="08" value="08">
+              August
+            </option>
+            <option key="09" value="09">
+              September
+            </option>
+            <option key="10" value="10">
+              October
+            </option>
+            <option key="11" value="11">
+              November
+            </option>
+            <option key="12" value="12">
+              December
+            </option>
+          </select>
+          {month && month !== '00' ? renderClearButton(clearMonth) : null}
+        </div>
+      );
+    }
+
+    let options = [];
+    for (let i = 1; i <= 12; i++) {
+      let value = i < 10 ? '0' + i.toString() : i.toString();
+      options.push(
+        <option key={value} value={value}>
+          {i + '月'}
+        </option>
+      );
+    }
     return (
-      <div className={styles['search__filter__date-month']}>
-        <select value={month} onChange={onMonthSelect}>
-          <option key="00" value="00">
-            Month
-          </option>
-          <option key="01" value="01">
-            January
-          </option>
-          <option key="02" value="02">
-            February
-          </option>
-          <option key="03" value="03">
-            March
-          </option>
-          <option key="04" value="04">
-            April
-          </option>
-          <option key="05" value="05">
-            May
-          </option>
-          <option key="06" value="06">
-            June
-          </option>
-          <option key="07" value="07">
-            July
-          </option>
-          <option key="08" value="08">
-            August
-          </option>
-          <option key="09" value="09">
-            September
-          </option>
-          <option key="10" value="10">
-            October
-          </option>
-          <option key="11" value="11">
-            November
-          </option>
-          <option key="12" value="12">
-            December
-          </option>
-        </select>
-        {month && month !== '00' ? renderClearButton(clearMonth) : null}
-      </div>
+      <select value={month} onChange={onMonthSelect}>
+        <option key="00" value="00">
+          月
+        </option>
+        {options.map(option => option)}
+      </select>
     );
   };
 

@@ -10,11 +10,10 @@
     }
 
     &-title {
-      // font-size: $typographic-base-font-size * 1.6875;
       font-size: 1.2em;
       @include line-height(1);
       @include margin-top(0);
-      @include margin-bottom(0);
+      @include margin-bottom(0.2);
 
       &-link {
         color: $color-base;
@@ -64,13 +63,16 @@
         }
       }
     }
+  }
 
-    ul {
-      line-height: 1em;
-      margin: 0;
+  &__tags {
+    line-height: 1.2rem;
+
+    svg {
+      color: #444;
     }
 
-    li {
+    span {
       display: inline-block;
       color: #888;
       border-radius: 0.15rem;
@@ -79,6 +81,7 @@
       font-weight: normal;
       padding: 0;
       margin: 0 0.2rem 0.2rem 0;
+      vertical-align: text-bottom;
 
       &:after {
         content: ',';
