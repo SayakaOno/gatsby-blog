@@ -19,7 +19,7 @@
         color: #222;
 
         &:hover {
-          color: $color-secondary;
+          color: $color-primary;
         }
       }
     }
@@ -80,10 +80,6 @@
 
     &__comments {
       padding: 40px 35px;
-    }
-
-    &__home-button {
-      margin: 15px 0 0 35px;
     }
   }
 }

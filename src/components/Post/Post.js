@@ -23,14 +23,6 @@ const Post = (props: Props) => {
   return (
     <div className={styles['post']}>
       <div className={styles['post__inner']}>
-        <Link
-          className={styles['post__home-button']}
-          to={backLink ? backLink : language === 'en' ? '/' : '/ja'}
-          state={backLink ? stateForSearchPage : null}
-        >
-          {language === 'en' ? '← Back' : '← もどる'}
-        </Link>
-
         <div className={styles['post__content']}>
           <Content
             body={html}
@@ -50,6 +42,13 @@ const Post = (props: Props) => {
           {tags && tagSlugs && (
             <Tags tags={tags} tagSlugs={tagSlugs} language={language} />
           )}
+          <Link
+            className={styles['post__home-button']}
+            to={backLink ? backLink : language === 'en' ? '/' : '/ja'}
+            state={backLink ? stateForSearchPage : null}
+          >
+            {language === 'en' ? '← Back' : '← もどる'}
+          </Link>
           <Pagination language={language} prev={prev} next={next} />
           <Author language={language} />
         </div>
