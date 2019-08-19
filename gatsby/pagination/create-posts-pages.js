@@ -35,10 +35,20 @@ module.exports = async (graphql, actions) => {
   const numPages = Math.ceil(
     result.data.allMarkdownRemark.totalCount / postsPerPage
   );
-  const dates = [];
+  let dates = [];
+  let datesSet = [];
   result.data.allMarkdownRemark.edges.forEach((edge, index) => {
     if (!(index % postsPerPage)) {
-      dates.push(edge.node.frontmatter.date);
+      datesSet.push(edge.node.frontmatter.date);
+    } else if (!((index + 1) % postsPerPage)) {
+      datesSet.push(edge.node.frontmatter.date);
+    }
+    if (
+      datesSet.length === 2 ||
+      index === result.data.allMarkdownRemark.edges.length - 1
+    ) {
+      dates.push(datesSet.slice());
+      datesSet.length = 0;
     }
   });
 
@@ -90,10 +100,22 @@ module.exports = async (graphql, actions) => {
   const numPagesJa = Math.ceil(
     resultJa.data.allMarkdownRemark.totalCount / postsPerPage
   );
+
   const datesJa = [];
+  let datesSetJa = [];
+
   resultJa.data.allMarkdownRemark.edges.forEach((edge, index) => {
     if (!(index % postsPerPage)) {
-      datesJa.push(edge.node.frontmatter.date);
+      datesSetJa.push(edge.node.frontmatter.date);
+    } else if (!((index + 1) % postsPerPage)) {
+      datesSetJa.push(edge.node.frontmatter.date);
+    }
+    if (
+      datesSetJa.length === 2 ||
+      index === result.data.allMarkdownRemark.edges.length - 1
+    ) {
+      datesJa.push(datesSetJa.slice());
+      datesSetJa.length = 0;
     }
   });
 

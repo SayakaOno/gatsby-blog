@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Link } from 'gatsby';
 import { getIcon } from '../../utils';
 import Icon from '../Icon';
+import Search from './Search';
 import styles from './PaginationBox.module.scss';
 
 type Props = {
@@ -131,9 +132,9 @@ const PaginationBox = ({ currentPage, totalPage, language, dates }: Props) => {
     let linkListCoordsLeft = paginationListRef.current.getBoundingClientRect()
       .left;
     toolTipRef.current.style.visibility = 'visible';
-    toolTipRef.current.innerHTML = renderDate(dates[i]);
-    toolTipRef.current.style.left =
-      linkCoordsLeft - linkListCoordsLeft + 35 + 'px';
+    toolTipRef.current.innerHTML = renderDate(dates[i][0]);
+    // toolTipRef.current.style.left = linkCoordsLeft - 25 + 'px';
+    // linkCoordsLeft - linkListCoordsLeft + 35 + 'px';
   };
 
   const removeDate = () => {
@@ -230,6 +231,7 @@ const PaginationBox = ({ currentPage, totalPage, language, dates }: Props) => {
         {renderLinkList()}
         {renderRightArrow()}
       </div>
+      <Search dates={dates} language={language} />
     </div>
   );
 };

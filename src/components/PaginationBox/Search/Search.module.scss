@@ -1,0 +1,24 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+
+.search {
+  * {
+    text-align: center;
+  }
+  &__select {
+    @include margin-bottom(1);
+
+    select {
+      margin: 0 4px;
+    }
+
+    &__link {
+      display: block;
+      width: 125px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      color: $color-secondary;
+      border: solid 1px $color-secondary;
+    }
+  }
+}
