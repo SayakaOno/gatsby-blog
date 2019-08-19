@@ -10,9 +10,49 @@ type Props = {
   hasPrevPage: boolean
 };
 
-const Search = ({ language, dates }: Props) => {
+const Search = ({ currentPage, language, dates }: Props) => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
+
+  const searchPage = () => {
+    if (!year) {
+      return;
+    }
+    let date = null;
+    if (!month || month == '00') {
+      date = +(year.toString() + '12');
+    } else {
+      date = +(year.toString() + month.toString());
+    }
+    for (let i = 0; i < dates.length; i++) {
+      if (
+        i === 0 &&
+        dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2) < date
+      ) {
+        return 0;
+      }
+      if (date > +(dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2))) {
+        return i - 1;
+      }
+      if (i === dates.length - 1) {
+        return i;
+      }
+      if (
+        date <= +(dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2)) &&
+        date >= +(dates[i][0].substr(0, 4) + dates[i][1].substr(5, 2))
+      ) {
+        return i;
+      }
+    }
+  };
+
+  const getLink = () => {
+    let page = searchPage();
+    if (!page) {
+      return language === 'en' ? '/' : '/ja';
+    }
+    return `/${language === 'en' ? '' : 'ja/'}page/${searchPage()}`;
+  };
 
   const renderYearSelectBox = () => {
     let yearOptions = [];
@@ -103,50 +143,26 @@ const Search = ({ language, dates }: Props) => {
     );
   };
 
-  const searchPage = () => {
-    console.log(year, month);
-    if (!year) {
-      return;
-    }
-    let date = null;
-    if (!month || month == '00') {
-      date = +(year.toString() + '12');
-      console.log(date);
-    } else {
-      date = +(year.toString() + month.toString());
-    }
-    for (let i = 0; i < dates.length; i++) {
-      if (
-        i === 0 &&
-        dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2) < date
-      ) {
-        console.log('1', dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2));
-        return 0;
-      }
-      if (date > +(dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2))) {
-        console.log('2');
-        return i - 1;
-      }
-      if (i === dates.length - 1) {
-        console.log('4');
-        return i;
-      }
-      if (
-        date <= +(dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2)) &&
-        date >= +(dates[i][0].substr(0, 4) + dates[i][1].substr(5, 2))
-      ) {
-        console.log('3');
-        return i;
-      }
-    }
-  };
-
-  const getLink = () => {
-    let page = searchPage();
-    if (!page) {
-      return language === 'en' ? '/' : '/ja';
-    }
-    return `/${language === 'en' ? '' : 'ja/'}page/${searchPage()}`;
+  const renderResult = () => {
+    return year && year !== '00' ? (
+      searchPage() === currentPage ? (
+        <p>
+          {language === 'en'
+            ? 'You are on the right page :)'
+            : 'こちらがお探しのページです！'}
+        </p>
+      ) : (
+        <Link to={getLink()} className={styles['search__select__link']}>
+          {language === 'en'
+            ? `Go to page ${searchPage() + 1}`
+            : `${searchPage() + 1}ページへ`}
+        </Link>
+      )
+    ) : month && month !== '00' ? (
+      <p>
+        {language === 'en' ? 'Please select year.' : '年をお選びください。'}
+      </p>
+    ) : null;
   };
 
   return (
@@ -160,17 +176,7 @@ const Search = ({ language, dates }: Props) => {
         {renderYearSelectBox()}
         {renderMonthSelectBox(language)}
       </div>
-      {year && year !== '00' ? (
-        <Link to={getLink()} className={styles['search__select__link']}>
-          {language === 'en'
-            ? `Go to page ${searchPage() + 1}`
-            : `${searchPage() + 1}ページへ`}
-        </Link>
-      ) : month && month !== '00' ? (
-        <p>
-          {language === 'en' ? 'Please select year.' : '年をお選びください。'}
-        </p>
-      ) : null}
+      {renderResult()}
     </div>
   );
 };

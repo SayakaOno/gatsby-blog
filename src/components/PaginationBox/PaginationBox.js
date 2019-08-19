@@ -230,7 +230,7 @@ const PaginationBox = ({ currentPage, totalPage, language, dates }: Props) => {
         {renderLinkList()}
         {renderRightArrow()}
       </div>
-      <Search dates={dates} language={language} />
+      <Search currentPage={currentPage} dates={dates} language={language} />
     </div>
   );
 };
