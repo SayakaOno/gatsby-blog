@@ -10,7 +10,6 @@
 
   &__footer {
     max-width: 780px;
-    padding: 0 15px;
 
     &-category {
       a {
@@ -25,7 +24,6 @@
 
   &__comments {
     max-width: 780px;
-    padding: 0 15px;
   }
 
   &__home-button {
@@ -47,10 +45,8 @@
       color: $color-primary;
     }
   }
-}
 
-@include breakpoint-sm {
-  .post {
+  @include breakpoint-sm {
     padding-top: 0;
     padding-left: 250px;
 
@@ -61,11 +57,13 @@
     &__container {
       overflow: auto;
     }
-  }
-}
 
-@include breakpoint-md {
-  .post {
+    &__comments {
+      padding: 0 15px;
+    }
+  }
+
+  @include breakpoint-md {
     padding-left: 280px;
 
     &__footer {

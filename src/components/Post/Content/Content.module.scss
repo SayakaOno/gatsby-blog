@@ -3,7 +3,6 @@
 
 .content {
   max-width: 780px;
-  padding: 0 15px;
 
   &__title {
     font-size: $typographic-base-font-size * 2;
@@ -42,10 +41,12 @@
       max-width: 100%;
     }
   }
-}
 
-@include breakpoint-md {
-  .content {
+  @include breakpoint-sm {
+    padding: 0 15px;
+  }
+
+  @include breakpoint-md {
     padding: 0 35px 40px 35px;
 
     &__title {
