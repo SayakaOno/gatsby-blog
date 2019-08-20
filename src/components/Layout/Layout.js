@@ -18,8 +18,7 @@ const Layout = ({ children, title, description, language }: Props) => {
     } else {
       if (!sessionStorage.getItem('visited')) {
         const browserLanguage =
-          globalThis.window.navigator.language ||
-          globalThis.window.navigator.userLanguage;
+          window.navigator.language || window.navigator.userLanguage;
         sessionStorage.setItem('visited', 'true');
         if (browserLanguage === 'ja') {
           navigate('/ja');
