@@ -56,10 +56,21 @@ const Search = ({ currentPage, language, dates }: Props) => {
 
   const renderYearSelectBox = () => {
     let yearOptions = [];
-    let start = +dates[0][0].substr(0, 4);
-    let end = +dates[dates.length - 1][
-      dates[dates.length - 1].length - 1
-    ].substr(0, 4);
+    let start = null;
+    if (typeof dates[0] === 'object') {
+      start = +dates[0][0].substr(0, 4);
+    } else {
+      start = +dates[0].substr(0, 4);
+    }
+    let end = null;
+    if (typeof dates.length - 1 === 'object') {
+      end = +dates[dates.length - 1][dates[dates.length - 1].length - 1].substr(
+        0,
+        4
+      );
+    } else {
+      end = +dates[dates.length - 1].substr(0, 4);
+    }
     for (let i = start; i >= end; i--) {
       yearOptions.push(
         <option key={i} value={i}>
