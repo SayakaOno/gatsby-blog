@@ -283,7 +283,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     return (
       <div className={styles['search__filter__categories']}>
         <div className={styles['search__filter__categories-title']}>
-          <span>Category</span>{' '}
+          <span>{language === "en" ? "Category" : "カテゴリー"}</span>{' '}
           {selectedCategory ? renderClearButton(onClickClearCategory) : null}
         </div>
         <ul className={styles['search__filter__categories-list']}>
@@ -313,7 +313,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     return (
       <div className={styles['search__filter__tags']}>
         <div className={styles['search__filter__tags-title']}>
-          <span>Tags</span>{' '}
+          <span>{language === "en" ? "Tags" : "タグ"}</span>{' '}
           {selectedTags.length ? renderClearButton(clearTagFilter) : null}
         </div>
         <ul className={styles['search__filter__tags-list']}>

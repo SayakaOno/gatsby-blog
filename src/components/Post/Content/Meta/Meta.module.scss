@@ -6,6 +6,10 @@
 
   &__emoji {
     vertical-align: middle;
+    svg {
+      margin-left: 0;
+      color: #666;
+    }
   }
 
   &__date {
