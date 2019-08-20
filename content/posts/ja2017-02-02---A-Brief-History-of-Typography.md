@@ -4,7 +4,7 @@ date: '2016-02-02T22:40:32.169Z'
 template: 'post'
 language: 'ja'
 draft: false
-slug: '/posts/a-brief-history-of-typography/'
+slug: '/posts/a-brief-history-of-typography/ja'
 category: 'Design Inspiration'
 tags:
   - 'Linotype'

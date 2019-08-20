@@ -2,9 +2,9 @@
 title: 'Johannes Gutenberg: The Birth of Movable Type'
 date: '2017-08-18T22:12:03.284Z'
 template: 'post'
-language: 'en'
+language: 'ja'
 draft: false
-slug: '/posts/the-birth-of-movable-type/'
+slug: '/posts/the-birth-of-movable-type/ja'
 category: 'Typography'
 tags:
   - 'Open source'
