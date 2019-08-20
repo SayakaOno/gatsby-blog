@@ -13,7 +13,7 @@
       font-size: 1.2em;
       @include line-height(1);
       @include margin-top(0);
-      @include margin-bottom(0.2);
+      @include margin-bottom(0.1);
 
       &-link {
         color: $color-base;
@@ -69,7 +69,8 @@
     line-height: 1.2rem;
 
     svg {
-      color: #444;
+      color: #888;
+      margin-left: 0;
     }
 
     span {
