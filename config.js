@@ -10,7 +10,7 @@ module.exports = {
   subtitleJa: '日本語のサブタイトル',
   copyright: `© ${new Date().getFullYear()} Sayaka Ono`,
   disqusShortname: '',
-  postsPerPage: 1,
+  postsPerPage: 5,
   googleAnalyticsId: 'UA-73379983-2',
   useKatex: false,
   menu: [
@@ -32,7 +32,7 @@ module.exports = {
     photo: '/favicon.ico',
     bio: {
       en: 'React developer based in Vancouver.',
-      ja: '高知出身・バンクーバー在住デベロッパー。'
+      ja: 'バンクーバー在住デベロッパー。'
     },
     contacts: {
       portfolio: {
