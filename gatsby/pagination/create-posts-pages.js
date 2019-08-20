@@ -37,20 +37,26 @@ module.exports = async (graphql, actions) => {
   );
   let dates = [];
   let datesSet = [];
-  result.data.allMarkdownRemark.edges.forEach((edge, index) => {
-    if (!(index % postsPerPage)) {
-      datesSet.push(edge.node.frontmatter.date);
-    } else if (!((index + 1) % postsPerPage)) {
-      datesSet.push(edge.node.frontmatter.date);
-    }
-    if (
-      datesSet.length === 2 ||
-      index === result.data.allMarkdownRemark.edges.length - 1
-    ) {
-      dates.push(datesSet.slice());
-      datesSet.length = 0;
-    }
-  });
+  if (postsPerPage === 1) {
+    result.data.allMarkdownRemark.edges.forEach(edge => {
+      dates.push(edge.node.frontmatter.date);
+    });
+  } else {
+    result.data.allMarkdownRemark.edges.forEach((edge, index) => {
+      if (!(index % postsPerPage)) {
+        datesSet.push(edge.node.frontmatter.date);
+      } else if (!((index + 1) % postsPerPage)) {
+        datesSet.push(edge.node.frontmatter.date);
+      }
+      if (
+        datesSet.length === 2 ||
+        index === result.data.allMarkdownRemark.edges.length - 1
+      ) {
+        dates.push(datesSet.slice());
+        datesSet.length = 0;
+      }
+    });
+  }
 
   for (let i = 0; i < numPages; i += 1) {
     createPage({
@@ -104,20 +110,25 @@ module.exports = async (graphql, actions) => {
   const datesJa = [];
   let datesSetJa = [];
 
-  resultJa.data.allMarkdownRemark.edges.forEach((edge, index) => {
-    if (!(index % postsPerPage)) {
-      datesSetJa.push(edge.node.frontmatter.date);
-    } else if (!((index + 1) % postsPerPage)) {
-      datesSetJa.push(edge.node.frontmatter.date);
-    }
-    if (
-      datesSetJa.length === 2 ||
-      index === result.data.allMarkdownRemark.edges.length - 1
-    ) {
-      datesJa.push(datesSetJa.slice());
-      datesSetJa.length = 0;
-    }
-  });
+  if (postsPerPage === 1) {
+    resultJa.data.allMarkdownRemark.edges.forEach(edge => {
+      datesJa.push(edge.node.frontmatter.date);
+    });
+  } else
+    resultJa.data.allMarkdownRemark.edges.forEach((edge, index) => {
+      if (!(index % postsPerPage)) {
+        datesSetJa.push(edge.node.frontmatter.date);
+      } else if (!((index + 1) % postsPerPage)) {
+        datesSetJa.push(edge.node.frontmatter.date);
+      }
+      if (
+        datesSetJa.length === 2 ||
+        index === result.data.allMarkdownRemark.edges.length - 1
+      ) {
+        datesJa.push(datesSetJa.slice());
+        datesSetJa.length = 0;
+      }
+    });
 
   for (let i = 0; i < numPagesJa; i += 1) {
     createPage({

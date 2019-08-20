@@ -131,7 +131,11 @@ const PaginationBox = ({ currentPage, totalPage, language, dates }: Props) => {
     let clickedLinkCoordsLeft = event.target.getBoundingClientRect().left;
     let bodyCoordsLeft = paginationBoxRef.current.getBoundingClientRect().left;
     toolTipRef.current.style.visibility = 'visible';
-    toolTipRef.current.innerHTML = renderDate(dates[i][0]);
+    if (typeof dates[i] === 'object') {
+      toolTipRef.current.innerHTML = renderDate(dates[i][0]);
+    } else {
+      toolTipRef.current.innerHTML = renderDate(dates[i]);
+    }
     toolTipRef.current.style.left =
       clickedLinkCoordsLeft - bodyCoordsLeft + 'px';
   };
