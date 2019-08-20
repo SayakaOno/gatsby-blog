@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  url: '',
+  url: 'https://sayakaono.github.io/gatsby-blog/',
   pathPrefix: '/gatsby-blog',
   title: 'Blog by Sayaka Ono',
   titleJa: 'ブログ by 小野沙耶花',
