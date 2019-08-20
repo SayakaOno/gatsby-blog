@@ -7,8 +7,8 @@ draft: false
 slug: '/posts/test2/ja'
 link: '/posts/first-in-japanese/ja'
 related:
-  - '/posts/contact-me'
-  - '/posts/about-me'
+  - '/posts/test5/ja'
+  - '/posts/test9/ja'
 category: 'デザイン'
 tags:
   - 'ハンドライティング'

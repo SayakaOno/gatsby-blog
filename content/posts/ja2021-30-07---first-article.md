@@ -7,7 +7,7 @@ draft: false
 slug: '/posts/test18/ja'
 link: '/posts/perfecting-the-art-of-perfection/'
 related:
-  - '/posts/markdown/ja'
+  - '/posts/test15/ja'
 category: 'テスト'
 tags:
   - 'Design'
