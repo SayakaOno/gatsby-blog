@@ -24,24 +24,40 @@ const Search = ({ currentPage, language, dates }: Props) => {
     } else {
       date = +(year.toString() + month.toString());
     }
-    for (let i = 0; i < dates.length; i++) {
-      if (
-        i === 0 &&
-        dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2) < date
-      ) {
-        return 0;
+    if (typeof dates[0] !== 'object') {
+      for (let i = 0; i < dates.length; i++) {
+        let postedDate = +(dates[i].substr(0, 4) + dates[i].substr(5, 2));
+        if (i === 0 && postedDate < date) {
+          return 0;
+        }
+        if (date > postedDate) {
+          return i - 1;
+        }
+        if (i === dates.length - 1) {
+          return i;
+        }
+        if (date === postedDate) {
+          return i;
+        }
       }
-      if (date > +(dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2))) {
-        return i - 1;
-      }
-      if (i === dates.length - 1) {
-        return i;
-      }
-      if (
-        date <= +(dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2)) &&
-        date >= +(dates[i][0].substr(0, 4) + dates[i][1].substr(5, 2))
-      ) {
-        return i;
+    } else {
+      for (let i = 0; i < dates.length; i++) {
+        let postedDate = +(dates[i][0].substr(0, 4) + dates[i][0].substr(5, 2));
+        if (i === 0 && postedDate < date) {
+          return 0;
+        }
+        if (date > postedDate) {
+          return i - 1;
+        }
+        if (i === dates.length - 1) {
+          return i;
+        }
+        if (
+          date <= postedDate &&
+          date >= +(dates[i][0].substr(0, 4) + dates[i][1].substr(5, 2))
+        ) {
+          return i;
+        }
       }
     }
   };
@@ -51,7 +67,7 @@ const Search = ({ currentPage, language, dates }: Props) => {
     if (!page) {
       return language === 'en' ? '/' : '/ja';
     }
-    return `/${language === 'en' ? '' : 'ja/'}page/${searchPage()}`;
+    return `/page/${searchPage()}${language === 'en' ? '' : '/ja'}`;
   };
 
   const renderYearSelectBox = () => {
