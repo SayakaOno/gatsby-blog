@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  url: 'https://blog.sayaka-ono.com',
+  url: '',
   pathPrefix: '/',
   title: 'Blog by Sayaka Ono',
   titleJa: 'ブログ by 小野沙耶花',
@@ -9,8 +9,8 @@ module.exports = {
     'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
   subtitleJa: '日本語のサブタイトル',
   copyright: `© ${new Date().getFullYear()} Sayaka Ono`,
-  disqusShortname: 'blog-by-sayakaono',
-  postsPerPage: 4,
+  disqusShortname: '',
+  postsPerPage: 1,
   googleAnalyticsId: 'UA-73379983-2',
   useKatex: false,
   menu: [
@@ -51,7 +51,7 @@ module.exports = {
         en: 'saya_3981',
         ja: '38_ca'
       },
-      rss: { en: '/rss.xml', ja: '/rss.xml' }
+      rss: { en: '', ja: '' }
     }
   }
 };
