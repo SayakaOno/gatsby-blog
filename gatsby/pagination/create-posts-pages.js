@@ -106,15 +106,13 @@ module.exports = async (graphql, actions) => {
   const numPagesJa = Math.ceil(
     resultJa.data.allMarkdownRemark.totalCount / postsPerPage
   );
-
-  const datesJa = [];
-  let datesSetJa = [];
-
+  let datesJa = [];
   if (postsPerPage === 1) {
     resultJa.data.allMarkdownRemark.edges.forEach(edge => {
       datesJa.push(edge.node.frontmatter.date);
     });
-  } else
+  } else {
+    let datesSetJa = [];
     resultJa.data.allMarkdownRemark.edges.forEach((edge, index) => {
       if (!(index % postsPerPage)) {
         datesSetJa.push(edge.node.frontmatter.date);
@@ -123,12 +121,13 @@ module.exports = async (graphql, actions) => {
       }
       if (
         datesSetJa.length === 2 ||
-        index === result.data.allMarkdownRemark.edges.length - 1
+        index === resultJa.data.allMarkdownRemark.edges.length - 1
       ) {
         datesJa.push(datesSetJa.slice());
         datesSetJa.length = 0;
       }
     });
+  }
 
   for (let i = 0; i < numPagesJa; i += 1) {
     createPage({
@@ -136,6 +135,7 @@ module.exports = async (graphql, actions) => {
       component: path.resolve('./src/templates/index-template.js'),
       context: {
         currentPage: i,
+        totalPage: numPagesJa,
         postsLimit: postsPerPage,
         postsOffset: i * postsPerPage,
         prevPagePath: i <= 1 ? '/ja' : `/page/${i - 1}/ja`,

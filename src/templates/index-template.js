@@ -41,7 +41,7 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
       <Sidebar isIndex />
       <Page>
         <Feed edges={edges} />
-        {totalPage ? (
+        {totalPage > 1 ? (
           <PaginationBox
             currentPage={currentPage}
             totalPage={totalPage}
