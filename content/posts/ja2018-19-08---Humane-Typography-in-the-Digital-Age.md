@@ -1,5 +1,5 @@
 ---
-title: Humane Typography in the Digital Age
+title: 'テスト6'
 date: '2018-12-19T22:40:32.169Z'
 template: 'post'
 language: 'ja'

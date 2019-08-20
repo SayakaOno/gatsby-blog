@@ -1,5 +1,5 @@
 ---
-title: Contact me
+title: コンタクト
 date: '2019-07-07T22:40:32.169Z'
 template: 'post'
 language: 'ja'
