@@ -57,13 +57,14 @@ const Search = ({ currentPage, language, dates }: Props) => {
   const renderYearSelectBox = () => {
     let yearOptions = [];
     let start = null;
+
     if (typeof dates[0] === 'object') {
       start = +dates[0][0].substr(0, 4);
     } else {
       start = +dates[0].substr(0, 4);
     }
     let end = null;
-    if (typeof dates.length - 1 === 'object') {
+    if (typeof dates[dates.length - 1] === 'object') {
       end = +dates[dates.length - 1][dates[dates.length - 1].length - 1].substr(
         0,
         4
@@ -145,7 +146,7 @@ const Search = ({ currentPage, language, dates }: Props) => {
       );
     }
     return (
-      <select value={month} onChange={onMonthSelect}>
+      <select value={month} onChange={() => setMonth(event.target.value)}>
         <option key="00" value="00">
           月
         </option>
