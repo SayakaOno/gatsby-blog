@@ -4,7 +4,7 @@ date: '2017-08-19T22:40:32.169Z'
 template: 'post'
 language: 'en'
 draft: false
-slug: '/posts/humane-typography-in-the-digital-age/'
+slug: '/posts/test7'
 category: 'Typography'
 tags:
   - 'Design'

@@ -4,7 +4,7 @@ date: '2016-09-01T23:46:37.121Z'
 template: 'post'
 language: 'en'
 draft: false
-slug: '/posts/perfecting-the-art-of-perfection/'
+slug: '/posts/test2'
 link: '/posts/first-in-japanese/ja'
 related:
   - '/posts/contact-me'

@@ -4,7 +4,7 @@ date: '2017-08-18T22:12:03.284Z'
 template: 'post'
 language: 'en'
 draft: false
-slug: '/posts/the-birth-of-movable-type/'
+slug: '/posts/test6'
 category: 'Typography'
 tags:
   - 'Open source'
