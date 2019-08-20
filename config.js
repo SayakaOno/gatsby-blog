@@ -2,7 +2,7 @@
 
 module.exports = {
   url: '',
-  pathPrefix: '/',
+  pathPrefix: '/gatsby-blog',
   title: 'Blog by Sayaka Ono',
   titleJa: 'ブログ by 小野沙耶花',
   subtitle:
@@ -10,7 +10,7 @@ module.exports = {
   subtitleJa: '日本語のサブタイトル',
   copyright: `© ${new Date().getFullYear()} Sayaka Ono`,
   disqusShortname: '',
-  postsPerPage: 1,
+  postsPerPage: 2,
   googleAnalyticsId: 'UA-73379983-2',
   useKatex: false,
   menu: [
