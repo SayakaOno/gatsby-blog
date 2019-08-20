@@ -49,7 +49,7 @@ const PaginationBox = ({ currentPage, totalPage, language, dates }: Props) => {
 
   const moveActivePageCenter = () => {
     let scrollLeft = currentPage * 32 + 16 - getLinksWidth() / 2;
-    paginationListRef.current.scrollLeft = scrollLeft;
+    setTimeout(() => (paginationListRef.current.scrollLeft = scrollLeft), 0);
   };
 
   const setLinksWidth = () => {
