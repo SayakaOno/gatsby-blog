@@ -17,6 +17,8 @@ const LanguageSwitcher = ({ link, language, path }) => {
     ? useCategoriesPathList()
     : null;
   const ref = React.createRef();
+  // for github pages
+  const PATH_PREFIX = '/gatsby-blog';
 
   useEffect(() => {
     if (link && !link.exist) {
@@ -53,9 +55,13 @@ const LanguageSwitcher = ({ link, language, path }) => {
       return getCorrespondingPath(currentPath);
     }
     if (currentPath.includes('/ja')) {
-      return currentPath.replace('/ja', '');
+      let path = currentPath.replace('/ja', '');
+      // for github pages
+      return path.replace(PATH_PREFIX, '');
     }
-    return currentPath + '/ja';
+    let path = currentPath + '/ja';
+    // for github pages
+    return path.replace(PATH_PREFIX, '');
   };
 
   const languageOnClick = (clickedLang, displayedLanguage) => {
