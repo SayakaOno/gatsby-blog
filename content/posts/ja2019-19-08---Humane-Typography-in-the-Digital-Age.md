@@ -1,6 +1,6 @@
 ---
 title: Humane Typography in the Digital Age
-date: '2018-12-19T22:40:32.169Z'
+date: '2016-01-19T22:40:32.169Z'
 template: 'post'
 language: 'ja'
 draft: false

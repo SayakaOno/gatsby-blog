@@ -1,6 +1,6 @@
 ---
 title: 'Johannes Gutenberg: The Birth of Movable Type'
-date: '2018-09-18T22:12:03.284Z'
+date: '2018-12-18T22:12:03.284Z'
 template: 'post'
 language: 'ja'
 draft: false

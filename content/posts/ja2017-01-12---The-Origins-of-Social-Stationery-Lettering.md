@@ -1,6 +1,6 @@
 ---
 title: The Origins of Social Stationery Lettering
-date: '2016-12-01T22:40:32.169Z'
+date: '2018-04-01T22:40:32.169Z'
 template: 'post'
 language: 'ja'
 draft: false

@@ -1,6 +1,6 @@
 ---
 title: 日本語の初ポスト
-date: '2019-04-30T22:40:32.169Z'
+date: '2019-08-30T22:40:32.169Z'
 template: 'post'
 language: 'ja'
 draft: false

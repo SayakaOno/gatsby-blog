@@ -1,6 +1,6 @@
 ---
 title: 'A Brief History of Typography'
-date: '2016-02-02T22:40:32.169Z'
+date: '2018-06-02T22:40:32.169Z'
 template: 'post'
 language: 'ja'
 draft: false
