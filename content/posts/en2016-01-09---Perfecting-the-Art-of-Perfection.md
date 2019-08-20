@@ -7,8 +7,8 @@ draft: false
 slug: '/posts/test2'
 link: '/posts/first-in-japanese/ja'
 related:
-  - '/posts/contact-me'
-  - '/posts/about-me'
+  - '/posts/test1'
+  - '/posts/test7'
 category: 'Design Inspiration'
 tags:
   - 'Handwriting'
