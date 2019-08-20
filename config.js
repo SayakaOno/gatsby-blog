@@ -10,7 +10,7 @@ module.exports = {
   subtitleJa: '日本語のサブタイトル',
   copyright: `© ${new Date().getFullYear()} Sayaka Ono`,
   disqusShortname: '',
-  postsPerPage: 2,
+  postsPerPage: 1,
   googleAnalyticsId: 'UA-73379983-2',
   useKatex: false,
   menu: [
