@@ -283,7 +283,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     return (
       <div className={styles['search__filter__categories']}>
         <div className={styles['search__filter__categories-title']}>
-          <span>{language === "en" ? "Category" : "カテゴリー"}</span>{' '}
+          <span>{language === 'en' ? 'Category' : 'カテゴリー'}</span>{' '}
           {selectedCategory ? renderClearButton(onClickClearCategory) : null}
         </div>
         <ul className={styles['search__filter__categories-list']}>
@@ -313,7 +313,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
     return (
       <div className={styles['search__filter__tags']}>
         <div className={styles['search__filter__tags-title']}>
-          <span>{language === "en" ? "Tags" : "タグ"}</span>{' '}
+          <span>{language === 'en' ? 'Tags' : 'タグ'}</span>{' '}
           {selectedTags.length ? renderClearButton(clearTagFilter) : null}
         </div>
         <ul className={styles['search__filter__tags-list']}>
@@ -368,7 +368,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
           : language === 'en'
           ? number === 0
             ? 'No posts found'
-            : `${number} posts found`
+            : `${number} post${number > 1 ? 's' : ''} found`
           : number === 0
           ? '該当ブログがありません'
           : `該当ブログ: ${number}`}
