@@ -363,15 +363,15 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
       <div className={styles['search__count']}>
         {selectedCategory || (year && year !== '00')
           ? number === 0
-            ? 'No posts found'
-            : `${number} post${number > 1 ? 's' : ''} found`
-          : number === 0
-          ? '該当ブログがありません'
-          : `該当ブログ: ${number}`
-          ? language === 'en'
-            ? `${number} posts`
-            : `全${number}件`
-          : language === 'en'}
+            ? language === 'en'
+              ? 'No posts found'
+              : '該当ブログがありません'
+            : language === 'en'
+            ? `${number} post${number > 1 ? 's' : ''} found`
+            : `該当ブログ: ${number}`
+          : language === 'en'
+          ? `${number} posts`
+          : `全${number}件`}
       </div>
     );
   };
