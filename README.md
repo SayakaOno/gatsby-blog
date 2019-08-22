@@ -15,4 +15,4 @@ This takes you to the page written in the other language. (If it doesn't exist, 
     ![pagination](https://user-images.githubusercontent.com/33141219/63446881-d9315600-c3ef-11e9-8439-9f97ddf39b15.gif)
 - Search<br />
 You can search posts by year&month, category and tags.
-![search](https://user-images.githubusercontent.com/33141219/63446888-dc2c4680-c3ef-11e9-9f41-ee2ca1d5b8c8.gif)
+![search](https://user-images.githubusercontent.com/33141219/63449919-d0dc1980-c3f5-11e9-8294-63722834a96f.gif)
