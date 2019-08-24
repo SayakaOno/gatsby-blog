@@ -107,7 +107,7 @@ const LanguageSwitcher = ({ link, language, path }) => {
               : ''
           } ${pointerClassName('en')}`}
         >
-          EN
+          A
         </span>
         <span
           onClick={() => languageOnClick('ja', language)}
@@ -117,7 +117,7 @@ const LanguageSwitcher = ({ link, language, path }) => {
               : ''
           } ${pointerClassName('ja')}`}
         >
-          日
+          あ
         </span>
       </div>
     </div>
