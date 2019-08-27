@@ -31,8 +31,8 @@ module.exports = {
     name: { en: 'Sayaka Ono', ja: '小野 沙耶花' },
     photo: '/favicon.ico',
     bio: {
-      en: 'React developer based in Vancouver.',
-      ja: '高知出身・バンクーバー在住デベロッパー。'
+      en: 'Developer based in Vancouver.',
+      ja: '高知出身・バンクーバー在住ディベロッパー。'
     },
     contacts: {
       portfolio: {
