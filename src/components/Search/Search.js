@@ -370,7 +370,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
             ? `${number} post${number > 1 ? 's' : ''} found`
             : `該当ブログ: ${number}`
           : language === 'en'
-          ? `${number} posts`
+          ? `${number} post${number > 1 ? 's' : ''}`
           : `全${number}件`}
       </div>
     );
