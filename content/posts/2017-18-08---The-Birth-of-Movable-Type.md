@@ -3,7 +3,7 @@ title: 'Johannes Gutenberg: The Birth of Movable Type'
 date: '2017-08-18T22:12:03.284Z'
 template: 'post'
 language: 'en'
-draft: false
+draft: true
 slug: '/posts/the-birth-of-movable-type/'
 category: 'Typography'
 tags:

@@ -3,7 +3,7 @@ title: 日本語の初ポスト
 date: '2019-07-30T22:40:32.169Z'
 template: 'post'
 language: 'ja'
-draft: false
+draft: true
 slug: '/posts/first-in-japanese/ja'
 link: '/posts/perfecting-the-art-of-perfection/'
 related:

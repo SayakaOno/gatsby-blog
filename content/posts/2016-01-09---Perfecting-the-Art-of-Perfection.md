@@ -3,7 +3,7 @@ title: Perfecting the Art of Perfection
 date: '2016-09-01T23:46:37.121Z'
 template: 'post'
 language: 'en'
-draft: false
+draft: true
 slug: '/posts/perfecting-the-art-of-perfection/'
 link: '/posts/first-in-japanese/ja'
 related:
