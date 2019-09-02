@@ -368,7 +368,7 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
               : '該当ブログがありません'
             : language === 'en'
             ? `${number} post${number > 1 ? 's' : ''} found`
-            : `該当ブログ: ${number}`
+            : `該当ブログ: ${number}件`
           : language === 'en'
           ? `${number} post${number > 1 ? 's' : ''}`
           : `全${number}件`}
