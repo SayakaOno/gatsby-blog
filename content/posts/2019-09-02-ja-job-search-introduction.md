@@ -5,7 +5,7 @@ template: 'post'
 language: 'ja'
 draft: false
 slug: '/posts/job-search-introduction/ja'
-category: '就活'
+category: '海外就活'
 description: 'バンクーバーで就活をして、フロントエンドディベロッパー(インターン)のオファーをいただきました。私の経験や人となりなど、前書きです。'
 ---
 
