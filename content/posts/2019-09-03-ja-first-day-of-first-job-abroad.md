@@ -1,5 +1,5 @@
 ---
-title: 'ディベロッパー海外就職：初日'
+title: 'ディベロッパー海外就職：入社初日'
 date: '2019-09-03T22:30:00.000Z'
 template: 'post'
 language: 'ja'
