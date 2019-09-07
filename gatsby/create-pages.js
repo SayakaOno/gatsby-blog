@@ -91,7 +91,7 @@ const createPages = async ({ graphql, actions }) => {
   let edgesForIndexPage = edges.filter(edge => {
     return _.get(edge, 'node.frontmatter.home') !== false;
   });
-  let edgesForCreatePage = edges.filter(edge => {
+  let edgesForSearchPageOnly = edges.filter(edge => {
     return _.get(edge, 'node.frontmatter.home') === false;
   });
 
@@ -142,17 +142,25 @@ const createPages = async ({ graphql, actions }) => {
           prev:
             prev || prev === 0
               ? {
-                  slug: _.get(edges[prev], 'node.fields.slug'),
-                  title: _.get(edges[prev], 'node.frontmatter.title'),
-                  date: _.get(edges[prev], 'node.frontmatter.date')
+                  slug: _.get(edgesForIndexPage[prev], 'node.fields.slug'),
+                  title: _.get(
+                    edgesForIndexPage[prev],
+                    'node.frontmatter.title'
+                  ),
+                  date: _.get(edgesForIndexPage[prev], 'node.frontmatter.date')
                 }
               : null,
           next:
-            next && next < edges.length
+            next === index
+              ? null
+              : next && next < edgesForIndexPage.length
               ? {
-                  slug: _.get(edges[next], 'node.fields.slug'),
-                  title: _.get(edges[next], 'node.frontmatter.title'),
-                  date: _.get(edges[next], 'node.frontmatter.date')
+                  slug: _.get(edgesForIndexPage[next], 'node.fields.slug'),
+                  title: _.get(
+                    edgesForIndexPage[next],
+                    'node.frontmatter.title'
+                  ),
+                  date: _.get(edgesForIndexPage[next], 'node.frontmatter.date')
                 }
               : null
         }
@@ -160,7 +168,7 @@ const createPages = async ({ graphql, actions }) => {
     }
   });
 
-  _.each(edgesForCreatePage, edge => {
+  _.each(edgesForSearchPageOnly, edge => {
     createPage({
       path: edge.node.fields.slug,
       component: path.resolve('./src/templates/post-template.js'),
