@@ -1,8 +1,11 @@
 const categoriesEn = {
-  personal: 'ひとりごと',
+  personal: 'プライベート',
+  canada: 'カナダ',
   vancouver: 'バンクーバー',
   react: 'react',
-  'about-me': 'about-me'
+  'about me': 'about me',
+  'job search abroad': '海外就活',
+  'working abroad': '海外就労'
 };
 
 const categoriesJa = {};
@@ -17,8 +20,8 @@ const tagsEn = {
   english: '英語',
   dessert: 'スイーツ',
   restaurant: 'レストラン',
-  // jobsearch: '就活',
-  'about-me': '就活'
+  jobsearch: '就活',
+  introduction: '自己紹介'
 };
 
 const tagsJa = {};
