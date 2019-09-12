@@ -4,7 +4,6 @@ date: '2019-09-06T22:30:00.000Z'
 template: 'post'
 language: 'ja'
 draft: false
-home: false
 slug: '/posts/first-week-of-first-job-abroad/ja'
 category: '海外就職'
 description: 'バンクーバーでフロントエンドディベロッパー(インターン)になりました。初週のことを記録しています。'
