@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Post from '../components/Post';
-import { useSiteMetadata } from '../hooks';
+import { useSiteMetadata, useUrlsList } from '../hooks';
 import type { MarkdownRemark } from '../types';
 
 type Props = {
@@ -28,8 +28,19 @@ const PostTemplate = (props: Props) => {
   } = data.markdownRemark.frontmatter;
   const metaDescription =
     postDescription !== null ? postDescription : siteSubtitle;
+  const pageExist = (targetLink, linkList) => {
+    if (!targetLink) {
+      return false;
+    }
+    for (let list of linkList) {
+      if (list.path === targetLink) {
+        return true;
+      }
+    }
+    return false;
+  };
   const link = {
-    exist: data.markdownRemark.frontmatter.link ? true : false,
+    exist: pageExist(data.markdownRemark.frontmatter.link, useUrlsList()),
     path: data.markdownRemark.frontmatter.link
   };
   const stateForSearchPage = () => {
