@@ -1,11 +1,11 @@
 ---
-title: 'ディベロッパー海外就職：書類選考が通った会社'
+title: 'ディベロッパー海外就活：書類選考が通った会社'
 date: '2019-09-26T22:30:00.000Z'
 template: 'post'
 language: 'ja'
 draft: false
 slug: '/posts/job-search-response/ja'
-category: '海外就職'
+category: '海外就活'
 description: 'バンクーバーでフロントエンドディベロッパー（インターン）になりました。ディベロッパー13ヶ月の経験で、どんな募集を出している会社の書類選考に通ったかをまとめてみました。'
 ---
 
@@ -161,7 +161,7 @@ Indeed から。電話面接後、最終面接。
 
 ### 7. Junior Web Developer／石鹸を作っている有名な会社
 
-glassdoor から。Web サイトやメルマガを作る developer の募集で、React は要綱に入っていなかった。
+glassdoor から。Web サイトやメルマガを作る developer の募集で、React や JavaScript フレームワークは募集内容に入っていなかった。
 
 ### 8. Front-end Software Developer／農業系スタートアップ
 
@@ -176,7 +176,7 @@ glassdoor から。Web サイトやメルマガを作る developer の募集で�
 **メモ**<br/>
 現在働いている会社。BCJobs で見つけた。
 
-### 9. Junior or Intermediate Software Engineer / 資産管理のアプリを作っているスタートアップ
+### 9. Junior or Intermediate Software Engineer / プロパティを管理するアプリを作っているスタートアップ
 
 **What We Are Looking For**
 
