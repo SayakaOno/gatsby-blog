@@ -38,7 +38,9 @@ const Post = (props: Props) => {
           <Meta date={date} language={language} />
           <div className={styles['post__footer-category']}>
             {language === 'en' ? 'Category: ' : 'カテゴリー： '}
-            <Link to={categorySlug}>{category}</Link>
+            <Link to={`${categorySlug}${language === 'en' ? '' : '/ja'}`}>
+              {category}
+            </Link>
           </div>
           {tags && tagSlugs && (
             <Tags tags={tags} tagSlugs={tagSlugs} language={language} />
