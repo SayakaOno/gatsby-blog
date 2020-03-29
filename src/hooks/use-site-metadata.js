@@ -30,10 +30,6 @@ const useSiteMetadata = () => {
                   en
                   ja
                 }
-                twitter {
-                  en
-                  ja
-                }
                 rss {
                   en
                   ja
