@@ -89,8 +89,10 @@ const Search = ({ edges, totalCount, language, savedFilter }: Props) => {
   };
 
   const filterBlogByTags = (tags, blogs = blogsInSelectedCategory) => {
-    return blogs.filter(blog =>
-      includesAllTags(tags, blog.node.frontmatter.tags)
+    return blogs.filter(
+      blog =>
+        blog.node.frontmatter.tags &&
+        includesAllTags(tags, blog.node.frontmatter.tags)
     );
   };
 
