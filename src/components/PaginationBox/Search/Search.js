@@ -91,7 +91,7 @@ const Search = ({ currentPage, language, dates }: Props) => {
     for (let i = start; i >= end; i--) {
       yearOptions.push(
         <option key={i} value={i}>
-          {i}
+          {i + '年'}
         </option>
       );
     }
@@ -195,11 +195,7 @@ const Search = ({ currentPage, language, dates }: Props) => {
 
   return (
     <div className={styles['search']}>
-      <p>
-        {language === 'en'
-          ? 'Search by year and month?'
-          : 'いつのブログをお探しですか？'}
-      </p>
+      <p>{language === 'en' ? 'Search by year and month?' : 'ブログ検索'}</p>
       <div className={styles['search__select']}>
         {renderYearSelectBox()}
         {renderMonthSelectBox(language)}
