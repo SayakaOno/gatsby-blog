@@ -9,6 +9,9 @@ const getContactHref = (name: string, contact: string) => {
     case 'github':
       href = `https://github.com/${contact}`;
       break;
+    case 'instagram':
+      href = `https://www.instagram.com/${contact}`;
+      break;
     case 'vkontakte':
       href = `https://vk.com/${contact}`;
       break;
