@@ -45,6 +45,9 @@ const getIcon = (name: string) => {
     case 'tag':
       icon = ICONS.TAG;
       break;
+    case 'update':
+      icon = ICONS.UPDATE;
+      break;
     case 'leftarrow':
       icon = ICONS.LEFTARROW;
       break;
