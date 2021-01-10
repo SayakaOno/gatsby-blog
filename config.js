@@ -46,6 +46,10 @@ module.exports = {
         en: 'SayakaOno',
         ja: 'SayakaOno'
       },
+      instagram: {
+        en: 'sayaka___0',
+        ja: 'sayaka___0'
+      },
       rss: { en: '/rss.xml', ja: '/rss.xml' }
     }
   }
