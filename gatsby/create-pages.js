@@ -75,6 +75,7 @@ const createPages = async ({ graphql, actions }) => {
               language
               title
               date
+              updatedDate
               home
             }
             fields {

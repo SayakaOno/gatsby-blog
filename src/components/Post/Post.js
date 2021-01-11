@@ -19,7 +19,7 @@ const Post = (props: Props) => {
   const { post, language, prev, next, backLink, stateForSearchPage } = props;
   const { html } = post;
   const { categorySlug, tagSlugs, slug } = post.fields;
-  const { category, tags, title, date } = post.frontmatter;
+  const { category, tags, title, date, updatedDate } = post.frontmatter;
 
   return (
     <div className={styles['post']}>
@@ -35,7 +35,7 @@ const Post = (props: Props) => {
         </div>
 
         <div className={styles['post__footer']}>
-          <Meta date={date} language={language} />
+          <Meta date={date} updatedDate={updatedDate} language={language} />
           <div className={styles['post__footer-category']}>
             {language === 'en' ? 'Category: ' : 'カテゴリー： '}
             <Link to={`${categorySlug}${language === 'en' ? '' : '/ja'}`}>

@@ -12,16 +12,26 @@ type Props = {
 
 const Meta = ({ language, fields, frontmatter }: Props) => {
   const { tagSlugs, categorySlug } = fields;
-  const { tags, date, category } = frontmatter;
+  const { tags, date, updatedDate, category } = frontmatter;
 
   return (
     <div>
       <div className={styles['meta']}>
-        <div className={styles['meta__date']}>
-          {moment(date).format(
-            language === 'en' ? 'MMMM D, YYYY' : 'YYYY/MM/DD'
+        <ul className={styles['meta__date']}>
+          <li>
+            {moment(date).format(
+              language === 'en' ? 'MMMM D, YYYY' : 'YYYY/MM/DD'
+            )}
+          </li>
+          {updatedDate && (
+            <li>
+              <Icon icon={getIcon('update')} />
+              {moment(updatedDate).format(
+                language === 'en' ? 'MMMM D, YYYY' : 'YYYY/MM/DD'
+              )}
+            </li>
           )}
-        </div>
+        </ul>
         <div className={styles['meta__category']}>
           <span className={styles['meta__emoji']}>
             {' '}

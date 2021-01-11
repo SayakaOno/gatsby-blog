@@ -85,6 +85,7 @@ export const query = graphql`
       }
       frontmatter {
         date
+        updatedDate
         description
         category
         tags
