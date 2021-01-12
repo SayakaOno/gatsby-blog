@@ -6,7 +6,8 @@ module.exports = {
   title: 'Blog by Sayaka Ono',
   titleJa: 'ブログ by 小野沙耶花',
   subtitle: 'Blogs about what I learned as a developer.',
-  subtitleJa: 'ディベロッパーとして学んだことをアウトプットしています。',
+  subtitleJa:
+    'ディベロッパーとしてバンクーバーで就職して学んだことや日々のこと。',
   copyright: `© ${new Date().getFullYear()} Sayaka Ono`,
   disqusShortname: 'blog-by-sayakaono',
   postsPerPage: 10,
