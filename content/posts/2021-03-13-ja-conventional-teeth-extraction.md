@@ -1,5 +1,5 @@
 ---
-title: '海外で抜歯：通常編'
+title: 'バンクーバーで抜歯：通常編'
 date: '2021-03-13T17:59:00.000Z'
 template: 'post'
 language: 'ja'
