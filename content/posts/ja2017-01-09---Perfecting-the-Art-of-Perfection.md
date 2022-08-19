@@ -1,11 +1,11 @@
 ---
-title: テスト２
+title: Perfecting the Art of Perfection 日本語ページ
 date: '2018-02-01T23:46:37.121Z'
 template: 'post'
 language: 'ja'
 draft: false
 slug: '/posts/test2/ja'
-link: '/posts/first-in-japanese/ja'
+link: '/posts/test2'
 related:
   - '/posts/test5/ja'
   - '/posts/test9/ja'

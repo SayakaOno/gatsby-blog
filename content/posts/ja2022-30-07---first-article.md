@@ -1,11 +1,10 @@
 ---
-title: 日本語の初ポスト
+title: テスト
 date: '2016-12-30T22:40:32.169Z'
 template: 'post'
 language: 'ja'
 draft: false
 slug: '/posts/test21/ja'
-link: '/posts/perfecting-the-art-of-perfection/'
 related:
   - '/posts/test8/ja'
 category: 'テスト'

@@ -5,7 +5,6 @@ template: 'post'
 language: 'ja'
 draft: false
 slug: '/posts/test9/ja'
-link: '/posts/perfecting-the-art-of-perfection/'
 related:
   - '/posts/test2/ja'
 category: 'テスト'

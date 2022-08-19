@@ -5,7 +5,6 @@ template: 'post'
 language: 'ja'
 draft: false
 slug: '/posts/test20/ja'
-link: '/posts/perfecting-the-art-of-perfection/'
 category: 'Personal'
 tags:
   - 'Contact me'

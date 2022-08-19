@@ -5,7 +5,7 @@ template: 'post'
 language: 'en'
 draft: false
 slug: '/posts/test2'
-link: '/posts/first-in-japanese/ja'
+link: '/posts/test2/ja'
 related:
   - '/posts/test1'
   - '/posts/test7'
