@@ -7,62 +7,62 @@ const createTagsPages = require('./pagination/create-tags-pages.js');
 const createPostsPages = require('./pagination/create-posts-pages.js');
 
 const createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+	const { createPage } = actions;
 
-  // Search
-  createPage({
-    path: '/search',
-    component: path.resolve('./src/templates/search-template.js'),
-    context: {
-      language: 'en'
-    }
-  });
-  createPage({
-    path: '/search/ja',
-    component: path.resolve('./src/templates/search-template.js'),
-    context: {
-      language: 'ja'
-    }
-  });
+	// Search
+	createPage({
+		path: '/search',
+		component: path.resolve('./src/templates/search-template.js'),
+		context: {
+			language: 'en'
+		}
+	});
+	createPage({
+		path: '/search/ja',
+		component: path.resolve('./src/templates/search-template.js'),
+		context: {
+			language: 'ja'
+		}
+	});
 
-  // 404
-  createPage({
-    path: '/404',
-    component: path.resolve('./src/templates/not-found-template.js'),
-    context: { language: 'en' }
-  });
-  createPage({
-    path: '/404/ja',
-    component: path.resolve('./src/templates/not-found-template.js'),
-    context: { language: 'ja' }
-  });
+	// 404
+	createPage({
+		path: '/404',
+		component: path.resolve('./src/templates/not-found-template.js'),
+		context: { language: 'en' }
+	});
+	createPage({
+		path: '/404/ja',
+		component: path.resolve('./src/templates/not-found-template.js'),
+		context: { language: 'ja' }
+	});
 
-  // Tags list
-  createPage({
-    path: '/tags',
-    component: path.resolve('./src/templates/tags-list-template.js'),
-    context: { language: 'en' }
-  });
-  createPage({
-    path: '/tags/ja',
-    component: path.resolve('./src/templates/tags-list-template.js'),
-    context: { language: 'ja' }
-  });
+	// Tags list
+	createPage({
+		path: '/tags',
+		component: path.resolve('./src/templates/tags-list-template.js'),
+		context: { language: 'en' }
+	});
+	createPage({
+		path: '/tags/ja',
+		component: path.resolve('./src/templates/tags-list-template.js'),
+		context: { language: 'ja' }
+	});
 
-  // Categories list
-  createPage({
-    path: '/categories',
-    component: path.resolve('./src/templates/categories-list-template.js'),
-    context: { language: 'en' }
-  });
-  createPage({
-    path: '/categories/ja',
-    component: path.resolve('./src/templates/categories-list-template.js'),
-    context: { language: 'ja' }
-  });
+	// Categories list
+	createPage({
+		path: '/categories',
+		component: path.resolve('./src/templates/categories-list-template.js'),
+		context: { language: 'en' }
+	});
+	createPage({
+		path: '/categories/ja',
+		component: path.resolve('./src/templates/categories-list-template.js'),
+		context: { language: 'ja' }
+	});
 
-  // Posts and pages from markdown
-  const result = await graphql(`
+	// Posts and pages from markdown
+	const result = await graphql(`
     {
       allMarkdownRemark(
         filter: { frontmatter: { draft: { ne: true } } }
@@ -86,95 +86,77 @@ const createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const { edges } = result.data.allMarkdownRemark;
+	const { edges } = result.data.allMarkdownRemark;
 
-  let edgesForIndexPage = edges.filter(edge => {
-    return _.get(edge, 'node.frontmatter.home') !== false;
-  });
-  let edgesForCreatePage = edges.filter(edge => {
-    return _.get(edge, 'node.frontmatter.home') === false;
-  });
+	let edgesForIndexPage = edges.filter((edge) => {
+		return _.get(edge, 'node.frontmatter.home') !== false;
+	});
+	let edgesForCreatePage = edges.filter((edge) => {
+		return _.get(edge, 'node.frontmatter.home') === false;
+	});
 
-  _.each(edgesForIndexPage, (edge, index) => {
-    if (_.get(edge, 'node.frontmatter.template') === 'page') {
-      createPage({
-        path: edge.node.fields.slug,
-        component: path.resolve('./src/templates/page-template.js'),
-        context: {
-          slug: edge.node.fields.slug
-        }
-      });
-    } else if (_.get(edge, 'node.frontmatter.template') === 'post') {
-      let prev = index - 1;
-      let next = index + 1;
-      while (prev >= 0) {
-        if (
-          _.get(edge, 'node.frontmatter.language') ===
-            _.get(edgesForIndexPage[prev], 'node.frontmatter.language') &&
-          _.get(edgesForIndexPage[prev], 'node.frontmatter.template') === 'post'
-        ) {
-          break;
-        }
-        prev--;
-      }
-      while (next < edgesForIndexPage.length) {
-        if (
-          _.get(edge, 'node.frontmatter.language') ===
-            _.get(edgesForIndexPage[next], 'node.frontmatter.language') &&
-          _.get(edgesForIndexPage[next], 'node.frontmatter.template') === 'post'
-        ) {
-          break;
-        }
-        next++;
-      }
-      if (
-        _.get(edgesForIndexPage[next], 'node.frontmatter.template') !== 'post'
-      ) {
-        next = null;
-      }
+	const sortedPosts = { ja: [], en: [] };
+	const indexInLang = { ja: 0, en: 0 };
 
-      createPage({
-        path: edge.node.fields.slug,
-        component: path.resolve('./src/templates/post-template.js'),
-        context: {
-          slug: edge.node.fields.slug,
-          language: _.get(edge, 'node.frontmatter.language'),
-          prev:
-            prev || prev === 0
-              ? {
-                  slug: _.get(edges[prev], 'node.fields.slug'),
-                  title: _.get(edges[prev], 'node.frontmatter.title'),
-                  date: _.get(edges[prev], 'node.frontmatter.date')
-                }
-              : null,
-          next:
-            next && next < edges.length
-              ? {
-                  slug: _.get(edges[next], 'node.fields.slug'),
-                  title: _.get(edges[next], 'node.frontmatter.title'),
-                  date: _.get(edges[next], 'node.frontmatter.date')
-                }
-              : null
-        }
-      });
-    }
-  });
+	_.each(edgesForIndexPage, (edge) => {
+		if (_.get(edge, 'node.frontmatter.template') === 'page') {
+			createPage({
+				path: edge.node.fields.slug,
+				component: path.resolve('./src/templates/page-template.js'),
+				context: {
+					slug: edge.node.fields.slug
+				}
+			});
+		} else if (_.get(edge, 'node.frontmatter.template') === 'post') {
+			if (!Object.keys(sortedPosts.ja).length) {
+				edgesForIndexPage.forEach((edge, index) => {
+					if (_.get(edge, 'node.frontmatter.template') === 'post') {
+						const lang = _.get(edge, 'node.frontmatter.language');
+						sortedPosts[lang].push({
+							slug: _.get(edge, 'node.fields.slug'),
+							title: _.get(edge, 'node.frontmatter.title'),
+							date: _.get(edge, 'node.frontmatter.date')
+						});
+					}
+				});
+			}
 
-  _.each(edgesForCreatePage, edge => {
-    createPage({
-      path: edge.node.fields.slug,
-      component: path.resolve('./src/templates/post-template.js'),
-      context: {
-        slug: edge.node.fields.slug,
-        language: _.get(edge, 'node.frontmatter.language')
-      }
-    });
-  });
+			const lang = _.get(edge, 'node.frontmatter.language');
 
-  // Feeds
-  await createTagsPages(graphql, actions);
-  await createCategoriesPages(graphql, actions);
-  await createPostsPages(graphql, actions);
+			const prev = indexInLang[lang] ? sortedPosts[lang][indexInLang[lang] - 1] : null;
+			const next =
+				indexInLang[lang] !== sortedPosts[lang].length - 1 ? sortedPosts[lang][indexInLang[lang] + 1] : null;
+
+			indexInLang[lang]++;
+
+			createPage({
+				path: edge.node.fields.slug,
+				component: path.resolve('./src/templates/post-template.js'),
+				context: {
+					slug: edge.node.fields.slug,
+					language: _.get(edge, 'node.frontmatter.language'),
+					prev: prev,
+					next: next
+				}
+			});
+		}
+	});
+
+	_.each(edgesForCreatePage, (edge) => {
+		createPage({
+			path: edge.node.fields.slug,
+			component: path.resolve('./src/templates/post-template.js'),
+			context: {
+				slug: edge.node.fields.slug,
+				language: _.get(edge, 'node.frontmatter.language')
+			}
+		});
+	});
+
+	// Feeds
+	await createTagsPages(graphql, actions);
+	await createCategoriesPages(graphql, actions);
+	await createPostsPages(graphql, actions);
 };
 
 module.exports = createPages;
