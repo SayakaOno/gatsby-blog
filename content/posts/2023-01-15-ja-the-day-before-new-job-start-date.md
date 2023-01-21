@@ -1,6 +1,6 @@
 ---
 title: '新しい仕事を始める前日に'
-date: '202-01-15T22:00:00.000Z'
+date: '2023-01-15T22:00:00.000Z'
 updatedDate: ''
 template: 'post'
 language: 'ja'
