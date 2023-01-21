@@ -5,7 +5,6 @@ updatedDate: ''
 template: 'post'
 language: 'ja'
 draft: false
-home: false
 slug: '/posts/the-day-before-new-job-start-date/ja'
 category: '海外就職'
 description: '新しい仕事が始まる前日のつぶやきです。'
