@@ -55,7 +55,7 @@ const { Content } = await render(entry);
 
 const postObj = await makeGatsbyPost(entry);
 const language = entry.data.language;
-const title = `${entry.data.title} - ${language === 'en' ? siteMetadata.title : siteMetadata.titleJa}`;
+const title = entry.data.title;
 const description = entry.data.description ?? (language === 'en' ? siteMetadata.subtitle : siteMetadata.subtitleJa);
 
 const makePrevNext = (e) => e ? {
