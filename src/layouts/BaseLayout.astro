@@ -9,6 +9,8 @@ export interface Props {
   description?: string;
   language?: 'en' | 'ja';
   otherLanguagePath?: string | null;
+  ogType?: 'website' | 'article';
+  image?: string | null;
 }
 
 const {
@@ -16,9 +18,16 @@ const {
   description = siteMetadata.subtitle,
   language = 'en',
   otherLanguagePath = null,
+  ogType = 'website',
+  image = null,
 } = Astro.props;
 
 const lang = language === 'ja' ? 'ja' : 'en';
+
+// og:site_name is the name of the site, constant across every page — not the
+// per-page title. Crawlers that render it (Discord, Slack) show it as the
+// attribution line above the link.
+const siteName = lang === 'ja' ? siteMetadata.titleJa : siteMetadata.title;
 const gaId = siteMetadata.googleAnalyticsId;
 
 // Pages build to directory URLs, so the canonical form always ends in a slash.
@@ -26,6 +35,11 @@ const canonical = new URL(Astro.url.pathname, siteMetadata.url);
 if (!canonical.pathname.endsWith('/')) {
   canonical.pathname += '/';
 }
+
+// Social card images must be absolute URLs; crawlers don't resolve relative
+// paths. Emitted only when a page actually supplies one, since pointing at a
+// missing file gives a broken card rather than a text-only one.
+const imageUrl = image ? new URL(image, siteMetadata.url).href : null;
 
 // hreflang: tell Google the en/ja pages are translations of each other rather
 // than duplicates. Only emitted where a counterpart page actually exists.
@@ -47,9 +61,17 @@ const alternates = otherUrl
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta property="og:site_name" content={title} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:locale" content={lang === 'ja' ? 'ja_JP' : 'en_US'} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
     <link rel="canonical" href={canonical.href} />
     {alternates && (
       <>

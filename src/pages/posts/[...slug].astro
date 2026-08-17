@@ -79,7 +79,7 @@ const otherLanguagePath = linkTarget && publishedPosts.some(p => withSlash(entry
 const pathname = Astro.url.pathname;
 ---
 
-<BaseLayout title={title} description={description} language={language} otherLanguagePath={otherLanguagePath}>
+<BaseLayout title={title} description={description} language={language} otherLanguagePath={otherLanguagePath} ogType="article">
   <Sidebar
     client:load
     transition:persist="sidebar"
